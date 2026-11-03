@@ -23,7 +23,7 @@ The local implementation was also built successfully with Node.js 20.19.4. `dist
 - `src/App.tsx`: navigation, sections, project filters, case-study routes and screenshot lightbox.
 - `src/i18n.ts`: interface translations.
 - `src/style.css`: original responsive layout, themes and reduced-motion support.
-- `public/projects/`: four real application screenshots; no stock or AI-generated project imagery.
+- `public/projects/`: seven real application screenshots across four projects; no stock or AI-generated project imagery. Captions distinguish live app UI, frontend-only views and synthetic/browser-mocked data.
 - `.github/workflows/deploy.yml`: install, typecheck, build and GitHub Pages deployment.
 
 ## Content policy

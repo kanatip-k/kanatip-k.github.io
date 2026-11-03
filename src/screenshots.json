@@ -1,4 +1,11 @@
 {
+  "project-mongodb": {"images":[
+    {"src":"/projects/project-mongodb/cover.png","caption":"Original HTML frontend · browser-intercepted synthetic member fixture only; Express/MongoDB not run","captionTh":"HTML frontend ต้นฉบับ · ข้อมูลสมาชิกจำลองจาก browser mock เท่านั้น ไม่ได้รัน Express/MongoDB","demoData":true}
+  ]},
+  "ai-companion-suite": {"images":[
+    {"src":"/projects/ai-companion-suite/cover.png","caption":"Actual upstream-based frontend running locally · no model inference or backend verification","captionTh":"Frontend ที่ต่อยอดจากต้นทาง รันจริงในเครื่อง · ไม่ได้ทดสอบโมเดลหรือ backend","demoData":true},
+    {"src":"/projects/ai-companion-suite/flight.png","caption":"Actual flight input form · no prediction requested or result claimed","captionTh":"แบบฟอร์มเที่ยวบินจริง · ไม่ได้สั่งทำนายหรืออ้างผลลัพธ์","demoData":true}
+  ]},
   "emoji-tarot": {"images":[
     {"src":"/projects/emoji-tarot/cover.png","caption":"Running Manage Deck screen · project demo data","captionTh":"หน้า Manage Deck ที่รันจริง · ข้อมูลสาธิตของโปรเจกต์","demoData":true},
     {"src":"/projects/emoji-tarot/screen-01.png","caption":"Actual card reveal · project demo data","captionTh":"การเปิดไพ่จริงในแอป · ข้อมูลสาธิตของโปรเจกต์","demoData":true}

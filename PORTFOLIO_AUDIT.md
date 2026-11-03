@@ -29,3 +29,9 @@ Project checks from this task/migration: Foundation MCP 11 tests; Dashboard 11 t
 No guessed university/degree/GPA, work history, phone/email/LinkedIn, individual contribution percentages, fake resume PDF or unsupported demo links. Education/resume details are recorded in `UNKNOWN_INFORMATION.md`; production presents only the confirmed GitHub contact and academic-project context. No private repository metadata or provider/GitHub token is embedded.
 
 Deployment and live checks are recorded separately in `DEPLOYMENT.md` after publishing. A successful local build alone is not called a successful public deployment.
+
+## Additional verified checks
+
+All 64 source-evidence URLs were checked against their actual public GitHub file trees, including the BIM/dorm review branch paths; no missing evidence file was found. The runtime executable for .NET is present, but `dotnet --list-sdks` returned no installed SDK entries. The Navisworks API DLL exists in the checked installation path; its presence does not establish compilation or extraction success. Docker's Linux-engine named pipe was unavailable during the read-only check, so no container/hardware pipeline success is inferred. Android tools were not found on PATH or the standard local paths checked; no system-wide tooling installation was performed.
+
+Capture feasibility was reviewed across all 15 public projects. Seven genuine screenshots from four projects are now included, with frontend-only and mocked-data limits stated in the gallery and `SCREENSHOT_REPORT.md`. Private data exports and tracked live environment files from legacy repositories were not checked out for capture.
