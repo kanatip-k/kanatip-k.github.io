@@ -1,0 +1,2661 @@
+[
+  {
+    "id": "foundation-ontology-mcp",
+    "title": "Foundation Ontology MCP",
+    "category": "BIM & MCP",
+    "technologies": [
+      "bim",
+      "mcp",
+      "ontology",
+      "pydantic",
+      "python"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/foundation-ontology-mcp",
+    "demoUrl": null,
+    "projectStatus": "Prototype / see README for validation limits",
+    "featured": true,
+    "featuredOrder": 1,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "foundation-ontology-mcp",
+    "description": {
+      "en": "A read-only MCP server for validating BIM foundation evidence against an explicit ontology.",
+      "th": "MCP server แบบอ่านอย่างเดียวสำหรับตรวจหลักฐานองค์ประกอบฐานราก BIM เทียบกับ ontology"
+    },
+    "overview": {
+      "en": "Python tools expose ontology summaries, validation schemas, graph searches and code crosswalks. Element evidence is checked deterministically rather than allowing an agent to guess missing properties.",
+      "th": "เครื่องมือ Python เปิดให้ค้น ontology ดู schema และ crosswalk ของรหัส แล้วตรวจหลักฐานของ element ด้วยกฎที่ชัดเจน แทนการให้ agent เดาข้อมูลที่ขาด"
+    },
+    "problem": {
+      "en": "BIM element properties need a traceable connection to classification and measurement rules before they can support cost-code reasoning.",
+      "th": "ข้อมูล property ของ BIM ต้องเชื่อมกับรหัสและกฎการวัดอย่างตรวจสอบย้อนหลังได้ ก่อนใช้ประกอบการให้เหตุผลเรื่องรหัสต้นทุน"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Six read-only MCP tools: summary, schema, search, crosswalk, single validation and batch validation.",
+        "th": "มี MCP tools แบบอ่านอย่างเดียว 6 ตัว สำหรับสรุป schema ค้นหา crosswalk และตรวจ element เดี่ยวหรือเป็นชุด"
+      },
+      {
+        "en": "Validation distinguishes matched, needs-review, unresolved and conflicting evidence.",
+        "th": "แยกผลเป็น matched, needs-review, unresolved และ conflict"
+      },
+      {
+        "en": "Ontology graph checks reject duplicate identifiers and broken relationships.",
+        "th": "ตรวจรหัสซ้ำและความสัมพันธ์ที่อ้างอิง node ไม่ครบใน graph"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "BIM evidence payload",
+        "Pydantic schema",
+        "OntologyStore",
+        "JSON ontology",
+        "Evidence result"
+      ],
+      "edges": [
+        {
+          "from": "BIM evidence payload",
+          "to": "Pydantic schema"
+        },
+        {
+          "from": "Pydantic schema",
+          "to": "OntologyStore"
+        },
+        {
+          "from": "OntologyStore",
+          "to": "JSON ontology"
+        },
+        {
+          "from": "JSON ontology",
+          "to": "Evidence result"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "MCP get_ontology_summary",
+      "MCP get_validation_schema",
+      "MCP search_ontology",
+      "MCP get_crosswalk",
+      "MCP validate_element",
+      "MCP validate_elements"
+    ],
+    "database": {
+      "en": "Versioned JSON ontology; no live database server is required for the included validation path.",
+      "th": "ใช้ ontology แบบ JSON ที่เก็บรุ่น ไม่ต้องมี database server สำหรับเส้นทางการตรวจที่รวมอยู่"
+    },
+    "implementation": {
+      "en": "server.py defines annotated read-only tools. models.py validates evidence shape. store.py loads the graph, normalizes terms and follows crosswalk relationships.",
+      "th": "server.py กำหนด tools แบบ read-only, models.py ตรวจรูปแบบหลักฐาน และ store.py โหลด graph ปรับรูปคำและเดินความสัมพันธ์ crosswalk"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Existing pytest suite",
+        "status": "passed",
+        "detail": {
+          "en": "11 tests passed, including the stdio smoke check, during the migration.",
+          "th": "ผ่าน 11 tests รวม stdio smoke check ในการย้ายโปรเจกต์"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Coverage is limited to the included foundation ontology; review-required mappings stay unconfirmed.",
+        "th": "ขอบเขตจำกัดตาม ontology ฐานรากที่รวมอยู่ และ mapping ที่ต้องทบทวนยังไม่ถือว่ายืนยัน"
+      },
+      {
+        "en": "No automatic unit conversion or verified Revit/Claude Desktop end-to-end run.",
+        "th": "ยังไม่มีการแปลงหน่วยอัตโนมัติหรือผลทดสอบ Revit/Claude Desktop แบบครบวงจรที่ยืนยันแล้ว"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Coverage is limited to the included foundation ontology; review-required mappings stay unconfirmed.",
+        "th": "ขอบเขตจำกัดตาม ontology ฐานรากที่รวมอยู่ และ mapping ที่ต้องทบทวนยังไม่ถือว่ายืนยัน"
+      },
+      {
+        "en": "No automatic unit conversion or verified Revit/Claude Desktop end-to-end run.",
+        "th": "ยังไม่มีการแปลงหน่วยอัตโนมัติหรือผลทดสอบ Revit/Claude Desktop แบบครบวงจรที่ยืนยันแล้ว"
+      }
+    ],
+    "future": [
+      {
+        "en": "Expand ontology coverage only with reviewed source references.",
+        "th": "ขยาย ontology เมื่อมีแหล่งอ้างอิงที่ตรวจแล้ว"
+      },
+      {
+        "en": "Add integration checks using authorized BIM element samples.",
+        "th": "เพิ่ม integration tests ด้วย element ตัวอย่างที่มีสิทธิ์ใช้งาน"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "src/foundation_ontology_mcp/server.py",
+        "url": "https://github.com/kanatip-k/foundation-ontology-mcp/blob/main/src/foundation_ontology_mcp/server.py",
+        "kind": "source"
+      },
+      {
+        "path": "src/foundation_ontology_mcp/models.py",
+        "url": "https://github.com/kanatip-k/foundation-ontology-mcp/blob/main/src/foundation_ontology_mcp/models.py",
+        "kind": "source"
+      },
+      {
+        "path": "src/foundation_ontology_mcp/store.py",
+        "url": "https://github.com/kanatip-k/foundation-ontology-mcp/blob/main/src/foundation_ontology_mcp/store.py",
+        "kind": "source"
+      },
+      {
+        "path": "tests/test_store.py",
+        "url": "https://github.com/kanatip-k/foundation-ontology-mcp/blob/main/tests/test_store.py",
+        "kind": "source"
+      },
+      {
+        "path": "tests/test_stdio_smoke.py",
+        "url": "https://github.com/kanatip-k/foundation-ontology-mcp/blob/main/tests/test_stdio_smoke.py",
+        "kind": "source"
+      },
+      {
+        "path": "pyproject.toml",
+        "url": "https://github.com/kanatip-k/foundation-ontology-mcp/blob/main/pyproject.toml",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "navisworks-mcp",
+    "title": "Navisworks MCP",
+    "category": "BIM & MCP",
+    "technologies": [
+      "bim",
+      "csharp",
+      "fastapi",
+      "mcp",
+      "navisworks",
+      "python"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/navisworks-mcp",
+    "demoUrl": null,
+    "projectStatus": "Prototype / see README for validation limits",
+    "featured": true,
+    "featuredOrder": 2,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "navisworks-mcp",
+    "description": {
+      "en": "A C# MCP/REST application with Python search and auditable BIM-to-BOQ workflows.",
+      "th": "แอป C# MCP/REST พร้อมระบบค้นหา Python และ workflow BIM-to-BOQ ที่มีหลักฐานตรวจสอบ"
+    },
+    "overview": {
+      "en": "Navisworks exporter projects produce model snapshots. A C# application serves model tools, while a Python client ingests searchable data, offers a web/API interface and runs a deterministic quantity-and-demo-price pipeline.",
+      "th": "โปรเจกต์ exporter ถอด model จาก Navisworks แล้วแอป C# เปิดเครื่องมือ model ส่วน Python client นำเข้าข้อมูลเพื่อค้นหา เปิดเว็บ/API และรัน pipeline ปริมาณกับราคาสาธิตแบบกำหนดกฎ"
+    },
+    "problem": {
+      "en": "Model information is difficult to query, classify and audit outside the authoring tool. The source separates extraction, indexed retrieval and rule-based BOQ calculations.",
+      "th": "ข้อมูล model ค้นหา จัดหมวดและตรวจสอบนอกโปรแกรมต้นทางได้ยาก โค้ดจึงแยกการถอดข้อมูล การทำดัชนี และการคำนวณ BOQ ด้วยกฎ"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "MCP model tools, REST endpoints and a web interface.",
+        "th": "มีเครื่องมือ model ผ่าน MCP, REST endpoints และหน้าเว็บ"
+      },
+      {
+        "en": "SQLite-backed indexed queries and Thai/English semantic-filter parsing.",
+        "th": "ค้นข้อมูลผ่าน SQLite และแปลงคำค้นไทย/อังกฤษเป็น filter"
+      },
+      {
+        "en": "Eight-stage BOQ workflow with evidence, exceptions and CSV/JSON export.",
+        "th": "workflow BOQ 8 ขั้น พร้อมหลักฐาน ข้อยกเว้น และ export CSV/JSON"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "Navisworks model",
+        "C# exporter",
+        "C# MCP server",
+        "Python ingest + SQLite",
+        "FastAPI / Web UI",
+        "BOQ workflow"
+      ],
+      "edges": [
+        {
+          "from": "Navisworks model",
+          "to": "C# exporter"
+        },
+        {
+          "from": "C# exporter",
+          "to": "C# MCP server"
+        },
+        {
+          "from": "C# MCP server",
+          "to": "Python ingest + SQLite"
+        },
+        {
+          "from": "Python ingest + SQLite",
+          "to": "FastAPI / Web UI"
+        },
+        {
+          "from": "FastAPI / Web UI",
+          "to": "BOQ workflow"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "GET /api/stats",
+      "GET /api/classes",
+      "GET /api/uniformat",
+      "GET /api/boq",
+      "POST /api/agent/chat",
+      "GET /api/workflows/boq/options",
+      "POST /api/workflows/boq",
+      "GET /api/workflows/boq/{job_id}",
+      "GET /api/workflows/boq/{job_id}/export/csv"
+    ],
+    "database": {
+      "en": "SQLite holds ingested model records and metadata; JSON files define mappings, measurement rules and a synthetic demo pricebook.",
+      "th": "SQLite เก็บข้อมูล model และ metadata ที่นำเข้า ส่วน JSON กำหนด mapping กฎการวัด และ pricebook สาธิต"
+    },
+    "implementation": {
+      "en": "api.py exposes model/search/workflow routes; db.py manages SQLite tables and migrations; semantic.py converts search text into constrained filters. boq_workflow separates configuration, calculation and persistence.",
+      "th": "api.py เปิด routes, db.py จัดการตารางและ migration ของ SQLite, semantic.py แปลงคำค้นเป็น filter ส่วน boq_workflow แยก configuration การคำนวณ และการบันทึกผล"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Source and configuration review",
+        "status": "reviewed",
+        "detail": {
+          "en": "Source snapshot and test files inspected; no successful C# build or live model extraction was verified during migration.",
+          "th": "ตรวจ source snapshot และไฟล์ทดสอบแล้ว แต่ยังไม่มี C# build หรือการถอด model จริงที่ยืนยันในรอบย้าย"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Requires compatible Windows, .NET and Navisworks components for extraction.",
+        "th": "การถอด model ต้องใช้ Windows, .NET และ Navisworks ที่เข้ากันได้"
+      },
+      {
+        "en": "Demo prices are synthetic, not tender or official reference rates.",
+        "th": "ราคาสาธิตเป็นข้อมูลสังเคราะห์ ไม่ใช่ราคาเสนอหรือราคากลาง"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Requires compatible Windows, .NET and Navisworks components for extraction.",
+        "th": "การถอด model ต้องใช้ Windows, .NET และ Navisworks ที่เข้ากันได้"
+      },
+      {
+        "en": "Demo prices are synthetic, not tender or official reference rates.",
+        "th": "ราคาสาธิตเป็นข้อมูลสังเคราะห์ ไม่ใช่ราคาเสนอหรือราคากลาง"
+      },
+      {
+        "en": "Provider-backed agent behavior and model extraction are not runtime-verified.",
+        "th": "พฤติกรรม agent ที่เรียก provider และการถอด model ยังไม่ยืนยันด้วยการรันจริง"
+      }
+    ],
+    "future": [
+      {
+        "en": "Compile exporter/server against the installed Navisworks API and test authorized models.",
+        "th": "build exporter/server กับ API ของ Navisworks ที่ติดตั้ง แล้วทดสอบ model ที่มีสิทธิ์"
+      },
+      {
+        "en": "Validate mapping coverage, units and pricing sources before real estimating use.",
+        "th": "ตรวจความครอบคลุม mapping หน่วย และแหล่งราคา ก่อนใช้ประมาณราคาจริง"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "README.md",
+        "url": "https://github.com/kanatip-k/navisworks-mcp/blob/main/README.md",
+        "kind": "source"
+      },
+      {
+        "path": "mcp_client/api.py",
+        "url": "https://github.com/kanatip-k/navisworks-mcp/blob/main/mcp_client/api.py",
+        "kind": "source"
+      },
+      {
+        "path": "mcp_client/db.py",
+        "url": "https://github.com/kanatip-k/navisworks-mcp/blob/main/mcp_client/db.py",
+        "kind": "source"
+      },
+      {
+        "path": "mcp_client/semantic.py",
+        "url": "https://github.com/kanatip-k/navisworks-mcp/blob/main/mcp_client/semantic.py",
+        "kind": "source"
+      },
+      {
+        "path": "mcp_client/boq_workflow/pipeline.py",
+        "url": "https://github.com/kanatip-k/navisworks-mcp/blob/main/mcp_client/boq_workflow/pipeline.py",
+        "kind": "source"
+      },
+      {
+        "path": "tests/test_boq_workflow.py",
+        "url": "https://github.com/kanatip-k/navisworks-mcp/blob/main/tests/test_boq_workflow.py",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "landslide-iot-monitor",
+    "title": "Landslide IoT Monitor",
+    "category": "IoT & Embedded Systems",
+    "technologies": [
+      "esp8266",
+      "fastapi",
+      "iot",
+      "mongodb",
+      "mqtt",
+      "python"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/landslide-iot-monitor",
+    "demoUrl": null,
+    "projectStatus": "Prototype / see README for validation limits",
+    "featured": true,
+    "featuredOrder": 3,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "landslide-iot-monitor",
+    "description": {
+      "en": "An educational ESP8266-to-dashboard sensing and messaging prototype.",
+      "th": "ต้นแบบเพื่อการศึกษาที่เชื่อมเซนเซอร์ ESP8266 กับ dashboard ผ่านระบบข้อความ"
+    },
+    "overview": {
+      "en": "Firmware reads soil moisture, rain, vibration, DHT11 and ultrasonic distance, publishes MQTT telemetry and demonstration risk states, and receives limited commands. FastAPI and MongoDB support a browser dashboard.",
+      "th": "firmware อ่านความชื้นดิน ฝน การสั่น DHT11 และระยะอัลตราโซนิก ส่ง telemetry กับระดับความเสี่ยงสาธิตผ่าน MQTT และรับคำสั่งจำกัด โดย FastAPI/MongoDB รองรับ dashboard"
+    },
+    "problem": {
+      "en": "A sensor experiment needs one visible path from acquisition to telemetry history and remote demonstration controls.",
+      "th": "การทดลองเซนเซอร์ต้องมีเส้นทางที่ตรวจดูได้ตั้งแต่เก็บค่า ไปยังประวัติ telemetry และการสั่งงานสาธิตระยะไกล"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Multi-sensor MQTT telemetry and device-status messages.",
+        "th": "ส่ง telemetry หลายเซนเซอร์และสถานะอุปกรณ์ผ่าน MQTT"
+      },
+      {
+        "en": "Latest readings, history, events and device-status API endpoints.",
+        "th": "มี API ค่าล่าสุด ประวัติ เหตุการณ์ และสถานะอุปกรณ์"
+      },
+      {
+        "en": "Demonstration LED and marker-baseline commands.",
+        "th": "มีคำสั่ง LED และตั้งค่า marker baseline สำหรับสาธิต"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "ESP8266 sensors",
+        "Mosquitto MQTT",
+        "FastAPI subscriber",
+        "MongoDB",
+        "Browser dashboard"
+      ],
+      "edges": [
+        {
+          "from": "ESP8266 sensors",
+          "to": "Mosquitto MQTT"
+        },
+        {
+          "from": "Mosquitto MQTT",
+          "to": "FastAPI subscriber"
+        },
+        {
+          "from": "FastAPI subscriber",
+          "to": "MongoDB"
+        },
+        {
+          "from": "MongoDB",
+          "to": "Browser dashboard"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "GET /health",
+      "GET /api/latest",
+      "GET /api/history",
+      "GET /api/events",
+      "GET /api/device-status",
+      "POST /api/command/{command}"
+    ],
+    "database": {
+      "en": "MongoDB collections sensor_data, events and system_status.",
+      "th": "ใช้ collections sensor_data, events และ system_status ใน MongoDB"
+    },
+    "implementation": {
+      "en": "The firmware owns acquisition/calibration and publishes sensor/status topics. backend/main.py subscribes, serializes stored readings and validates the command allow-list. Compose packages backend, broker, database and dashboard.",
+      "th": "firmware รับผิดชอบการอ่าน/ปรับเทียบและส่ง topic เซนเซอร์/สถานะ ส่วน backend/main.py subscribe แปลงข้อมูลที่บันทึก และตรวจรายการคำสั่งที่อนุญาต โดย Compose รวม backend broker database และ dashboard"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Docker Compose configuration",
+        "status": "passed",
+        "detail": {
+          "en": "Compose configuration validation passed; no hardware or live container pipeline was tested.",
+          "th": "ตรวจ Compose configuration ผ่าน แต่ยังไม่ได้ทดสอบ hardware หรือ container pipeline จริง"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Not a validated landslide-warning system; thresholds require calibration and scientific validation.",
+        "th": "ไม่ใช่ระบบเตือนภัยดินถล่มที่ผ่านการรับรอง เกณฑ์ต้องปรับเทียบและตรวจสอบทางวิทยาศาสตร์"
+      },
+      {
+        "en": "MQTT laboratory defaults are not a production security configuration.",
+        "th": "ค่าเริ่มต้น MQTT สำหรับห้องทดลองไม่ใช่การตั้งค่าความปลอดภัย production"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Not a validated landslide-warning system; thresholds require calibration and scientific validation.",
+        "th": "ไม่ใช่ระบบเตือนภัยดินถล่มที่ผ่านการรับรอง เกณฑ์ต้องปรับเทียบและตรวจสอบทางวิทยาศาสตร์"
+      },
+      {
+        "en": "MQTT laboratory defaults are not a production security configuration.",
+        "th": "ค่าเริ่มต้น MQTT สำหรับห้องทดลองไม่ใช่การตั้งค่าความปลอดภัย production"
+      },
+      {
+        "en": "Companion dashboard and firmware variants are not assumed interchangeable.",
+        "th": "ไม่ถือว่า dashboard และ firmware คนละเวอร์ชันใช้แทนกันได้โดยไม่ตรวจ protocol"
+      }
+    ],
+    "future": [
+      {
+        "en": "Validate sensor calibration and message compatibility with real authorized test hardware.",
+        "th": "ตรวจ calibration และความเข้ากันได้ของข้อความด้วย hardware ทดสอบจริง"
+      },
+      {
+        "en": "Add authenticated messaging and deployment hardening before broader use.",
+        "th": "เพิ่ม authentication และปรับความปลอดภัยก่อนใช้งานกว้างขึ้น"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "backend/main.py",
+        "url": "https://github.com/kanatip-k/landslide-iot-monitor/blob/main/backend/main.py",
+        "kind": "source"
+      },
+      {
+        "path": "firmware/landslide_esp8266/landslide_esp8266.ino",
+        "url": "https://github.com/kanatip-k/landslide-iot-monitor/blob/main/firmware/landslide_esp8266/landslide_esp8266.ino",
+        "kind": "source"
+      },
+      {
+        "path": "docker-compose.yml",
+        "url": "https://github.com/kanatip-k/landslide-iot-monitor/blob/main/docker-compose.yml",
+        "kind": "source"
+      },
+      {
+        "path": "dashboard/index.html",
+        "url": "https://github.com/kanatip-k/landslide-iot-monitor/blob/main/dashboard/index.html",
+        "kind": "source"
+      },
+      {
+        "path": "README_TH.md",
+        "url": "https://github.com/kanatip-k/landslide-iot-monitor/blob/main/README_TH.md",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "python-docker-dashboard",
+    "title": "Python Docker Dashboard",
+    "category": "IoT & Embedded Systems",
+    "technologies": [
+      "docker",
+      "fastapi",
+      "iot",
+      "mongodb",
+      "mqtt",
+      "python"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/python-docker-dashboard",
+    "demoUrl": null,
+    "projectStatus": "Prototype / see README for validation limits",
+    "featured": true,
+    "featuredOrder": 4,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "python-docker-dashboard",
+    "description": {
+      "en": "A tested companion web stack for Landslide IoT telemetry, history and simulation.",
+      "th": "ชุดเว็บประกอบ Landslide IoT สำหรับ telemetry ประวัติ และ simulation พร้อมผลทดสอบโค้ด"
+    },
+    "overview": {
+      "en": "A Python collector validates MQTT payloads and writes MongoDB records. FastAPI serves station status, history, events and CSV exports to a browser UI. Simulator and connection-check utilities support controlled local tests.",
+      "th": "collector Python ตรวจ payload MQTT แล้วบันทึก MongoDB ส่วน FastAPI เปิดสถานะสถานี ประวัติ เหตุการณ์ และ CSV ให้หน้าเว็บ พร้อม simulator และตัวตรวจการเชื่อมต่อสำหรับทดสอบในเครื่อง"
+    },
+    "problem": {
+      "en": "A telemetry dashboard needs consistent validation, recoverable data errors, historical queries and a repeatable way to test the full message path.",
+      "th": "dashboard telemetry ต้องตรวจข้อมูลอย่างสอดคล้อง รับมือข้อผิดพลาด ค้นประวัติ และมีวิธีทดสอบเส้นทางข้อความซ้ำได้"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Station discovery, latest values, history, events and CSV export.",
+        "th": "ค้นสถานี ดูค่าล่าสุด ประวัติ เหตุการณ์ และ export CSV"
+      },
+      {
+        "en": "Domain validation and prototype risk classification separated from transport code.",
+        "th": "แยกการตรวจข้อมูลและการจัดระดับความเสี่ยงสาธิตออกจากโค้ดรับส่ง"
+      },
+      {
+        "en": "Simulator and connection checker for synthetic test station data.",
+        "th": "มี simulator และตัวตรวจ connection ด้วยข้อมูลสถานีสังเคราะห์"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "MQTT sensor / simulator",
+        "Collector validation",
+        "MongoDB",
+        "FastAPI",
+        "Dashboard + CSV"
+      ],
+      "edges": [
+        {
+          "from": "MQTT sensor / simulator",
+          "to": "Collector validation"
+        },
+        {
+          "from": "Collector validation",
+          "to": "MongoDB"
+        },
+        {
+          "from": "MongoDB",
+          "to": "FastAPI"
+        },
+        {
+          "from": "FastAPI",
+          "to": "Dashboard + CSV"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "GET /api/health",
+      "GET /api/stations",
+      "GET /api/stations/{station}/latest",
+      "GET /api/stations/{station}/history",
+      "GET /api/stations/{station}/events",
+      "GET /api/stations/{station}/export.csv"
+    ],
+    "database": {
+      "en": "MongoDB stores validated station readings/events. Test code replaces database and broker interactions where appropriate; passing tests do not establish a live pipeline.",
+      "th": "MongoDB เก็บค่าของสถานีและเหตุการณ์ที่ตรวจแล้ว โค้ดทดสอบแทนการเชื่อม database/broker ในส่วนที่เหมาะสม จึงไม่ถือว่าผ่าน pipeline จริง"
+    },
+    "implementation": {
+      "en": "domain.py centralizes validation/classification. collector.py manages broker callbacks and persistence. app.py handles read-oriented APIs, database-error responses and static assets.",
+      "th": "domain.py รวม validation/classification, collector.py จัดการ callback ของ broker กับการบันทึก และ app.py เปิด API อ่านข้อมูล รับมือ database error และส่ง static assets"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Existing Python tests",
+        "status": "passed",
+        "detail": {
+          "en": "11 tests and 18 subtests passed during migration; one framework deprecation warning remained.",
+          "th": "ผ่าน 11 tests และ 18 subtests ในรอบย้าย โดยมี framework deprecation warning 1 รายการ"
+        }
+      },
+      {
+        "name": "Docker Compose configuration",
+        "status": "passed",
+        "detail": {
+          "en": "Compose configuration validated; live containers and physical sensors were not run.",
+          "th": "ตรวจ Compose ผ่าน แต่ไม่ได้รัน containers หรือเซนเซอร์จริง"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Educational risk thresholds are not validated real-world warning criteria.",
+        "th": "เกณฑ์ความเสี่ยงเพื่อการศึกษาไม่ใช่เกณฑ์เตือนภัยจริงที่ผ่านการตรวจสอบ"
+      },
+      {
+        "en": "Physical hardware, production security and cross-platform networking remain unverified.",
+        "th": "hardware จริง ความปลอดภัย production และ network ข้าม platform ยังไม่ยืนยัน"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Educational risk thresholds are not validated real-world warning criteria.",
+        "th": "เกณฑ์ความเสี่ยงเพื่อการศึกษาไม่ใช่เกณฑ์เตือนภัยจริงที่ผ่านการตรวจสอบ"
+      },
+      {
+        "en": "Physical hardware, production security and cross-platform networking remain unverified.",
+        "th": "hardware จริง ความปลอดภัย production และ network ข้าม platform ยังไม่ยืนยัน"
+      }
+    ],
+    "future": [
+      {
+        "en": "Exercise broker/database failures against a local container test stack.",
+        "th": "ทดสอบ broker/database ขัดข้องกับ container stack ในเครื่อง"
+      },
+      {
+        "en": "Verify firmware protocol compatibility and authentication.",
+        "th": "ตรวจความเข้ากันได้ของ protocol firmware และ authentication"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "server/domain.py",
+        "url": "https://github.com/kanatip-k/python-docker-dashboard/blob/main/server/domain.py",
+        "kind": "source"
+      },
+      {
+        "path": "server/app.py",
+        "url": "https://github.com/kanatip-k/python-docker-dashboard/blob/main/server/app.py",
+        "kind": "source"
+      },
+      {
+        "path": "server/collector.py",
+        "url": "https://github.com/kanatip-k/python-docker-dashboard/blob/main/server/collector.py",
+        "kind": "source"
+      },
+      {
+        "path": "server/test_system.py",
+        "url": "https://github.com/kanatip-k/python-docker-dashboard/blob/main/server/test_system.py",
+        "kind": "source"
+      },
+      {
+        "path": "server/test_connection_check.py",
+        "url": "https://github.com/kanatip-k/python-docker-dashboard/blob/main/server/test_connection_check.py",
+        "kind": "source"
+      },
+      {
+        "path": "docker-compose.yml",
+        "url": "https://github.com/kanatip-k/python-docker-dashboard/blob/main/docker-compose.yml",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "iot-weather-station",
+    "title": "IoT Weather Station",
+    "category": "IoT & Embedded Systems",
+    "technologies": [
+      "arduino",
+      "esp32",
+      "fastapi",
+      "iot",
+      "mongodb",
+      "mqtt",
+      "python"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/iot-weather-station",
+    "demoUrl": null,
+    "projectStatus": "Prototype / see README for validation limits",
+    "featured": true,
+    "featuredOrder": 5,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "iot-weather-station",
+    "description": {
+      "en": "An ESP32 weather and air-quality telemetry pipeline with a FastAPI dashboard.",
+      "th": "pipeline telemetry อากาศและคุณภาพอากาศจาก ESP32 พร้อม dashboard FastAPI"
+    },
+    "overview": {
+      "en": "Board firmware publishes measurements to Mosquitto. A Python subscriber validates the JSON, adds timestamps and stores historical readings in MongoDB. A web service shows station discovery, latest readings and history.",
+      "th": "firmware ส่งค่าผ่าน Mosquitto จากนั้น subscriber Python ตรวจ JSON เติมเวลาและเก็บประวัติใน MongoDB โดยเว็บแสดงรายชื่อสถานี ค่าล่าสุด และประวัติ"
+    },
+    "problem": {
+      "en": "Measurements from a device need reliable transport, validation and a queryable history that a browser can display.",
+      "th": "ค่าจากอุปกรณ์ต้องมีการส่งที่ตรวจสอบได้ การตรวจข้อมูล และประวัติที่หน้าเว็บเรียกดูได้"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Wildcard MQTT subscription for multiple weather stations.",
+        "th": "subscribe MQTT แบบ wildcard เพื่อรองรับหลายสถานี"
+      },
+      {
+        "en": "Timestamped storage and latest/history API endpoints.",
+        "th": "เก็บข้อมูลพร้อมเวลา และมี API ค่าล่าสุด/ประวัติ"
+      },
+      {
+        "en": "Online/offline status derived from reading age.",
+        "th": "ประเมิน online/offline จากอายุข้อมูล"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "ESP32 sensors",
+        "Mosquitto",
+        "Python collector",
+        "MongoDB",
+        "FastAPI dashboard"
+      ],
+      "edges": [
+        {
+          "from": "ESP32 sensors",
+          "to": "Mosquitto"
+        },
+        {
+          "from": "Mosquitto",
+          "to": "Python collector"
+        },
+        {
+          "from": "Python collector",
+          "to": "MongoDB"
+        },
+        {
+          "from": "MongoDB",
+          "to": "FastAPI dashboard"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "GET /api/stations",
+      "GET /api/stations/{station_id}/latest",
+      "GET /api/stations/{station_id}/history"
+    ],
+    "database": {
+      "en": "MongoDB weather_readings records with station identity, measurements and server-side time.",
+      "th": "records weather_readings ใน MongoDB มีตัวระบุสถานี ค่าที่วัด และเวลา server"
+    },
+    "implementation": {
+      "en": "collector.py validates and persists MQTT JSON. app.py bounds history query limits and serializes MongoDB records. Dockerfiles and Compose package the collector and web service.",
+      "th": "collector.py ตรวจและบันทึก JSON, app.py จำกัดจำนวน history ที่ขอและแปลง records MongoDB ส่วน Dockerfiles/Compose รวมบริการ collector กับเว็บ"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Compose configuration",
+        "status": "passed",
+        "detail": {
+          "en": "Configuration check passed; hardware, calibration and end-to-end messaging are not verified.",
+          "th": "ตรวจ configuration ผ่าน แต่ยังไม่ยืนยัน hardware การปรับเทียบ และข้อความครบวงจร"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "The firmware PM2.5 conversion is illustrative and must match the actual sensor datasheet.",
+        "th": "สูตร PM2.5 ใน firmware เป็นตัวอย่าง ต้องปรับตาม datasheet เซนเซอร์จริง"
+      },
+      {
+        "en": "Anonymous MQTT and missing production authentication require review.",
+        "th": "MQTT แบบ anonymous และ authentication production ที่ยังขาดต้องได้รับการทบทวน"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "The firmware PM2.5 conversion is illustrative and must match the actual sensor datasheet.",
+        "th": "สูตร PM2.5 ใน firmware เป็นตัวอย่าง ต้องปรับตาม datasheet เซนเซอร์จริง"
+      },
+      {
+        "en": "Anonymous MQTT and missing production authentication require review.",
+        "th": "MQTT แบบ anonymous และ authentication production ที่ยังขาดต้องได้รับการทบทวน"
+      }
+    ],
+    "future": [
+      {
+        "en": "Calibrate the actual PM sensor and record reproducible hardware checks.",
+        "th": "ปรับเทียบเซนเซอร์ PM จริงและบันทึก hardware checks ที่ทำซ้ำได้"
+      },
+      {
+        "en": "Add authenticated/TLS transport for deployment.",
+        "th": "เพิ่ม authenticated/TLS transport สำหรับ deploy"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "collector/collector.py",
+        "url": "https://github.com/kanatip-k/iot-weather-station/blob/main/collector/collector.py",
+        "kind": "source"
+      },
+      {
+        "path": "webapp/app.py",
+        "url": "https://github.com/kanatip-k/iot-weather-station/blob/main/webapp/app.py",
+        "kind": "source"
+      },
+      {
+        "path": "esp32/weather_station.ino",
+        "url": "https://github.com/kanatip-k/iot-weather-station/blob/main/esp32/weather_station.ino",
+        "kind": "source"
+      },
+      {
+        "path": "docker-compose.yml",
+        "url": "https://github.com/kanatip-k/iot-weather-station/blob/main/docker-compose.yml",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "emoji-tarot",
+    "title": "Emoji Tarot",
+    "category": "Web & Mobile Applications",
+    "technologies": [
+      "express",
+      "nodejs",
+      "react",
+      "typescript",
+      "vite"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/emoji-tarot",
+    "demoUrl": null,
+    "projectStatus": "Prototype / see README for validation limits",
+    "featured": true,
+    "featuredOrder": 6,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "emoji-tarot",
+    "description": {
+      "en": "A React/TypeScript workshop app backed by an Express card API.",
+      "th": "เว็บ workshop React/TypeScript ที่ใช้ Express API จัดการไพ่"
+    },
+    "overview": {
+      "en": "The React frontend provides draw and management views. Express serves card CRUD, random selection, search and category operations, backed by an in-memory array.",
+      "th": "frontend React มีหน้าสุ่มและจัดการไพ่ ส่วน Express เปิด CRUD การสุ่ม การค้นหา และหมวด โดยเก็บข้อมูลใน array ในหน่วยความจำ"
+    },
+    "problem": {
+      "en": "A small application makes typed API contracts, frontend/backend separation and CRUD behavior concrete for learning.",
+      "th": "แอปขนาดเล็กช่วยให้เห็น typed API contracts การแยก frontend/backend และ CRUD อย่างชัดเจนสำหรับเรียนรู้"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Card listing, random draw and detail retrieval.",
+        "th": "แสดงไพ่ สุ่มไพ่ และเรียกดูรายละเอียด"
+      },
+      {
+        "en": "Create, edit, delete, search and category routes in source.",
+        "th": "โค้ดมี routes สร้าง แก้ ลบ ค้นหา และหมวด"
+      },
+      {
+        "en": "Vite proxy and typed client/API structures.",
+        "th": "มี Vite proxy และโครงสร้าง client/API ที่ใช้ type"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "React UI",
+        "Typed fetch client",
+        "Express routes",
+        "In-memory card array"
+      ],
+      "edges": [
+        {
+          "from": "React UI",
+          "to": "Typed fetch client"
+        },
+        {
+          "from": "Typed fetch client",
+          "to": "Express routes"
+        },
+        {
+          "from": "Express routes",
+          "to": "In-memory card array"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "GET /api/health",
+      "GET /api/cards",
+      "GET /api/cards/random",
+      "GET /api/cards/:id",
+      "POST /api/cards",
+      "PUT /api/cards/:id",
+      "DELETE /api/cards/:id"
+    ],
+    "database": {
+      "en": "No database: data is stored in process memory and resets with the application.",
+      "th": "ไม่มี database ข้อมูลอยู่ในหน่วยความจำของ process และรีเซ็ตเมื่อเริ่มแอปใหม่"
+    },
+    "implementation": {
+      "en": "routes/cards.ts implements the HTTP layer; data/cards.ts owns array operations and initial examples. Client pages and components call the typed API.",
+      "th": "routes/cards.ts เป็นชั้น HTTP, data/cards.ts จัดการ array และข้อมูลตัวอย่าง ส่วน pages/components เรียก typed API"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "TypeScript",
+        "status": "passed",
+        "detail": {
+          "en": "Client and server type checks passed.",
+          "th": "type checks client/server ผ่าน"
+        }
+      },
+      {
+        "name": "Client build",
+        "status": "passed",
+        "detail": {
+          "en": "Vite production build passed.",
+          "th": "Vite production build ผ่าน"
+        }
+      },
+      {
+        "name": "API smoke checks",
+        "status": "passed",
+        "detail": {
+          "en": "GET health, cards and random passed on an isolated local server.",
+          "th": "GET health, cards และ random ผ่านบน server ทดสอบในเครื่อง"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "No durable data storage or production authentication was verified.",
+        "th": "ยังไม่มีการเก็บข้อมูลถาวรหรือ authentication production ที่ยืนยันแล้ว"
+      },
+      {
+        "en": "Bun server production build and the full shell test suite were not run.",
+        "th": "ยังไม่ได้รัน Bun production build ฝั่ง server และ shell test suite ทั้งหมด"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "No durable data storage or production authentication was verified.",
+        "th": "ยังไม่มีการเก็บข้อมูลถาวรหรือ authentication production ที่ยืนยันแล้ว"
+      },
+      {
+        "en": "Bun server production build and the full shell test suite were not run.",
+        "th": "ยังไม่ได้รัน Bun production build ฝั่ง server และ shell test suite ทั้งหมด"
+      }
+    ],
+    "future": [
+      {
+        "en": "Add persistence and automated API regression tests.",
+        "th": "เพิ่ม persistence และ API regression tests"
+      },
+      {
+        "en": "Document individual workshop modifications before claiming contributions.",
+        "th": "ระบุส่วนที่แก้จาก workshop ก่อนอ้างบทบาทเฉพาะบุคคล"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": "https://github.com/wu-web-camp/emoji-tarot",
+    "images": [],
+    "evidence": [
+      {
+        "path": "server/src/routes/cards.ts",
+        "url": "https://github.com/kanatip-k/emoji-tarot/blob/main/server/src/routes/cards.ts",
+        "kind": "source"
+      },
+      {
+        "path": "server/src/data/cards.ts",
+        "url": "https://github.com/kanatip-k/emoji-tarot/blob/main/server/src/data/cards.ts",
+        "kind": "source"
+      },
+      {
+        "path": "client/package.json",
+        "url": "https://github.com/kanatip-k/emoji-tarot/blob/main/client/package.json",
+        "kind": "source"
+      },
+      {
+        "path": "server/package.json",
+        "url": "https://github.com/kanatip-k/emoji-tarot/blob/main/server/package.json",
+        "kind": "source"
+      },
+      {
+        "path": "README.md",
+        "url": "https://github.com/kanatip-k/emoji-tarot/blob/main/README.md",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "bim-project",
+    "title": "Agentic BIM-to-BOQ Prototype",
+    "category": "BIM & MCP",
+    "technologies": [
+      "bim",
+      "csharp",
+      "fastapi",
+      "mcp",
+      "navisworks",
+      "python"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/BIM-PROJECT",
+    "demoUrl": null,
+    "projectStatus": "New application addition is in an unmerged draft PR",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": false,
+    "reviewUrl": "https://github.com/kanatip-k/BIM-PROJECT/pull/1",
+    "slug": "bim-project",
+    "description": {
+      "en": "A Python bridge/web prototype with a separately reviewed BOQ workflow addition.",
+      "th": "ต้นแบบ bridge/เว็บ Python พร้อมส่วนเพิ่ม workflow BOQ ที่อยู่ระหว่าง review"
+    },
+    "overview": {
+      "en": "The main repository retains an earlier Navisworks-to-JSON bridge prototype. Draft PR #1 adds an independent BOQ source folder with validation, classification, quantity rules, demo pricing and export.",
+      "th": "main เก็บต้นแบบ Navisworks-to-JSON bridge เดิม ส่วน Draft PR #1 เพิ่ม source BOQ แยกโฟลเดอร์ที่มี validation classification กฎปริมาณ ราคาสาธิต และ export"
+    },
+    "problem": {
+      "en": "Model-to-estimate workflows need explicit evidence and unresolved-case handling rather than silently inventing missing classifications or quantities.",
+      "th": "workflow model ไปสู่ประมาณราคาต้องมีหลักฐานและจัดการกรณีที่ยังสรุปไม่ได้ แทนการสร้างรหัสหรือปริมาณที่ขาดขึ้นเอง"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Evidence-aware acquisition, normalization, classification and quantity stages in the review branch.",
+        "th": "ใน branch review มีขั้นรับข้อมูล ปรับรูป จัดหมวด และหาปริมาณแบบอ้างหลักฐาน"
+      },
+      {
+        "en": "FastAPI dashboard and MCP tools for running and inspecting workflows.",
+        "th": "มี dashboard FastAPI และ MCP tools รัน/ดู workflow"
+      },
+      {
+        "en": "Issue summaries, audit trails and CSV/JSON outputs.",
+        "th": "มี issue summary, audit trail และผล CSV/JSON"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "Authorized model export",
+        "JSON bridge",
+        "MCP / FastAPI",
+        "Deterministic BOQ pipeline",
+        "Issue report + CSV/JSON"
+      ],
+      "edges": [
+        {
+          "from": "Authorized model export",
+          "to": "JSON bridge"
+        },
+        {
+          "from": "JSON bridge",
+          "to": "MCP / FastAPI"
+        },
+        {
+          "from": "MCP / FastAPI",
+          "to": "Deterministic BOQ pipeline"
+        },
+        {
+          "from": "Deterministic BOQ pipeline",
+          "to": "Issue report + CSV/JSON"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "MCP run_boq_workflow",
+      "MCP get_boq_workflow_result",
+      "MCP list_boq_workflows"
+    ],
+    "database": {
+      "en": "JSON model exports and local workflow result files; model exports are excluded from the reviewed source snapshot.",
+      "th": "ใช้ model exports แบบ JSON และไฟล์ผล workflow ในเครื่อง โดยไม่รวม model exports ใน source snapshot ที่ตรวจแล้ว"
+    },
+    "implementation": {
+      "en": "The added boq_workflow package separates configuration, pipeline stages and service/result handling. It preserves unresolved evidence instead of forcing a code assignment.",
+      "th": "แพ็กเกจ boq_workflow ที่เพิ่มแยก configuration ขั้น pipeline และ service/ผลลัพธ์ โดยคงหลักฐานที่ยังไม่สรุป แทนบังคับกำหนดรหัส"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Selected pytest checks",
+        "status": "partial",
+        "detail": {
+          "en": "5 passed; 1 failed and 3 setup errors because original CASE2 exports were excluded.",
+          "th": "ผ่าน 5 รายการ อีก 1 failed และ 3 setup errors เพราะไม่รวม CASE2 exports ต้นฉบับ"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "New BOQ source remains in an unmerged draft PR, not main.",
+        "th": "source BOQ ใหม่ยังอยู่ใน Draft PR ที่ไม่ Merge เข้า main"
+      },
+      {
+        "en": "Original CASE2 exports are needed for snapshot regression tests.",
+        "th": "snapshot regression tests ต้องใช้ CASE2 exports ต้นฉบับ"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "New BOQ source remains in an unmerged draft PR, not main.",
+        "th": "source BOQ ใหม่ยังอยู่ใน Draft PR ที่ไม่ Merge เข้า main"
+      },
+      {
+        "en": "Original CASE2 exports are needed for snapshot regression tests.",
+        "th": "snapshot regression tests ต้องใช้ CASE2 exports ต้นฉบับ"
+      },
+      {
+        "en": "Demo prices and unresolved mapping guards do not support production estimating claims.",
+        "th": "ราคาสาธิตและ mapping ที่ยังไม่สรุปไม่ใช่หลักฐานพร้อมประมาณราคา production"
+      }
+    ],
+    "future": [
+      {
+        "en": "Review and merge the source addition only after missing-fixture and integration checks.",
+        "th": "review และ Merge เมื่อแก้เงื่อนไข fixture กับ integration checks แล้ว"
+      },
+      {
+        "en": "Validate unit conventions and reference mappings on authorized models.",
+        "th": "ตรวจหน่วยและ mapping อ้างอิงกับ model ที่มีสิทธิ์"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "agentic-ai-bim-boq/python_app/boq_workflow/pipeline.py",
+        "url": "https://github.com/kanatip-k/BIM-PROJECT/blob/portfolio/migration-review/agentic-ai-bim-boq/python_app/boq_workflow/pipeline.py",
+        "kind": "source"
+      },
+      {
+        "path": "agentic-ai-bim-boq/python_app/mcp_server.py",
+        "url": "https://github.com/kanatip-k/BIM-PROJECT/blob/portfolio/migration-review/agentic-ai-bim-boq/python_app/mcp_server.py",
+        "kind": "source"
+      },
+      {
+        "path": "agentic-ai-bim-boq/tests/test_regression_snapshot.py",
+        "url": "https://github.com/kanatip-k/BIM-PROJECT/blob/portfolio/migration-review/agentic-ai-bim-boq/tests/test_regression_snapshot.py",
+        "kind": "source"
+      },
+      {
+        "path": "agentic-ai-bim-boq/README.md",
+        "url": "https://github.com/kanatip-k/BIM-PROJECT/blob/portfolio/migration-review/agentic-ai-bim-boq/README.md",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "mcp-rag-documentation",
+    "title": "MCP RAG Documentation",
+    "category": "BIM & MCP",
+    "technologies": [
+      "fastapi",
+      "mcp",
+      "ollama",
+      "python",
+      "qdrant",
+      "rag"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/mcp-rag-documentation",
+    "demoUrl": null,
+    "projectStatus": "Prototype / see README for validation limits",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "mcp-rag-documentation",
+    "description": {
+      "en": "An upstream-based hybrid retrieval MCP source snapshot with dynamic context tools.",
+      "th": "source snapshot MCP retrieval ที่ต่อยอดจากต้นทาง มี hybrid search และ dynamic context tools"
+    },
+    "overview": {
+      "en": "The source contains BM25 and semantic search orchestration, reciprocal-rank fusion, Qdrant storage and Ollama/OpenAI embedding integrations. MCP tools expose document search and context operations.",
+      "th": "โค้ดมีการประสาน BM25 กับ semantic search, reciprocal-rank fusion, Qdrant storage และ embedding ผ่าน Ollama/OpenAI โดยเปิด document search และ context operations ผ่าน MCP"
+    },
+    "problem": {
+      "en": "Documentation retrieval needs both keyword precision and semantic matching, including Thai tokenization and source metadata.",
+      "th": "การค้นเอกสารต้องใช้ทั้งความแม่นของ keyword และ semantic matching รวมถึงการตัดคำไทยและ metadata แหล่งที่มา"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Hybrid search modules combine keyword and vector results.",
+        "th": "โมดูล hybrid search รวมผล keyword กับ vector"
+      },
+      {
+        "en": "Text/PDF processors and storage/embedding abstractions.",
+        "th": "มี text/PDF processors และ abstraction สำหรับ storage/embedding"
+      },
+      {
+        "en": "Source-defined MCP search and dynamic context interfaces.",
+        "th": "มี MCP interface ค้นหาและ dynamic context ตาม source"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "Documents / context",
+        "Text processing",
+        "BM25 + embeddings",
+        "Qdrant / retrieval",
+        "RRF ranking",
+        "MCP client"
+      ],
+      "edges": [
+        {
+          "from": "Documents / context",
+          "to": "Text processing"
+        },
+        {
+          "from": "Text processing",
+          "to": "BM25 + embeddings"
+        },
+        {
+          "from": "BM25 + embeddings",
+          "to": "Qdrant / retrieval"
+        },
+        {
+          "from": "Qdrant / retrieval",
+          "to": "RRF ranking"
+        },
+        {
+          "from": "RRF ranking",
+          "to": "MCP client"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "MCP search_documentation",
+      "MCP list_sources",
+      "MCP add_directory",
+      "MCP add_context"
+    ],
+    "database": {
+      "en": "Qdrant vector storage with document/chunk metadata; external embedding/model services must be configured.",
+      "th": "Qdrant เก็บ vector กับ metadata เอกสาร/ชิ้นข้อความ และต้องตั้งค่าบริการ embedding/model ภายนอก"
+    },
+    "implementation": {
+      "en": "pyragdoc/core separates BM25, embeddings, storage, ranking fusion and search orchestration. app/mcp_server.py exposes MCP resources and tools; entry-point variants require careful selection.",
+      "th": "pyragdoc/core แยก BM25, embedding, storage, fusion และ orchestration ส่วน app/mcp_server.py เปิด resources/tools และต้องเลือก entry point ให้ตรง"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Syntax/source review",
+        "status": "reviewed",
+        "detail": {
+          "en": "Copied Python syntax was checked; retrieval quality and service-backed integration were not run.",
+          "th": "ตรวจ syntax Python ที่คัดลอกแล้ว แต่ไม่ได้วัดคุณภาพ retrieval หรือรัน integration ที่ใช้บริการจริง"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "The URL add_documentation tool is explicitly a TODO placeholder despite returning a success string.",
+        "th": "tool add_documentation จาก URL ยังเป็น TODO placeholder แม้ส่งข้อความ success กลับ"
+      },
+      {
+        "en": "The rag://stats resource contains placeholder zero counts; do not treat those as live measurements.",
+        "th": "resource rag://stats มีตัวเลขศูนย์แบบ placeholder ไม่ใช่ค่าสถิติจริง"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "The URL add_documentation tool is explicitly a TODO placeholder despite returning a success string.",
+        "th": "tool add_documentation จาก URL ยังเป็น TODO placeholder แม้ส่งข้อความ success กลับ"
+      },
+      {
+        "en": "The rag://stats resource contains placeholder zero counts; do not treat those as live measurements.",
+        "th": "resource rag://stats มีตัวเลขศูนย์แบบ placeholder ไม่ใช่ค่าสถิติจริง"
+      },
+      {
+        "en": "No measured retrieval accuracy, model/provider calls or vector ingestion success is verified.",
+        "th": "ยังไม่มี accuracy ของ retrieval การเรียก model/provider หรือความสำเร็จการ ingest vector ที่ยืนยันแล้ว"
+      }
+    ],
+    "future": [
+      {
+        "en": "Implement URL ingestion and replace placeholder statistics before presenting them as working.",
+        "th": "implement URL ingestion และแทนสถิติ placeholder ก่อนแสดงว่าทำงานจริง"
+      },
+      {
+        "en": "Add reproducible Thai retrieval evaluation and service integration tests.",
+        "th": "เพิ่มการประเมิน retrieval ภาษาไทยและ integration tests ที่ทำซ้ำได้"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": "https://github.com/aekanun2020/v3-2026-mcp-streamable-sse-rag",
+    "images": [],
+    "evidence": [
+      {
+        "path": "app/mcp_server.py",
+        "url": "https://github.com/kanatip-k/mcp-rag-documentation/blob/main/app/mcp_server.py",
+        "kind": "source"
+      },
+      {
+        "path": "pyragdoc/core/search.py",
+        "url": "https://github.com/kanatip-k/mcp-rag-documentation/blob/main/pyragdoc/core/search.py",
+        "kind": "source"
+      },
+      {
+        "path": "pyragdoc/core/bm25.py",
+        "url": "https://github.com/kanatip-k/mcp-rag-documentation/blob/main/pyragdoc/core/bm25.py",
+        "kind": "source"
+      },
+      {
+        "path": "pyragdoc/core/rrf.py",
+        "url": "https://github.com/kanatip-k/mcp-rag-documentation/blob/main/pyragdoc/core/rrf.py",
+        "kind": "source"
+      },
+      {
+        "path": "pyragdoc/core/storage.py",
+        "url": "https://github.com/kanatip-k/mcp-rag-documentation/blob/main/pyragdoc/core/storage.py",
+        "kind": "source"
+      },
+      {
+        "path": "UPSTREAM_README.md",
+        "url": "https://github.com/kanatip-k/mcp-rag-documentation/blob/main/UPSTREAM_README.md",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "ai-companion-suite",
+    "title": "AI Companion Suite · Fork",
+    "category": "Learning & Upstream-based Projects",
+    "technologies": [
+      "typescript"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/ai-companion-suite",
+    "demoUrl": null,
+    "projectStatus": "Learning or upstream-based work; personal contributions not quantified",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": true,
+    "slug": "ai-companion-suite",
+    "description": {
+      "en": "A forked React interface for several machine-learning API workflows.",
+      "th": "React interface ที่เป็น Fork สำหรับ workflow เรียก ML API หลายประเภท"
+    },
+    "overview": {
+      "en": "The router contains flight-price, depression, animal-image and movie-recommendation pages. A configurable API base URL connects UI requests to an external backend.",
+      "th": "router มีหน้าราคาตั๋วเครื่องบิน depression ภาพสัตว์ และแนะนำหนัง โดยใช้ API base URL ที่ตั้งค่าได้เชื่อม backend ภายนอก"
+    },
+    "problem": {
+      "en": "A browser interface makes separate prediction endpoints usable through forms and result views.",
+      "th": "หน้าเว็บช่วยให้ prediction endpoints หลายชุดใช้งานผ่านแบบฟอร์มและหน้าผลลัพธ์ได้"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Four routed prediction/recommendation page components.",
+        "th": "มี page components prediction/recommendation 4 เส้นทาง"
+      },
+      {
+        "en": "Configurable VITE_API_URL for backend integration.",
+        "th": "ตั้ง VITE_API_URL สำหรับเชื่อม backend ได้"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "React forms",
+        "API URL helper",
+        "External ML API",
+        "Result views"
+      ],
+      "edges": [
+        {
+          "from": "React forms",
+          "to": "API URL helper"
+        },
+        {
+          "from": "API URL helper",
+          "to": "External ML API"
+        },
+        {
+          "from": "External ML API",
+          "to": "Result views"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "UI /flight",
+      "UI /depression",
+      "UI /animal",
+      "UI /movie"
+    ],
+    "database": {
+      "en": "No database behavior is established by the inspected frontend paths; model/data services live outside the UI.",
+      "th": "จาก frontend ที่ตรวจยังสรุปพฤติกรรม database ไม่ได้ โดย model/data services อยู่นอก UI"
+    },
+    "implementation": {
+      "en": "src/App.tsx defines routes; src/pages/ separates task-specific interfaces; src/config/api.ts constructs API URLs.",
+      "th": "src/App.tsx กำหนด routes, src/pages/ แยกหน้าตามงาน และ src/config/api.ts ประกอบ API URL"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Runtime and model integration",
+        "status": "not-verified",
+        "detail": {
+          "en": "Source and package manifests inspected; no fresh runtime, model accuracy or endpoint compatibility result is claimed.",
+          "th": "ตรวจ source/package แล้ว แต่ยังไม่อ้าง runtime ใหม่ accuracy หรือความเข้ากันได้ endpoint"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "A GitHub fork; personal modifications and upstream roles are not quantified.",
+        "th": "เป็น GitHub Fork และยังไม่แยกการแก้ไขส่วนตัวหรือบทบาทต้นทางเป็นตัวเลข"
+      },
+      {
+        "en": "Depression-related prediction must not be represented as a validated medical diagnostic product.",
+        "th": "ส่วน prediction ที่เกี่ยวกับ depression ไม่ใช่หลักฐานว่าเป็นผลิตภัณฑ์วินิจฉัยทางการแพทย์ที่ผ่านการตรวจสอบ"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "A GitHub fork; personal modifications and upstream roles are not quantified.",
+        "th": "เป็น GitHub Fork และยังไม่แยกการแก้ไขส่วนตัวหรือบทบาทต้นทางเป็นตัวเลข"
+      },
+      {
+        "en": "Depression-related prediction must not be represented as a validated medical diagnostic product.",
+        "th": "ส่วน prediction ที่เกี่ยวกับ depression ไม่ใช่หลักฐานว่าเป็นผลิตภัณฑ์วินิจฉัยทางการแพทย์ที่ผ่านการตรวจสอบ"
+      }
+    ],
+    "future": [
+      {
+        "en": "Document personal changes and test frontend/backend contracts using synthetic inputs.",
+        "th": "บันทึกส่วนที่แก้เองและทดสอบ contracts frontend/backend ด้วยข้อมูลสังเคราะห์"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": "https://github.com/KhunchayNe/ai-companion-suite",
+    "images": [],
+    "evidence": [
+      {
+        "path": "src/App.tsx",
+        "url": "https://github.com/kanatip-k/ai-companion-suite/blob/main/src/App.tsx",
+        "kind": "source"
+      },
+      {
+        "path": "src/config/api.ts",
+        "url": "https://github.com/kanatip-k/ai-companion-suite/blob/main/src/config/api.ts",
+        "kind": "source"
+      },
+      {
+        "path": "package.json",
+        "url": "https://github.com/kanatip-k/ai-companion-suite/blob/main/package.json",
+        "kind": "source"
+      },
+      {
+        "path": "src/pages/FlightPricePage.tsx",
+        "url": "https://github.com/kanatip-k/ai-companion-suite/blob/main/src/pages/FlightPricePage.tsx",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "fastapi-lm",
+    "title": "FastAPI ML · Fork",
+    "category": "Learning & Upstream-based Projects",
+    "technologies": [
+      "fastapi",
+      "machine-learning",
+      "python"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/FASTAPI-LM",
+    "demoUrl": null,
+    "projectStatus": "Learning or upstream-based work; personal contributions not quantified",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": true,
+    "slug": "fastapi-lm",
+    "description": {
+      "en": "A forked Python API project for several machine-learning inference tasks.",
+      "th": "โปรเจกต์ Python API ที่เป็น Fork สำหรับงาน inference ของ ML หลายประเภท"
+    },
+    "overview": {
+      "en": "Versioned FastAPI routers organize flight-price, recommendation and depression-related endpoints, with v2 also including an animal-image route and flight training route.",
+      "th": "FastAPI routers แบ่งเวอร์ชันสำหรับราคาตั๋ว recommendation และ depression โดย v2 มี route ภาพสัตว์และ train ของ flight เพิ่มด้วย"
+    },
+    "problem": {
+      "en": "Model inference needs typed request/response boundaries and a reusable HTTP service layer.",
+      "th": "model inference ต้องมีขอบเขต request/response ที่ใช้ type และชั้น HTTP service ใช้ซ้ำได้"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Versioned API routers and task-specific service/schema modules.",
+        "th": "มี API routers แยกเวอร์ชันและโมดูล service/schema ตามงาน"
+      },
+      {
+        "en": "Flight source loads a joblib artifact and predicts from a Pandas row.",
+        "th": "source flight โหลด artifact joblib และ predict จากข้อมูลแถว Pandas"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "Typed API request",
+        "FastAPI router",
+        "Task service",
+        "Model artifact",
+        "Prediction response"
+      ],
+      "edges": [
+        {
+          "from": "Typed API request",
+          "to": "FastAPI router"
+        },
+        {
+          "from": "FastAPI router",
+          "to": "Task service"
+        },
+        {
+          "from": "Task service",
+          "to": "Model artifact"
+        },
+        {
+          "from": "Model artifact",
+          "to": "Prediction response"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "POST /api/v1/flight/predict",
+      "POST /api/v1/recommend/search",
+      "POST /api/v1/depression/depression",
+      "POST /api/v2/flight/predict",
+      "POST /api/v2/flight/train",
+      "POST /api/v2/animal/predict"
+    ],
+    "database": {
+      "en": "Model artifacts and in-process inference are visible in source; a production database design was not verified.",
+      "th": "source แสดง model artifacts กับ inference ใน process แต่ยังไม่ยืนยัน database design production"
+    },
+    "implementation": {
+      "en": "app/main.py mounts v1/v2 routers. Each task separates route, schema and service code; the inspected v1 flight service uses joblib and Pandas.",
+      "th": "app/main.py mount routers v1/v2 แต่ละงานแยก route/schema/service โดย v1 flight service ที่ตรวจใช้ joblib กับ Pandas"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Inference/runtime validation",
+        "status": "not-verified",
+        "detail": {
+          "en": "No new model loading, inference accuracy, training quality or complete API test result was measured.",
+          "th": "ยังไม่วัด model loading, accuracy, คุณภาพ training หรือผลทดสอบ API ครบชุดใหม่"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Forked learning project; individual contributions need confirmation.",
+        "th": "งานเรียนรู้ที่เป็น Fork ต้องยืนยัน contribution รายบุคคล"
+      },
+      {
+        "en": "README descriptions are not evidence of model accuracy, clinical suitability or artifact compatibility.",
+        "th": "คำอธิบาย README ไม่ใช่หลักฐาน accuracy ความเหมาะสมทางคลินิก หรือ compatibility ของ artifact"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Forked learning project; individual contributions need confirmation.",
+        "th": "งานเรียนรู้ที่เป็น Fork ต้องยืนยัน contribution รายบุคคล"
+      },
+      {
+        "en": "README descriptions are not evidence of model accuracy, clinical suitability or artifact compatibility.",
+        "th": "คำอธิบาย README ไม่ใช่หลักฐาน accuracy ความเหมาะสมทางคลินิก หรือ compatibility ของ artifact"
+      }
+    ],
+    "future": [
+      {
+        "en": "Validate model availability and versions, then run reproducible synthetic API checks.",
+        "th": "ตรวจ model ที่มีและเวอร์ชัน แล้วรัน API checks ด้วยข้อมูลสังเคราะห์ที่ทำซ้ำได้"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": "https://github.com/KhunchayNe/FASTAPI-LM",
+    "images": [],
+    "evidence": [
+      {
+        "path": "app/main.py",
+        "url": "https://github.com/kanatip-k/FASTAPI-LM/blob/main/app/main.py",
+        "kind": "source"
+      },
+      {
+        "path": "app/api/v1/router.py",
+        "url": "https://github.com/kanatip-k/FASTAPI-LM/blob/main/app/api/v1/router.py",
+        "kind": "source"
+      },
+      {
+        "path": "app/api/v2/router.py",
+        "url": "https://github.com/kanatip-k/FASTAPI-LM/blob/main/app/api/v2/router.py",
+        "kind": "source"
+      },
+      {
+        "path": "app/api/v1/flight/service.py",
+        "url": "https://github.com/kanatip-k/FASTAPI-LM/blob/main/app/api/v1/flight/service.py",
+        "kind": "source"
+      },
+      {
+        "path": "requirements.txt",
+        "url": "https://github.com/kanatip-k/FASTAPI-LM/blob/main/requirements.txt",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "lab-kanatip",
+    "title": "Git/GitHub Practice",
+    "category": "Learning & Upstream-based Projects",
+    "technologies": [],
+    "githubUrl": "https://github.com/kanatip-k/lab-kanatip",
+    "demoUrl": null,
+    "projectStatus": "Learning or upstream-based work; personal contributions not quantified",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "lab-kanatip",
+    "description": {
+      "en": "A small README-based repository for introductory Git/GitHub practice.",
+      "th": "repository README ขนาดเล็กสำหรับฝึก Git/GitHub เบื้องต้น"
+    },
+    "overview": {
+      "en": "The audited tree contains one README and no executable source. It belongs in a learning archive, not among implementation-heavy featured projects.",
+      "th": "tree ที่ audit มี README หนึ่งไฟล์และไม่มี executable source จึงเหมาะกับหมวดฝึกเรียนมากกว่างานเด่นเชิง implementation"
+    },
+    "problem": {
+      "en": "Retain early version-control practice as learning context without overstating its scope.",
+      "th": "เก็บร่องรอยการฝึก version control เป็นบริบทการเรียนรู้โดยไม่ขยายขอบเขตเกินจริง"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [],
+    "architecture": {
+      "nodes": [
+        "README",
+        "Git history"
+      ],
+      "edges": [
+        {
+          "from": "README",
+          "to": "Git history"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [],
+    "database": {
+      "en": "No database or API source.",
+      "th": "ไม่มี database หรือ API source"
+    },
+    "implementation": {
+      "en": "Documentation-only practice repository.",
+      "th": "repository ฝึกที่มีเฉพาะเอกสาร"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Application tests",
+        "status": "not-applicable",
+        "detail": {
+          "en": "No application source or test suite in the audited tree.",
+          "th": "ไม่มี application source หรือ test suite ใน tree ที่ audit"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Not a standalone application or technical case study of comparable scope to the featured projects.",
+        "th": "ไม่ใช่แอป standalone หรือ case study ที่มีขอบเขตเท่ากับ featured projects"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Not a standalone application or technical case study of comparable scope to the featured projects.",
+        "th": "ไม่ใช่แอป standalone หรือ case study ที่มีขอบเขตเท่ากับ featured projects"
+      }
+    ],
+    "future": [
+      {
+        "en": "Add documented exercises only if they demonstrate a specific learning outcome.",
+        "th": "เพิ่มแบบฝึกที่มีเอกสารเมื่อแสดงผลการเรียนรู้ที่เฉพาะเจาะจงได้"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "README.md",
+        "url": "https://github.com/kanatip-k/lab-kanatip/blob/main/README.md",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "project-dormitory",
+    "title": "Earlier Dormitory Fork",
+    "category": "Learning & Upstream-based Projects",
+    "technologies": [],
+    "githubUrl": "https://github.com/kanatip-k/project-dormitory",
+    "demoUrl": null,
+    "projectStatus": "Learning or upstream-based work; personal contributions not quantified",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": true,
+    "slug": "project-dormitory",
+    "description": {
+      "en": "An earlier README-only fork, retained as repository history rather than a completed application.",
+      "th": "Fork เดิมที่มีเพียง README เก็บเป็นประวัติ repository ไม่ใช่แอปสำเร็จ"
+    },
+    "overview": {
+      "en": "The audited repository contains only README.md. The current reviewed mobile source is in the separate dorm repository draft PR.",
+      "th": "repository ที่ audit มีเพียง README.md ส่วน mobile source ที่ตรวจแล้วอยู่ใน Draft PR ของ dorm แยกต่างหาก"
+    },
+    "problem": {
+      "en": "This entry records the origin/organization context without pretending a README-only repository is a functional product.",
+      "th": "รายการนี้เก็บบริบทต้นทาง/การจัดระเบียบ โดยไม่อ้างว่า repository ที่มีเพียง README เป็นผลิตภัณฑ์ใช้งานได้"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [],
+    "architecture": {
+      "nodes": [
+        "README repository",
+        "Separate dorm review branch"
+      ],
+      "edges": [
+        {
+          "from": "README repository",
+          "to": "Separate dorm review branch"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [],
+    "database": {
+      "en": "No application/database source was found in the audited main tree.",
+      "th": "ไม่พบ application/database source ใน main tree ที่ audit"
+    },
+    "implementation": {
+      "en": "Documentation-only entry; see dorm for the source-reviewed application.",
+      "th": "รายการเอกสารเท่านั้น ดูแอปที่ตรวจ source แล้วใน dorm"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Runtime",
+        "status": "not-applicable",
+        "detail": {
+          "en": "README-only repository; no application runtime or tests to claim.",
+          "th": "มีเพียง README จึงไม่มี application runtime หรือ tests ให้อ้าง"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "No executable application source in the audited repository.",
+        "th": "ไม่มี executable application source ใน repository ที่ audit"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "No executable application source in the audited repository.",
+        "th": "ไม่มี executable application source ใน repository ที่ audit"
+      }
+    ],
+    "future": [
+      {
+        "en": "Keep provenance clear and link the maintained mobile application.",
+        "th": "ระบุ provenance ให้ชัดและเชื่อมไปยัง mobile application ที่ดูแล"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": "https://github.com/Siwat2614/project-dormitory",
+    "images": [],
+    "evidence": [
+      {
+        "path": "README.md",
+        "url": "https://github.com/kanatip-k/project-dormitory/blob/main/README.md",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "project-modgod",
+    "title": "MongoDB Product Coursework · Fork",
+    "category": "Learning & Upstream-based Projects",
+    "technologies": [
+      "javascript",
+      "mongodb"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/project-modgod",
+    "demoUrl": null,
+    "projectStatus": "Learning or upstream-based work; personal contributions not quantified",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": true,
+    "slug": "project-modgod",
+    "description": {
+      "en": "A forked Express/MongoDB product API coursework snapshot.",
+      "th": "snapshot coursework Product API ด้วย Express/MongoDB ที่เป็น Fork"
+    },
+    "overview": {
+      "en": "The inspected public App.js lists products, filters by topping, finds a product by identifier, creates a product and updates a product.",
+      "th": "App.js สาธารณะที่ตรวจมีการแสดง products กรองตาม topping ค้นตาม identifier สร้างและแก้ product"
+    },
+    "problem": {
+      "en": "A small product collection provides an example of API route design and document filtering.",
+      "th": "collection สินค้าขนาดเล็กใช้เป็นตัวอย่างการออกแบบ API routes และ document filtering"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Product listing, topping filter and identifier lookup.",
+        "th": "แสดง products กรอง topping และค้นด้วย identifier"
+      },
+      {
+        "en": "Create and update operations in the inspected source.",
+        "th": "มี create/update ใน source ที่ตรวจ"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "HTTP client",
+        "Express product routes",
+        "MongoDB product collection"
+      ],
+      "edges": [
+        {
+          "from": "HTTP client",
+          "to": "Express product routes"
+        },
+        {
+          "from": "Express product routes",
+          "to": "MongoDB product collection"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "GET /product",
+      "GET /product/topping/:topping",
+      "GET /product/:id",
+      "POST /product",
+      "PUT /product/:id"
+    ],
+    "database": {
+      "en": "MongoDB product collection; exported data is not used as portfolio content.",
+      "th": "MongoDB collection product โดยไม่ใช้ข้อมูล export เป็นเนื้อหา Portfolio"
+    },
+    "implementation": {
+      "en": "App.js performs MongoDB find, findOne, insertOne and updateOne calls. No delete endpoint was verified in the inspected public source.",
+      "th": "App.js เรียก find, findOne, insertOne และ updateOne ของ MongoDB โดยยังไม่พบ delete endpoint ที่ยืนยันใน public source"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Automated tests",
+        "status": "not-implemented",
+        "detail": {
+          "en": "package.json contains a no-test-specified script; no fresh runtime result is claimed.",
+          "th": "package.json มี no-test-specified script และไม่อ้าง runtime ใหม่"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Fork of Siwat2614/project-modgod; personal contribution details are unknown.",
+        "th": "Fork จาก Siwat2614/project-modgod และยังไม่ทราบ contribution เฉพาะบุคคล"
+      },
+      {
+        "en": "Do not describe full CRUD because a delete operation was not verified.",
+        "th": "ไม่ควรเรียกว่า CRUD ครบ เพราะยังไม่ยืนยัน delete operation"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Fork of Siwat2614/project-modgod; personal contribution details are unknown.",
+        "th": "Fork จาก Siwat2614/project-modgod และยังไม่ทราบ contribution เฉพาะบุคคล"
+      },
+      {
+        "en": "Do not describe full CRUD because a delete operation was not verified.",
+        "th": "ไม่ควรเรียกว่า CRUD ครบ เพราะยังไม่ยืนยัน delete operation"
+      }
+    ],
+    "future": [
+      {
+        "en": "Document personal changes and add tested validation/error paths.",
+        "th": "ระบุส่วนที่แก้เองและเพิ่ม validation/error paths ที่ทดสอบแล้ว"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": "https://github.com/Siwat2614/project-modgod",
+    "images": [],
+    "evidence": [
+      {
+        "path": "App.js",
+        "url": "https://github.com/kanatip-k/project-modgod/blob/main/App.js",
+        "kind": "source"
+      },
+      {
+        "path": "package.json",
+        "url": "https://github.com/kanatip-k/project-modgod/blob/main/package.json",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "dorm",
+    "title": "Dormitory Management Mobile",
+    "category": "Web & Mobile Applications",
+    "technologies": [
+      "expo",
+      "javascript",
+      "mobile-app",
+      "react-native",
+      "react-navigation"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/dorm",
+    "demoUrl": null,
+    "projectStatus": "New application addition is in an unmerged draft PR",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": false,
+    "reviewUrl": "https://github.com/kanatip-k/dorm/pull/1",
+    "slug": "dorm",
+    "description": {
+      "en": "A React Native/Expo prototype for student, room and dormitory-history screens.",
+      "th": "ต้นแบบ React Native/Expo สำหรับหน้าข้อมูลนักศึกษา ห้องพัก และประวัติหอพัก"
+    },
+    "overview": {
+      "en": "The review branch contains an Expo application with administrator/login screens, student add/edit/list views, room views and history helpers. It expects a separately configured REST backend.",
+      "th": "branch review มีแอป Expo พร้อมหน้า admin/login เพิ่ม/แก้/แสดงนักศึกษา ดูห้อง และ helper ประวัติ โดยต้องตั้ง REST backend แยก"
+    },
+    "problem": {
+      "en": "Student and room records need consistent mobile views and reusable data-access helpers rather than isolated forms.",
+      "th": "ข้อมูลนักศึกษาและห้องพักต้องมีหน้ามือถือที่สอดคล้องกันกับ data-access helper ใช้ร่วม แทนแบบฟอร์มที่แยกกัน"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "Student and room screens with reusable components.",
+        "th": "มีหน้าข้อมูลนักศึกษา/ห้อง และ components ใช้ร่วม"
+      },
+      {
+        "en": "REST helpers for student CRUD and history records.",
+        "th": "มี REST helpers สำหรับ student CRUD และ history"
+      },
+      {
+        "en": "An empty database example replaces original student data.",
+        "th": "ใช้ database example ว่างแทนข้อมูลนักศึกษาต้นฉบับ"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "Expo screens",
+        "Service helpers",
+        "REST backend on port 3001",
+        "Student/history collections"
+      ],
+      "edges": [
+        {
+          "from": "Expo screens",
+          "to": "Service helpers"
+        },
+        {
+          "from": "Service helpers",
+          "to": "REST backend on port 3001"
+        },
+        {
+          "from": "REST backend on port 3001",
+          "to": "Student/history collections"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "GET /students",
+      "POST /students",
+      "PUT /students/{id}",
+      "DELETE /students/{id}",
+      "GET /history",
+      "POST /history"
+    ],
+    "database": {
+      "en": "Expected backend collections are students and history; only empty db.example.json is included.",
+      "th": "backend คาดหวัง collections students กับ history และรวมเฉพาะ db.example.json ว่าง"
+    },
+    "implementation": {
+      "en": "screens/ holds views, components/ and theme/ hold shared UI, and services/api.js defines network operations. Demo authentication matches client-side account entries.",
+      "th": "screens/ เก็บหน้าจอ, components/ กับ theme/ เก็บ UI ใช้ร่วม และ services/api.js กำหนด network operations ส่วน authentication สาธิตเทียบข้อมูล account ฝั่ง client"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Dependency installation",
+        "status": "passed",
+        "detail": {
+          "en": "Locked dependencies installed with lifecycle scripts disabled.",
+          "th": "ติดตั้ง locked dependencies โดยปิด lifecycle scripts สำเร็จ"
+        }
+      },
+      {
+        "name": "Android JS/Hermes export",
+        "status": "passed",
+        "detail": {
+          "en": "Expo export passed after adding the missing navigation dependency and correcting StudentList import case.",
+          "th": "Expo export ผ่านหลังเพิ่ม navigation dependency ที่ขาดและแก้ case ของ StudentList import"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Source addition is in unmerged draft PR #1; main is not the completed mobile app.",
+        "th": "source ใหม่อยู่ใน Draft PR #1 ที่ยังไม่ Merge และ main ยังไม่ใช่แอปมือถือครบชุด"
+      },
+      {
+        "en": "Client-side demo login is not production authentication.",
+        "th": "login สาธิตฝั่ง client ไม่ใช่ authentication production"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Source addition is in unmerged draft PR #1; main is not the completed mobile app.",
+        "th": "source ใหม่อยู่ใน Draft PR #1 ที่ยังไม่ Merge และ main ยังไม่ใช่แอปมือถือครบชุด"
+      },
+      {
+        "en": "Client-side demo login is not production authentication.",
+        "th": "login สาธิตฝั่ง client ไม่ใช่ authentication production"
+      },
+      {
+        "en": "APK compilation, device use and live backend behavior are not verified.",
+        "th": "ยังไม่ยืนยัน APK compilation การใช้บนอุปกรณ์ และ backend จริง"
+      }
+    ],
+    "future": [
+      {
+        "en": "Review the PR and provision a synthetic-data backend before integration tests.",
+        "th": "review PR และเตรียม backend ข้อมูลสังเคราะห์ก่อน integration tests"
+      },
+      {
+        "en": "Replace demonstration authentication with server-enforced access control.",
+        "th": "แทน authentication สาธิตด้วย access control ที่บังคับฝั่ง server"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "App.js",
+        "url": "https://github.com/kanatip-k/dorm/blob/portfolio/migration-review/App.js",
+        "kind": "source"
+      },
+      {
+        "path": "services/api.js",
+        "url": "https://github.com/kanatip-k/dorm/blob/portfolio/migration-review/services/api.js",
+        "kind": "source"
+      },
+      {
+        "path": "screens/StudentList.js",
+        "url": "https://github.com/kanatip-k/dorm/blob/portfolio/migration-review/screens/StudentList.js",
+        "kind": "source"
+      },
+      {
+        "path": "screens/RoomView.js",
+        "url": "https://github.com/kanatip-k/dorm/blob/portfolio/migration-review/screens/RoomView.js",
+        "kind": "source"
+      },
+      {
+        "path": "db.example.json",
+        "url": "https://github.com/kanatip-k/dorm/blob/portfolio/migration-review/db.example.json",
+        "kind": "source"
+      },
+      {
+        "path": "README.md",
+        "url": "https://github.com/kanatip-k/dorm/blob/portfolio/migration-review/README.md",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  },
+  {
+    "id": "project-mongodb",
+    "title": "MongoDB Web Coursework",
+    "category": "Web & Mobile Applications",
+    "technologies": [
+      "html",
+      "javascript",
+      "mongodb"
+    ],
+    "githubUrl": "https://github.com/kanatip-k/project-mongodb",
+    "demoUrl": null,
+    "projectStatus": "Prototype / see README for validation limits",
+    "featured": false,
+    "featuredOrder": null,
+    "visibility": "public",
+    "isFork": false,
+    "slug": "project-mongodb",
+    "description": {
+      "en": "An Express and MongoDB coursework application with identifier/name CRUD.",
+      "th": "แอป coursework Express/MongoDB สำหรับ CRUD ข้อมูลตัวระบุและชื่อ"
+    },
+    "overview": {
+      "en": "App.js provides identifier/name listing, detail, create, update and delete endpoints. index.html is the browser interface. Original exported data is not reused in the portfolio.",
+      "th": "App.js มี endpoints แสดงรายการ รายละเอียด สร้าง แก้ และลบข้อมูลตัวระบุ/ชื่อ โดย index.html เป็นหน้าเว็บ และไม่ใช้ข้อมูล export ต้นฉบับใน Portfolio"
+    },
+    "problem": {
+      "en": "Coursework demonstrates how browser interactions map to CRUD requests and MongoDB document operations.",
+      "th": "งานเรียนแสดงการเชื่อมปฏิสัมพันธ์หน้าเว็บกับ CRUD requests และ document operations ของ MongoDB"
+    },
+    "objectives": [
+      {
+        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
+        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
+      }
+    ],
+    "features": [
+      {
+        "en": "GET, POST, PUT and DELETE routes against the idname collection.",
+        "th": "มี GET, POST, PUT และ DELETE กับ collection idname"
+      },
+      {
+        "en": "ObjectId-based document lookups and updates in source.",
+        "th": "source ใช้ ObjectId ค้นและแก้ document"
+      }
+    ],
+    "architecture": {
+      "nodes": [
+        "HTML UI",
+        "Express routes",
+        "MongoDB idname collection"
+      ],
+      "edges": [
+        {
+          "from": "HTML UI",
+          "to": "Express routes"
+        },
+        {
+          "from": "Express routes",
+          "to": "MongoDB idname collection"
+        }
+      ],
+      "label": {
+        "en": "Source-derived workflow; not a deployment or performance claim.",
+        "th": "ลำดับการทำงานจากโค้ด ไม่ใช่ข้ออ้างผลการ deploy หรือประสิทธิภาพ"
+      }
+    },
+    "api": [
+      "GET /idname",
+      "GET /idname/:id",
+      "POST /idname",
+      "PUT /idname/:id",
+      "DELETE /idname/:id"
+    ],
+    "database": {
+      "en": "MongoDB idname collection. Existing student/third-party data must not be republished as sample content.",
+      "th": "MongoDB collection idname โดยต้องไม่เผยแพร่ข้อมูลนักศึกษาหรือบุคคลอื่นซ้ำเป็น sample"
+    },
+    "implementation": {
+      "en": "The small App.js service uses Express, middleware and MongoDB document operations; package.json declares nodemon for development.",
+      "th": "App.js ขนาดเล็กใช้ Express, middleware และ MongoDB document operations โดย package.json กำหนด nodemon สำหรับพัฒนา"
+    },
+    "development": [
+      {
+        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
+        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
+      }
+    ],
+    "tests": [
+      {
+        "name": "Automated test script",
+        "status": "not-implemented",
+        "detail": {
+          "en": "package.json test script explicitly exits with no test specified; runtime was not newly verified.",
+          "th": "test script ใน package.json จบด้วย no test specified จึงยังไม่มีชุดทดสอบที่ implement และยังไม่ยืนยัน runtime ใหม่"
+        }
+      }
+    ],
+    "challenges": [
+      {
+        "en": "Legacy coursework; original exported records contain personal-data concerns.",
+        "th": "coursework เดิมมีประเด็นข้อมูลส่วนบุคคลใน records ที่ export"
+      },
+      {
+        "en": "No production authorization, deployment or automated-test pass is claimed.",
+        "th": "ไม่อ้าง authorization/deploy production หรือผล automated tests ผ่าน"
+      }
+    ],
+    "results": [
+      {
+        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
+        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+      }
+    ],
+    "limitations": [
+      {
+        "en": "Legacy coursework; original exported records contain personal-data concerns.",
+        "th": "coursework เดิมมีประเด็นข้อมูลส่วนบุคคลใน records ที่ export"
+      },
+      {
+        "en": "No production authorization, deployment or automated-test pass is claimed.",
+        "th": "ไม่อ้าง authorization/deploy production หรือผล automated tests ผ่าน"
+      }
+    ],
+    "future": [
+      {
+        "en": "Use synthetic fixtures and add route/error-handling tests.",
+        "th": "ใช้ fixtures สังเคราะห์และเพิ่ม route/error-handling tests"
+      }
+    ],
+    "contributions": {
+      "en": "The owner confirmed rights to their work. Individual role, team size, dates and personal code contributions are not yet verified; upstream authorship is not claimed.",
+      "th": "เจ้าของยืนยันสิทธิ์ในงานของตนแล้ว แต่บทบาทเฉพาะบุคคล ขนาดทีม ช่วงเวลา และส่วนโค้ดที่ทำเองยังไม่ยืนยัน โดยไม่อ้างความเป็นผู้สร้างโค้ดต้นทาง"
+    },
+    "contributionStatus": "not-verified",
+    "upstreamUrl": null,
+    "images": [],
+    "evidence": [
+      {
+        "path": "App.js",
+        "url": "https://github.com/kanatip-k/project-mongodb/blob/main/App.js",
+        "kind": "source"
+      },
+      {
+        "path": "index.html",
+        "url": "https://github.com/kanatip-k/project-mongodb/blob/main/index.html",
+        "kind": "source"
+      },
+      {
+        "path": "package.json",
+        "url": "https://github.com/kanatip-k/project-mongodb/blob/main/package.json",
+        "kind": "source"
+      }
+    ],
+    "evidenceNote": {
+      "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
+      "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    }
+  }
+]

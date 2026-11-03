@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kanatip-k.github.io/sitemap.xml

@@ -1,0 +1,10 @@
+{
+  "emoji-tarot": {"images":[
+    {"src":"/projects/emoji-tarot/cover.png","caption":"Running Manage Deck screen · project demo data","captionTh":"หน้า Manage Deck ที่รันจริง · ข้อมูลสาธิตของโปรเจกต์","demoData":true},
+    {"src":"/projects/emoji-tarot/screen-01.png","caption":"Actual card reveal · project demo data","captionTh":"การเปิดไพ่จริงในแอป · ข้อมูลสาธิตของโปรเจกต์","demoData":true}
+  ]},
+  "python-docker-dashboard": {"images":[
+    {"src":"/projects/python-docker-dashboard/cover.png","caption":"Real dashboard · synthetic demo01 readings via existing test adapter, no live hardware","captionTh":"Dashboard จริง · ข้อมูลจำลอง demo01 ผ่าน test adapter ไม่มีฮาร์ดแวร์จริง","demoData":true},
+    {"src":"/projects/python-docker-dashboard/mobile.png","caption":"Mobile viewport · synthetic demo01 data","captionTh":"มุมมองมือถือ · ข้อมูลจำลอง demo01","demoData":true}
+  ]}
+}
