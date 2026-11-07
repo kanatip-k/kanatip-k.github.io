@@ -18,7 +18,7 @@ The local implementation was also built successfully with Node.js 20.19.4. `dist
 
 ## Structure
 
-- `src/projects.json`: 15 reviewed public project case studies, with Thai/English content and source evidence.
+- `src/projects.json`: 10 selected project descriptions, with Thai/English content and source evidence.
 - `src/screenshots.json`: verified screenshot paths, bilingual captions and demo-data flags.
 - `src/App.tsx`: navigation, sections, project filters, case-study routes and screenshot lightbox.
 - `src/i18n.ts`: interface translations.

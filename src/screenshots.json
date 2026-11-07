@@ -9,22 +9,6 @@
       }
     ]
   },
-  "ai-companion-suite": {
-    "images": [
-      {
-        "src": "/projects/ai-companion-suite/cover.png",
-        "caption": "Actual upstream-based frontend running locally · no model inference or backend verification",
-        "captionTh": "Frontend ที่ต่อยอดจากต้นทาง รันจริงในเครื่อง · ไม่ได้ทดสอบโมเดลหรือ backend",
-        "demoData": true
-      },
-      {
-        "src": "/projects/ai-companion-suite/flight.png",
-        "caption": "Actual flight input form · no prediction requested or result claimed",
-        "captionTh": "แบบฟอร์มเที่ยวบินจริง · ไม่ได้สั่งทำนายหรืออ้างผลลัพธ์",
-        "demoData": true
-      }
-    ]
-  },
   "emoji-tarot": {
     "images": [
       {
