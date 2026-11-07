@@ -1,6 +1,6 @@
 # Kanatip Kanjanakarn — Portfolio
 
-A bilingual, source-backed software portfolio for [kanatip-k](https://github.com/kanatip-k), built with React, TypeScript, Vite, Tailwind CSS, Motion and Lucide. Target: **https://kanatip-k.github.io/**.
+A bilingual collection of projects from my studies for [kanatip-k](https://github.com/kanatip-k), built with React, TypeScript, Vite, Tailwind CSS, Motion and Lucide. Target: **https://kanatip-k.github.io/**.
 
 ## Local development
 
@@ -23,12 +23,12 @@ The local implementation was also built successfully with Node.js 20.19.4. `dist
 - `src/App.tsx`: navigation, sections, project filters, case-study routes and screenshot lightbox.
 - `src/i18n.ts`: interface translations.
 - `src/style.css`: original responsive layout, themes and reduced-motion support.
-- `public/projects/`: seven real application screenshots across four projects; no stock or AI-generated project imagery. Captions distinguish live app UI, frontend-only views and synthetic/browser-mocked data.
+- `public/projects/`: real application and API screenshots; no stock or AI-generated project imagery. Captions distinguish live app UI, frontend-only views and synthetic/browser-mocked data.
 - `.github/workflows/deploy.yml`: install, typecheck, build and GitHub Pages deployment.
 
 ## Content policy
 
-The verified display names are Kanatip Kanjanakarn and คณาธิป กัญจนกาญจน์. The owner supplied academic records on 2026-11-07: B.Sc. in Intelligent Information Technology at Walailak University, enrollment in academic year 2024, cumulative GPAX 3.73, term results and selected coursework. Relevant facts and the supplied institutional email are transcribed for the portfolio. The original records, national identifier, address, family information and other unnecessary personal fields are not published. The supplied portrait has been edited for transparent background and natural clarity. Employment history and individual project roles are not invented. See `UNKNOWN_INFORMATION.md` for remaining details.
+The verified display names are Kanatip Kanjanakarn and คณาธิป กัญจนกาญจน์. The owner supplied academic records on 2026-11-07: B.Sc. in Intelligent Information Technology at Walailak University, enrollment in academic year 2024, cumulative GPAX 3.73, term results and selected coursework. Relevant academic facts are transcribed for the portfolio. The site links to GitHub for further work without a contact invitation. The original records, national identifier, address, family information and other unnecessary personal fields are not published. The current portrait is the latest shoulder-proportion preview selected by the owner. Employment history and individual project roles are not invented. See `UNKNOWN_INFORMATION.md` for remaining details.
 
 Private repositories and their metadata are excluded. Public fork/upstream-based projects retain attribution, and incomplete integrations are identified. The two existing BIM/dorm draft PRs are linked as review branches; this portfolio does not merge them or claim they are on main.
 

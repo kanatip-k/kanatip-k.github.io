@@ -7,7 +7,7 @@ Relevant portfolio information was transcribed from the academic screenshots the
 - Cumulative GPAX: 3.73. Latest graded term 1/2569: GPA 3.75. Best graded term 1/2568: GPA 4.00.
 - Term GPAs: 1/2567 3.67; 2/2567 3.47; 1/2568 4.00; 2/2568 3.78; 1/2569 3.75.
 - Registered term 2/2569 has no grades; its portal placeholder 0.00 is not represented as an earned GPA.
-- Public institutional contact selected for the site: kanatip.ka@mail.wu.ac.th.
+- The owner later requested a project showcase without invitations to contact; the current page links to GitHub instead of email.
 
 Program naming was cross-checked with the [official program page](https://informatics.wu.ac.th/bachelors-degree/intelligent-information-technology/). This verifies the program title, not the owner's marks; marks come from the supplied records.
 

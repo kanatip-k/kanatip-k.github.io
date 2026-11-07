@@ -1,17 +1,110 @@
 {
-  "project-mongodb": {"images":[
-    {"src":"/projects/project-mongodb/cover.png","caption":"Original HTML frontend · browser-intercepted synthetic member fixture only; Express/MongoDB not run","captionTh":"HTML frontend ต้นฉบับ · ข้อมูลสมาชิกจำลองจาก browser mock เท่านั้น ไม่ได้รัน Express/MongoDB","demoData":true}
-  ]},
-  "ai-companion-suite": {"images":[
-    {"src":"/projects/ai-companion-suite/cover.png","caption":"Actual upstream-based frontend running locally · no model inference or backend verification","captionTh":"Frontend ที่ต่อยอดจากต้นทาง รันจริงในเครื่อง · ไม่ได้ทดสอบโมเดลหรือ backend","demoData":true},
-    {"src":"/projects/ai-companion-suite/flight.png","caption":"Actual flight input form · no prediction requested or result claimed","captionTh":"แบบฟอร์มเที่ยวบินจริง · ไม่ได้สั่งทำนายหรืออ้างผลลัพธ์","demoData":true}
-  ]},
-  "emoji-tarot": {"images":[
-    {"src":"/projects/emoji-tarot/cover.png","caption":"Running Manage Deck screen · project demo data","captionTh":"หน้า Manage Deck ที่รันจริง · ข้อมูลสาธิตของโปรเจกต์","demoData":true},
-    {"src":"/projects/emoji-tarot/screen-01.png","caption":"Actual card reveal · project demo data","captionTh":"การเปิดไพ่จริงในแอป · ข้อมูลสาธิตของโปรเจกต์","demoData":true}
-  ]},
-  "python-docker-dashboard": {"images":[
-    {"src":"/projects/python-docker-dashboard/cover.png","caption":"Real dashboard · synthetic demo01 readings via existing test adapter, no live hardware","captionTh":"Dashboard จริง · ข้อมูลจำลอง demo01 ผ่าน test adapter ไม่มีฮาร์ดแวร์จริง","demoData":true},
-    {"src":"/projects/python-docker-dashboard/mobile.png","caption":"Mobile viewport · synthetic demo01 data","captionTh":"มุมมองมือถือ · ข้อมูลจำลอง demo01","demoData":true}
-  ]}
+  "project-mongodb": {
+    "images": [
+      {
+        "src": "/projects/project-mongodb/cover.png",
+        "caption": "Original HTML frontend · browser-intercepted synthetic member fixture only; Express/MongoDB not run",
+        "captionTh": "HTML frontend ต้นฉบับ · ข้อมูลสมาชิกจำลองจาก browser mock เท่านั้น ไม่ได้รัน Express/MongoDB",
+        "demoData": true
+      }
+    ]
+  },
+  "ai-companion-suite": {
+    "images": [
+      {
+        "src": "/projects/ai-companion-suite/cover.png",
+        "caption": "Actual upstream-based frontend running locally · no model inference or backend verification",
+        "captionTh": "Frontend ที่ต่อยอดจากต้นทาง รันจริงในเครื่อง · ไม่ได้ทดสอบโมเดลหรือ backend",
+        "demoData": true
+      },
+      {
+        "src": "/projects/ai-companion-suite/flight.png",
+        "caption": "Actual flight input form · no prediction requested or result claimed",
+        "captionTh": "แบบฟอร์มเที่ยวบินจริง · ไม่ได้สั่งทำนายหรืออ้างผลลัพธ์",
+        "demoData": true
+      }
+    ]
+  },
+  "emoji-tarot": {
+    "images": [
+      {
+        "src": "/projects/emoji-tarot/cover.png",
+        "caption": "Running Manage Deck screen · project demo data",
+        "captionTh": "หน้า Manage Deck ที่รันจริง · ข้อมูลสาธิตของโปรเจกต์",
+        "demoData": true
+      },
+      {
+        "src": "/projects/emoji-tarot/screen-01.png",
+        "caption": "Actual card reveal · project demo data",
+        "captionTh": "การเปิดไพ่จริงในแอป · ข้อมูลสาธิตของโปรเจกต์",
+        "demoData": true
+      }
+    ]
+  },
+  "python-docker-dashboard": {
+    "images": [
+      {
+        "src": "/projects/python-docker-dashboard/cover.png",
+        "caption": "Real dashboard · synthetic demo01 readings via existing test adapter, no live hardware",
+        "captionTh": "Dashboard จริง · ข้อมูลจำลอง demo01 ผ่าน test adapter ไม่มีฮาร์ดแวร์จริง",
+        "demoData": true
+      },
+      {
+        "src": "/projects/python-docker-dashboard/mobile.png",
+        "caption": "Mobile viewport · synthetic demo01 data",
+        "captionTh": "มุมมองมือถือ · ข้อมูลจำลอง demo01",
+        "demoData": true
+      }
+    ]
+  },
+  "bim-project": {
+    "images": [
+      {
+        "src": "/projects/bim-project/screen-2026-11-07.png",
+        "caption": "Original BIM dashboard running locally with the public CASE2 sample of 13 elements; not a full Navisworks export verification.",
+        "captionTh": "หน้าเว็บ BIM ที่รันในเครื่อง ใช้ชุดตัวอย่างสาธารณะ CASE2 จำนวน 13 ชิ้นส่วน ยังไม่ได้ตรวจการส่งออกโมเดล Navisworks เต็มชุด",
+        "demoData": true
+      }
+    ]
+  },
+  "landslide-iot-monitor": {
+    "images": [
+      {
+        "src": "/projects/landslide-iot-monitor/screen-2026-11-07.png",
+        "caption": "Original Landslide dashboard with synthetic sensor readings supplied through browser fixtures; MQTT is offline and no physical sensors were connected.",
+        "captionTh": "หน้าเว็บ Landslide ต้นฉบับ ใช้ข้อมูลเซนเซอร์จำลองสำหรับถ่ายภาพ ยังไม่ได้เชื่อม MQTT หรืออุปกรณ์จริง",
+        "demoData": true
+      }
+    ]
+  },
+  "navisworks-mcp": {
+    "images": [
+      {
+        "src": "/projects/navisworks-mcp/screen-2026-11-07.png",
+        "caption": "Original NavisMCP Explorer frontend with synthetic browser API fixtures; model extraction and backend integration were not tested.",
+        "captionTh": "หน้าเว็บ NavisMCP Explorer ต้นฉบับ ใช้ข้อมูลจำลองสำหรับแสดงหน้าจอ ยังไม่ได้ทดสอบการดึงโมเดลหรือเชื่อม backend",
+        "demoData": true
+      }
+    ]
+  },
+  "iot-weather-station": {
+    "images": [
+      {
+        "src": "/projects/iot-weather-station/screen-2026-11-07.png",
+        "caption": "Original Weather and Air Quality frontend with synthetic browser API fixtures; no physical sensors or MQTT connection.",
+        "captionTh": "หน้าเว็บสถานีอากาศต้นฉบับ ใช้ข้อมูลจำลองสำหรับแสดงหน้าจอ ยังไม่ได้เชื่อมเซนเซอร์จริงหรือ MQTT",
+        "demoData": true
+      }
+    ]
+  },
+  "foundation-ontology-mcp": {
+    "images": [
+      {
+        "src": "/projects/foundation-ontology-mcp/screen-2026-11-07.png",
+        "caption": "Actual Foundation Ontology MCP tools in MCP Inspector, connected to the local server; sample ontology data.",
+        "captionTh": "เครื่องมือ Foundation Ontology MCP ใน MCP Inspector เชื่อมต่อเซิร์ฟเวอร์ในเครื่อง ใช้ข้อมูล ontology ตัวอย่าง",
+        "demoData": true
+      }
+    ]
+  }
 }
