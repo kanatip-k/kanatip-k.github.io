@@ -1,5 +1,9 @@
 # Portfolio implementation and QA audit
 
+## Owner update — 2026-11-07
+
+The owner supplied personal academic records and requested relevant information and a transparent portrait on the site. The profile now includes the Thai name, current B.Sc. program, enrollment year, GPAX3.73, term history, selected coursework and institutional contact email. Latest graded term GPA3.75 and best term GPA4.00 are labelled separately. The ungraded registered term is pending, not a 0.00 result. Original transcript/profile images and unrelated personal data are not included. The portrait was background-extracted and gently sharpened with the built-in image editing tool; real PNG alpha and both display themes were checked. This update supersedes the historical education/contact omissions below. No original project tests need to be run by the owner.
+
 ## Reference study
 
 Studied https://siwat2614.github.io/ through a real browser at 1440×1000 and 390×844. Inspected navigation, hero, about, education/academic details, skills, project evidence, working approach and contact. Exercised the mobile menu and Thai/English switch; English headings and document language changed successfully. Both viewport widths had no horizontal overflow. The reference places project scope, roles, evidence and limits close to each project; this informed content depth, not copied code or assets.

@@ -1,17 +1,17 @@
 # Information still needed from the owner
 
+Update 2026-11-07: the owner supplied academic records and a portrait and requested publication of relevant portfolio information. Thai name, university/program, enrollment year, GPAX 3.73, graded-term history, selected course results, institutional email and portrait are now available. The source screenshots contain unrelated sensitive information and are not included in this repository. The remaining questions below have been reduced accordingly.
+
 The public GitHub display name was verified by the main agent as **Kanatip Kanjanakarn**. No other biographical detail should be inferred from a student ID, a university logo, repository owner names, housing URLs, or course materials.
 
 ## Personal and academic information
 
-- Preferred Thai name and preferred professional display name.
-- University, degree/program, faculty/major, current year, attendance dates, expected graduation date and relevant verified coursework.
-- GPA/GPAX only if supplied, verified and explicitly intended for public display.
+- Expected graduation date, which is not inferred from enrollment year.
 - Current location only if the owner wants it public.
 - Career targets, preferred roles and fields, employment availability and any confirmed internship/work experience.
-- Public email address, LinkedIn, other professional contact links and a preferred contact method. GitHub itself is confirmed.
+- Optional LinkedIn or other professional links. Institutional email and GitHub are now provided.
 - A real resume PDF or enough confirmed information to produce one. A missing resume must not be replaced by an invented PDF or a broken download button.
-- Permission and preference for an actual portrait. A GitHub avatar can be sourced from public profile metadata only after checking its content and suitability.
+- A different portrait can be substituted later if preferred; the supplied portrait is now used with a transparent background.
 
 ## Project-specific ownership and role details
 

@@ -28,7 +28,7 @@ The local implementation was also built successfully with Node.js 20.19.4. `dist
 
 ## Content policy
 
-The verified GitHub display name is Kanatip Kanjanakarn. Education, GPA, employment history, private contact details and individual project roles are not invented. A resume PDF is not published because the required personal information is incomplete. See `UNKNOWN_INFORMATION.md` for the owner-facing completion list.
+The verified display names are Kanatip Kanjanakarn and คณาธิป กัญจนกาญจน์. The owner supplied academic records on 2026-11-07: B.Sc. in Intelligent Information Technology at Walailak University, enrollment in academic year 2024, cumulative GPAX 3.73, term results and selected coursework. Relevant facts and the supplied institutional email are transcribed for the portfolio. The original records, national identifier, address, family information and other unnecessary personal fields are not published. The supplied portrait has been edited for transparent background and natural clarity. Employment history and individual project roles are not invented. See `UNKNOWN_INFORMATION.md` for remaining details.
 
 Private repositories and their metadata are excluded. Public fork/upstream-based projects retain attribution, and incomplete integrations are identified. The two existing BIM/dorm draft PRs are linked as review branches; this portfolio does not merge them or claim they are on main.
 

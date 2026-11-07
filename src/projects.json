@@ -19,23 +19,18 @@
     "isFork": false,
     "slug": "foundation-ontology-mcp",
     "description": {
-      "en": "A read-only MCP server for validating BIM foundation evidence against an explicit ontology.",
-      "th": "MCP server แบบอ่านอย่างเดียวสำหรับตรวจหลักฐานองค์ประกอบฐานราก BIM เทียบกับ ontology"
+      "en": "A tool for checking foundation-element information from a building model against defined codes and rules.",
+      "th": "เครื่องมือช่วยตรวจข้อมูลฐานรากจากโมเดลอาคาร โดยเทียบกับรายการรหัสและกฎที่กำหนดไว้"
     },
     "overview": {
-      "en": "Python tools expose ontology summaries, validation schemas, graph searches and code crosswalks. Element evidence is checked deterministically rather than allowing an agent to guess missing properties.",
-      "th": "เครื่องมือ Python เปิดให้ค้น ontology ดู schema และ crosswalk ของรหัส แล้วตรวจหลักฐานของ element ด้วยกฎที่ชัดเจน แทนการให้ agent เดาข้อมูลที่ขาด"
+      "en": "This project checks whether a foundation element has enough information for the next stage of work and which work codes it can be linked to. A user supplies properties such as element type, material and quantity. The program compares them with a knowledge set stored in JSON and reports a match, a need for review, missing information or conflicting evidence. It is an MCP server: a tool that an AI application can call through a defined interface. It reads and checks information without editing the building model or guessing missing values.",
+      "th": "งานนี้ช่วยตอบคำถามว่า ข้อมูลของฐานรากชิ้นหนึ่งเพียงพอสำหรับนำไปใช้ต่อหรือยัง และควรเชื่อมกับรหัสงานใด ผู้ใช้ส่งข้อมูล เช่น ประเภท วัสดุ และปริมาณ เข้ามา ระบบจะเทียบกับชุดความรู้ที่เก็บไว้ในไฟล์ JSON แล้วแยกผลว่าตรงกัน ต้องทบทวน ข้อมูลยังไม่พอ หรือข้อมูลขัดกัน ตัวโปรแกรมเป็น MCP server หมายถึงเครื่องมือที่แอป AI เรียกใช้ผ่านรูปแบบคำสั่งที่ตกลงกันไว้ ระบบนี้อ่านและตรวจข้อมูล โดยไม่ได้แก้โมเดลอาคารหรือเดาค่าที่ขาดให้เอง"
     },
     "problem": {
       "en": "BIM element properties need a traceable connection to classification and measurement rules before they can support cost-code reasoning.",
       "th": "ข้อมูล property ของ BIM ต้องเชื่อมกับรหัสและกฎการวัดอย่างตรวจสอบย้อนหลังได้ ก่อนใช้ประกอบการให้เหตุผลเรื่องรหัสต้นทุน"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Six read-only MCP tools: summary, schema, search, crosswalk, single validation and batch validation.",
@@ -97,12 +92,7 @@
       "en": "server.py defines annotated read-only tools. models.py validates evidence shape. store.py loads the graph, normalizes terms and follows crosswalk relationships.",
       "th": "server.py กำหนด tools แบบ read-only, models.py ตรวจรูปแบบหลักฐาน และ store.py โหลด graph ปรับรูปคำและเดินความสัมพันธ์ crosswalk"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Existing pytest suite",
@@ -214,23 +204,18 @@
     "isFork": false,
     "slug": "navisworks-mcp",
     "description": {
-      "en": "A C# MCP/REST application with Python search and auditable BIM-to-BOQ workflows.",
-      "th": "แอป C# MCP/REST พร้อมระบบค้นหา Python และ workflow BIM-to-BOQ ที่มีหลักฐานตรวจสอบ"
+      "en": "A system for reading Navisworks model data and making it searchable through a web interface and AI-accessible tools.",
+      "th": "ระบบอ่านข้อมูลจาก Navisworks แล้วเปิดให้ค้นหา ดูรายการ และจัดกลุ่มข้อมูลอาคารผ่านเว็บหรือเครื่องมือ AI"
     },
     "overview": {
-      "en": "Navisworks exporter projects produce model snapshots. A C# application serves model tools, while a Python client ingests searchable data, offers a web/API interface and runs a deterministic quantity-and-demo-price pipeline.",
-      "th": "โปรเจกต์ exporter ถอด model จาก Navisworks แล้วแอป C# เปิดเครื่องมือ model ส่วน Python client นำเข้าข้อมูลเพื่อค้นหา เปิดเว็บ/API และรัน pipeline ปริมาณกับราคาสาธิตแบบกำหนดกฎ"
+      "en": "A building model contains more than a 3D view: its elements can carry types, materials, work classifications and quantities. This project combines a Navisworks exporter, a C# service and a Python web application so that information can be listed, searched and grouped. It also includes prototype bill-of-quantities (BOQ) workflows, which organize work items and their quantities. MCP tools let an AI application request information from the system. This does not remove the need for a compatible extraction environment, complete model properties and reviewed calculation rules.",
+      "th": "โมเดลอาคารไม่ได้มีเฉพาะภาพสามมิติ แต่มีข้อมูลของชิ้นส่วน เช่น ผนัง ประตู ประเภทงาน และปริมาณ โปรเจกต์นี้มีส่วนส่งออกข้อมูลจาก Navisworks ส่วนบริการที่เขียนด้วย C# และส่วนเว็บที่ใช้ Python เพื่อให้เรียกดูข้อมูลเหล่านั้นได้สะดวกขึ้น ภายในมีการจัดกลุ่มตามรหัสงาน การค้นหา และงานทดลองสรุปรายการปริมาณหรือ BOQ ซึ่งเป็นตารางรายการงานและจำนวนที่เกี่ยวข้อง เครื่องมือ MCP ช่วยให้แอป AI ขอข้อมูลจากระบบได้ แต่การคำนวณและข้อมูลที่ใช้ยังต้องเป็นไปตามกฎของโปรแกรมและความครบถ้วนของโมเดล"
     },
     "problem": {
       "en": "Model information is difficult to query, classify and audit outside the authoring tool. The source separates extraction, indexed retrieval and rule-based BOQ calculations.",
       "th": "ข้อมูล model ค้นหา จัดหมวดและตรวจสอบนอกโปรแกรมต้นทางได้ยาก โค้ดจึงแยกการถอดข้อมูล การทำดัชนี และการคำนวณ BOQ ด้วยกฎ"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "MCP model tools, REST endpoints and a web interface.",
@@ -300,12 +285,7 @@
       "en": "api.py exposes model/search/workflow routes; db.py manages SQLite tables and migrations; semantic.py converts search text into constrained filters. boq_workflow separates configuration, calculation and persistence.",
       "th": "api.py เปิด routes, db.py จัดการตารางและ migration ของ SQLite, semantic.py แปลงคำค้นเป็น filter ส่วน boq_workflow แยก configuration การคำนวณ และการบันทึกผล"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Source and configuration review",
@@ -421,23 +401,18 @@
     "isFork": false,
     "slug": "landslide-iot-monitor",
     "description": {
-      "en": "An educational ESP8266-to-dashboard sensing and messaging prototype.",
-      "th": "ต้นแบบเพื่อการศึกษาที่เชื่อมเซนเซอร์ ESP8266 กับ dashboard ผ่านระบบข้อความ"
+      "en": "An ESP8266 prototype that sends soil and movement readings to a monitoring dashboard.",
+      "th": "ต้นแบบติดตามสภาพดินและการเคลื่อนตัว ส่งค่าจากบอร์ด ESP8266 ไปแสดงบนหน้าเว็บ"
     },
     "overview": {
-      "en": "Firmware reads soil moisture, rain, vibration, DHT11 and ultrasonic distance, publishes MQTT telemetry and demonstration risk states, and receives limited commands. FastAPI and MongoDB support a browser dashboard.",
-      "th": "firmware อ่านความชื้นดิน ฝน การสั่น DHT11 และระยะอัลตราโซนิก ส่ง telemetry กับระดับความเสี่ยงสาธิตผ่าน MQTT และรับคำสั่งจำกัด โดย FastAPI/MongoDB รองรับ dashboard"
+      "en": "The board reads soil moisture, rain, vibration, temperature and distance sensors, then sends the readings through MQTT, a messaging channel between devices and services. The backend stores the information and exposes an API for the dashboard. A user can inspect current readings, history and the states assigned by the prototype rules. Demonstration commands can also be sent back, such as controlling an LED or setting a distance baseline. The project is for studying environmental monitoring; its thresholds are not certified landslide-warning criteria.",
+      "th": "บอร์ดรับค่าจากเซนเซอร์ความชื้นดิน ฝน การสั่นสะเทือน อุณหภูมิ และระยะทาง แล้วส่งข้อมูลผ่าน MQTT ซึ่งเป็นช่องทางรับส่งข้อความระหว่างอุปกรณ์กับบริการฝั่งคอมพิวเตอร์ ข้อมูลจะถูกเก็บและเรียกดูผ่าน API ก่อนนำไปแสดงบน Dashboard ผู้ใช้จึงดูค่าล่าสุด ข้อมูลย้อนหลัง และสถานะที่โปรแกรมจัดกลุ่มไว้ได้ นอกจากนี้ยังมีคำสั่งสาธิตส่งกลับไปที่อุปกรณ์ เช่น เปิดไฟหรือกำหนดระยะอ้างอิง งานนี้ใช้ศึกษาการทำระบบติดตามสภาพแวดล้อม เกณฑ์ในโปรแกรมยังไม่ใช่เกณฑ์เตือนภัยดินถล่มที่ผ่านการรับรอง"
     },
     "problem": {
       "en": "A sensor experiment needs one visible path from acquisition to telemetry history and remote demonstration controls.",
       "th": "การทดลองเซนเซอร์ต้องมีเส้นทางที่ตรวจดูได้ตั้งแต่เก็บค่า ไปยังประวัติ telemetry และการสั่งงานสาธิตระยะไกล"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Multi-sensor MQTT telemetry and device-status messages.",
@@ -499,12 +474,7 @@
       "en": "The firmware owns acquisition/calibration and publishes sensor/status topics. backend/main.py subscribes, serializes stored readings and validates the command allow-list. Compose packages backend, broker, database and dashboard.",
       "th": "firmware รับผิดชอบการอ่าน/ปรับเทียบและส่ง topic เซนเซอร์/สถานะ ส่วน backend/main.py subscribe แปลงข้อมูลที่บันทึก และตรวจรายการคำสั่งที่อนุญาต โดย Compose รวม backend broker database และ dashboard"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Docker Compose configuration",
@@ -615,23 +585,18 @@
     "isFork": false,
     "slug": "python-docker-dashboard",
     "description": {
-      "en": "A tested companion web stack for Landslide IoT telemetry, history and simulation.",
-      "th": "ชุดเว็บประกอบ Landslide IoT สำหรับ telemetry ประวัติ และ simulation พร้อมผลทดสอบโค้ด"
+      "en": "A Docker-packaged Landslide IoT dashboard with sensor readings, history and supporting services.",
+      "th": "เว็บติดตามข้อมูลเซนเซอร์สำหรับงาน Landslide IoT พร้อมกราฟ ข้อมูลย้อนหลัง และชุดบริการที่รันผ่าน Docker"
     },
     "overview": {
-      "en": "A Python collector validates MQTT payloads and writes MongoDB records. FastAPI serves station status, history, events and CSV exports to a browser UI. Simulator and connection-check utilities support controlled local tests.",
-      "th": "collector Python ตรวจ payload MQTT แล้วบันทึก MongoDB ส่วน FastAPI เปิดสถานะสถานี ประวัติ เหตุการณ์ และ CSV ให้หน้าเว็บ พร้อม simulator และตัวตรวจการเชื่อมต่อสำหรับทดสอบในเครื่อง"
+      "en": "The dashboard puts station readings, charts and history in one place, with export and monitoring functions supported by the application. Python services receive MQTT messages, store readings in MongoDB and expose an API to the browser. Docker Compose describes how the services start together. The portfolio images show the real application running with synthetic demo01 records supplied through its test adapter. They demonstrate the interface and display logic, not a completed live connection to physical sensors and MongoDB.",
+      "th": "หน้าจอรวมค่าที่ต้องติดตามไว้ในที่เดียว ผู้ใช้เลือกสถานี ดูข้อมูลล่าสุด อ่านกราฟและประวัติย้อนหลัง หรือส่งออกข้อมูลได้ตามส่วนที่โปรแกรมรองรับ ฝั่ง Python มีตัวรับข้อความจาก MQTT บันทึกข้อมูลลง MongoDB และส่งข้อมูลให้หน้าเว็บผ่าน API โดย Docker Compose ช่วยกำหนดวิธีเปิดบริการหลายตัวร่วมกัน ภาพที่แสดงใน Portfolio มาจากหน้าเว็บของโปรเจกต์จริง แต่ป้อนข้อมูลสถานี demo01 ผ่านตัวช่วยทดสอบ จึงใช้ดูหน้าตาและการแสดงผลได้ โดยยังไม่ใช่หลักฐานว่าเซนเซอร์และฐานข้อมูลจริงเชื่อมต่อครบแล้ว"
     },
     "problem": {
       "en": "A telemetry dashboard needs consistent validation, recoverable data errors, historical queries and a repeatable way to test the full message path.",
       "th": "dashboard telemetry ต้องตรวจข้อมูลอย่างสอดคล้อง รับมือข้อผิดพลาด ค้นประวัติ และมีวิธีทดสอบเส้นทางข้อความซ้ำได้"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Station discovery, latest values, history, events and CSV export.",
@@ -693,12 +658,7 @@
       "en": "domain.py centralizes validation/classification. collector.py manages broker callbacks and persistence. app.py handles read-oriented APIs, database-error responses and static assets.",
       "th": "domain.py รวม validation/classification, collector.py จัดการ callback ของ broker กับการบันทึก และ app.py เปิด API อ่านข้อมูล รับมือ database error และส่ง static assets"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Existing Python tests",
@@ -819,23 +779,18 @@
     "isFork": false,
     "slug": "iot-weather-station",
     "description": {
-      "en": "An ESP32 weather and air-quality telemetry pipeline with a FastAPI dashboard.",
-      "th": "pipeline telemetry อากาศและคุณภาพอากาศจาก ESP32 พร้อม dashboard FastAPI"
+      "en": "A prototype for collecting temperature, humidity and PM2.5 readings and presenting them on the web.",
+      "th": "ระบบต้นแบบรับค่าอุณหภูมิ ความชื้น และ PM2.5 จากสถานีวัด แล้วนำมาแสดงบนหน้าเว็บ"
     },
     "overview": {
-      "en": "Board firmware publishes measurements to Mosquitto. A Python subscriber validates the JSON, adds timestamps and stores historical readings in MongoDB. A web service shows station discovery, latest readings and history.",
-      "th": "firmware ส่งค่าผ่าน Mosquitto จากนั้น subscriber Python ตรวจ JSON เติมเวลาและเก็บประวัติใน MongoDB โดยเว็บแสดงรายชื่อสถานี ค่าล่าสุด และประวัติ"
+      "en": "This project connects ESP32 firmware to a data collector and dashboard. The board publishes readings over MQTT; the collector saves them to MongoDB; FastAPI provides the latest values and history for each station. Separating these responsibilities makes it easier to trace a missing reading back to the device, messaging, storage or API layer. The example particulate-matter conversion still needs to be adapted and calibrated for the actual sensor, so it is not presented as a calibrated measurement system.",
+      "th": "งานนี้เชื่อมโค้ดบนบอร์ด ESP32 เข้ากับบริการรับข้อมูลและหน้า Dashboard บอร์ดส่งค่าผ่าน MQTT ตัว Collector รับข้อความไปบันทึกใน MongoDB จากนั้น FastAPI เปิดให้หน้าเว็บขอค่าล่าสุดและประวัติของแต่ละสถานีได้ การแยกหน้าที่แบบนี้ช่วยให้เห็นว่าเมื่อข้อมูลไม่ขึ้นบนจอควรเริ่มตรวจที่บอร์ด การส่งข้อความ การจัดเก็บ หรือ API ส่วนค่าฝุ่นในตัวอย่างยังต้องปรับวิธีแปลงตามเซนเซอร์ที่ใช้จริง จึงยังไม่อ้างว่าเป็นค่าที่สอบเทียบแล้ว"
     },
     "problem": {
       "en": "Measurements from a device need reliable transport, validation and a queryable history that a browser can display.",
       "th": "ค่าจากอุปกรณ์ต้องมีการส่งที่ตรวจสอบได้ การตรวจข้อมูล และประวัติที่หน้าเว็บเรียกดูได้"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Wildcard MQTT subscription for multiple weather stations.",
@@ -894,12 +849,7 @@
       "en": "collector.py validates and persists MQTT JSON. app.py bounds history query limits and serializes MongoDB records. Dockerfiles and Compose package the collector and web service.",
       "th": "collector.py ตรวจและบันทึก JSON, app.py จำกัดจำนวน history ที่ขอและแปลง records MongoDB ส่วน Dockerfiles/Compose รวมบริการ collector กับเว็บ"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Compose configuration",
@@ -1000,23 +950,18 @@
     "isFork": false,
     "slug": "emoji-tarot",
     "description": {
-      "en": "A React/TypeScript workshop app backed by an Express card API.",
-      "th": "เว็บ workshop React/TypeScript ที่ใช้ Express API จัดการไพ่"
+      "en": "A card-drawing web application used to practise a React interface and an Express API.",
+      "th": "เว็บไพ่ที่ใช้ฝึกทำหน้าจอ React และ API โดยมีทั้งหน้าสุ่มไพ่และหน้าจัดการรายการไพ่"
     },
     "overview": {
-      "en": "The React frontend provides draw and management views. Express serves card CRUD, random selection, search and category operations, backed by an in-memory array.",
-      "th": "frontend React มีหน้าสุ่มและจัดการไพ่ ส่วน Express เปิด CRUD การสุ่ม การค้นหา และหมวด โดยเก็บข้อมูลใน array ในหน่วยความจำ"
+      "en": "Users can reveal a card and read its name and text, or visit the management page to add, edit and delete cards. React and TypeScript provide the interface, while Express handles requests and an in-memory card collection. The portfolio images were captured from the running application using its demonstration deck. This is workshop-based work and retains the upstream link. Card drawing is part of the web-development exercise, not a validated prediction service.",
+      "th": "ผู้ใช้เปิดไพ่เพื่ออ่านชื่อและข้อความของไพ่ หรือเข้าไปที่หน้าจัดการเพื่อเพิ่ม แก้ไข และลบรายการได้ หน้าเว็บเขียนด้วย React และ TypeScript ส่วน Express ทำหน้าที่รับคำขอและจัดการข้อมูลไพ่ซึ่งเก็บอยู่ในหน่วยความจำ ภาพใน Portfolio เป็นภาพจากการเปิดแอปจริงโดยใช้ข้อมูลสาธิตของโปรเจกต์ งานนี้มีที่มาจากเวิร์กช็อป จึงเก็บชื่อและลิงก์ต้นทางไว้ การเปิดไพ่เป็นส่วนหนึ่งของตัวอย่างการทำเว็บ ไม่ใช่ผลทำนายที่ผ่านการพิสูจน์"
     },
     "problem": {
       "en": "A small application makes typed API contracts, frontend/backend separation and CRUD behavior concrete for learning.",
       "th": "แอปขนาดเล็กช่วยให้เห็น typed API contracts การแยก frontend/backend และ CRUD อย่างชัดเจนสำหรับเรียนรู้"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Card listing, random draw and detail retrieval.",
@@ -1074,12 +1019,7 @@
       "en": "routes/cards.ts implements the HTTP layer; data/cards.ts owns array operations and initial examples. Client pages and components call the typed API.",
       "th": "routes/cards.ts เป็นชั้น HTTP, data/cards.ts จัดการ array และข้อมูลตัวอย่าง ส่วน pages/components เรียก typed API"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "TypeScript",
@@ -1203,23 +1143,18 @@
     "reviewUrl": "https://github.com/kanatip-k/BIM-PROJECT/pull/1",
     "slug": "bim-project",
     "description": {
-      "en": "A Python bridge/web prototype with a separately reviewed BOQ workflow addition.",
-      "th": "ต้นแบบ bridge/เว็บ Python พร้อมส่วนเพิ่ม workflow BOQ ที่อยู่ระหว่าง review"
+      "en": "BIM prototypes for displaying building data on the web and exploring bill-of-quantities workflows.",
+      "th": "ชุดต้นแบบนำข้อมูลอาคารมาแสดงบนเว็บ และทดลองจัดข้อมูลสำหรับรายการปริมาณงานก่อสร้าง"
     },
     "overview": {
-      "en": "The main repository retains an earlier Navisworks-to-JSON bridge prototype. Draft PR #1 adds an independent BOQ source folder with validation, classification, quantity rules, demo pricing and export.",
-      "th": "main เก็บต้นแบบ Navisworks-to-JSON bridge เดิม ส่วน Draft PR #1 เพิ่ม source BOQ แยกโฟลเดอร์ที่มี validation classification กฎปริมาณ ราคาสาธิต และ export"
+      "en": "This repository contains prototypes that move Navisworks data into Python services and a web interface. The BOQ addition, currently in a draft PR, separates evidence checks, classification, quantity calculation and result generation, including CSV output. The aim is to trace an output item back to the model information behind it. Demonstration prices are not tender prices, and some regression tests require original CASE2 exports that are absent from the published source snapshot.",
+      "th": "Repository นี้เก็บต้นแบบการส่งข้อมูลจาก Navisworks มายังบริการ Python และหน้าเว็บ ส่วนงาน BOQ ที่เพิ่มไว้ใน draft PR แยกขั้นตอนตรวจข้อมูล จัดประเภทรายการ คำนวณปริมาณ และสร้างผลลัพธ์สำหรับดูต่อหรือส่งออกเป็นไฟล์ CSV เป้าหมายคือทำให้ติดตามได้ว่ารายการหนึ่งเกิดจากข้อมูลส่วนใดของโมเดล ราคาที่ใช้สาธิตไม่ได้เป็นราคาสำหรับยื่นเสนอจริง และชุดทดสอบบางส่วนต้องใช้ไฟล์ CASE2 ต้นฉบับซึ่งไม่ได้รวมอยู่ในสำเนาที่เผยแพร่"
     },
     "problem": {
       "en": "Model-to-estimate workflows need explicit evidence and unresolved-case handling rather than silently inventing missing classifications or quantities.",
       "th": "workflow model ไปสู่ประมาณราคาต้องมีหลักฐานและจัดการกรณีที่ยังสรุปไม่ได้ แทนการสร้างรหัสหรือปริมาณที่ขาดขึ้นเอง"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Evidence-aware acquisition, normalization, classification and quantity stages in the review branch.",
@@ -1278,12 +1213,7 @@
       "en": "The added boq_workflow package separates configuration, pipeline stages and service/result handling. It preserves unresolved evidence instead of forcing a code assignment.",
       "th": "แพ็กเกจ boq_workflow ที่เพิ่มแยก configuration ขั้น pipeline และ service/ผลลัพธ์ โดยคงหลักฐานที่ยังไม่สรุป แทนบังคับกำหนดรหัส"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Selected pytest checks",
@@ -1389,23 +1319,18 @@
     "isFork": false,
     "slug": "mcp-rag-documentation",
     "description": {
-      "en": "An upstream-based hybrid retrieval MCP source snapshot with dynamic context tools.",
-      "th": "source snapshot MCP retrieval ที่ต่อยอดจากต้นทาง มี hybrid search และ dynamic context tools"
+      "en": "An MCP documentation-search project combining keyword and semantic retrieval.",
+      "th": "ระบบค้นเอกสารที่ทดลองใช้ทั้งคำค้นและความหมายของข้อความ เพื่อช่วยให้แอป AI เรียกใช้ข้อมูลได้"
     },
     "overview": {
-      "en": "The source contains BM25 and semantic search orchestration, reciprocal-rank fusion, Qdrant storage and Ollama/OpenAI embedding integrations. MCP tools expose document search and context operations.",
-      "th": "โค้ดมีการประสาน BM25 กับ semantic search, reciprocal-rank fusion, Qdrant storage และ embedding ผ่าน Ollama/OpenAI โดยเปิด document search และ context operations ผ่าน MCP"
+      "en": "RAG means finding relevant document material before using it to support an answer. This project combines keyword matching with semantic retrieval, uses Qdrant for searchable records and exposes functions through MCP. The code explores adding context and several search modes. Some helpers are unfinished examples, including URL ingestion and parts of the statistics resource. The repository is based on the linked upstream project; it does not establish authorship of all code or a fully working retrieval stack.",
+      "th": "ระบบ RAG คือการค้นข้อมูลที่เกี่ยวข้องจากเอกสารก่อนนำข้อมูลนั้นไปประกอบคำตอบ โปรเจกต์นี้ทดลองค้นทั้งจากคำที่ตรงกันและความหมายของข้อความ โดยใช้ Qdrant จัดเก็บข้อมูลสำหรับค้นหา และเชื่อมกับเครื่องมือ MCP ให้แอปอื่นเรียกใช้ได้ มีโค้ดสำหรับเพิ่มบริบทและการค้นหลายรูปแบบ แต่บางส่วนยังเป็นตัวอย่างที่ทำไม่เสร็จ เช่น การนำเข้าจาก URL และสถิติบางรายการ งานนี้ต่อยอดจาก Repository ต้นทางที่ระบุไว้ จึงไม่อ้างว่าโค้ดทั้งหมดเป็นงานที่เขียนขึ้นเองหรือระบบค้นหาทุกส่วนทำงานครบแล้ว"
     },
     "problem": {
       "en": "Documentation retrieval needs both keyword precision and semantic matching, including Thai tokenization and source metadata.",
       "th": "การค้นเอกสารต้องใช้ทั้งความแม่นของ keyword และ semantic matching รวมถึงการตัดคำไทยและ metadata แหล่งที่มา"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Hybrid search modules combine keyword and vector results.",
@@ -1470,12 +1395,7 @@
       "en": "pyragdoc/core separates BM25, embeddings, storage, ranking fusion and search orchestration. app/mcp_server.py exposes MCP resources and tools; entry-point variants require careful selection.",
       "th": "pyragdoc/core แยก BM25, embedding, storage, fusion และ orchestration ส่วน app/mcp_server.py เปิด resources/tools และต้องเลือก entry point ให้ตรง"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Syntax/source review",
@@ -1586,23 +1506,18 @@
     "isFork": true,
     "slug": "ai-companion-suite",
     "description": {
-      "en": "A forked React interface for several machine-learning API workflows.",
-      "th": "React interface ที่เป็น Fork สำหรับ workflow เรียก ML API หลายประเภท"
+      "en": "An upstream-based frontend with forms for several AI-service examples.",
+      "th": "ตัวอย่างหน้าเว็บรวมแบบฟอร์มสำหรับบริการ AI หลายประเภท ใช้ศึกษาการทำหน้าเว็บและเชื่อม API"
     },
     "overview": {
-      "en": "The router contains flight-price, depression, animal-image and movie-recommendation pages. A configurable API base URL connects UI requests to an external backend.",
-      "th": "router มีหน้าราคาตั๋วเครื่องบิน depression ภาพสัตว์ และแนะนำหนัง โดยใช้ API base URL ที่ตั้งค่าได้เชื่อม backend ภายนอก"
+      "en": "The home screen links to example services for flights, animals, movies and an assessment form. Each route provides an input screen for its task. The images show the real frontend running from the upstream-based source, without model calls or personal-data inference. They demonstrate the interface, forms and navigation only. This is a fork whose individual changes have not been documented, and its screens do not establish model accuracy or medical suitability.",
+      "th": "หน้าแรกช่วยให้เลือกประเภทตัวอย่าง เช่น เที่ยวบิน ภาพสัตว์ ภาพยนตร์ และแบบประเมิน จากนั้นจึงไปยังหน้าที่รับข้อมูลของแต่ละงาน ภาพที่นำมาแสดงเป็นหน้าเว็บจริงที่รันจากโค้ดต้นทาง โดยไม่ได้เรียกโมเดลหรือส่งข้อมูลส่วนบุคคลไปทำนาย ดังนั้นสิ่งที่เห็นในภาพยืนยันได้เฉพาะหน้าตา แบบฟอร์ม และการเปลี่ยนหน้า งานนี้เป็น Fork และยังไม่ได้สรุปส่วนที่แก้เพิ่มจากต้นทาง จึงไม่ใช้หน้าจอเป็นหลักฐานความแม่นยำของโมเดลหรือความเหมาะสมทางการแพทย์"
     },
     "problem": {
       "en": "A browser interface makes separate prediction endpoints usable through forms and result views.",
       "th": "หน้าเว็บช่วยให้ prediction endpoints หลายชุดใช้งานผ่านแบบฟอร์มและหน้าผลลัพธ์ได้"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Four routed prediction/recommendation page components.",
@@ -1653,12 +1568,7 @@
       "en": "src/App.tsx defines routes; src/pages/ separates task-specific interfaces; src/config/api.ts constructs API URLs.",
       "th": "src/App.tsx กำหนด routes, src/pages/ แยกหน้าตามงาน และ src/config/api.ts ประกอบ API URL"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Runtime and model integration",
@@ -1753,23 +1663,18 @@
     "isFork": true,
     "slug": "fastapi-lm",
     "description": {
-      "en": "A forked Python API project for several machine-learning inference tasks.",
-      "th": "โปรเจกต์ Python API ที่เป็น Fork สำหรับงาน inference ของ ML หลายประเภท"
+      "en": "A forked FastAPI backend that exposes machine-learning model services through APIs.",
+      "th": "ตัวอย่าง Backend ที่เปิดให้เรียกใช้โมเดล Machine Learning ผ่าน API ของ FastAPI"
     },
     "overview": {
-      "en": "Versioned FastAPI routers organize flight-price, recommendation and depression-related endpoints, with v2 also including an animal-image route and flight training route.",
-      "th": "FastAPI routers แบ่งเวอร์ชันสำหรับราคาตั๋ว recommendation และ depression โดย v2 มี route ภาพสัตว์และ train ของ flight เพิ่มด้วย"
+      "en": "The project organizes API routes by task, validates request shapes with schemas and passes inputs to services that load model artifacts, including flight-related inference. Routes and service code are separated so their responsibilities can be followed. It is useful for examining how a web API connects to a model, but the presence of inference code does not prove artifact compatibility or prediction quality. This is forked work; live inference was not run for this portfolio.",
+      "th": "โปรเจกต์นี้แสดงวิธีแบ่ง API ตามงานและรับข้อมูลในรูปแบบที่กำหนด ก่อนส่งไปยังบริการซึ่งโหลดไฟล์โมเดล เช่น งานเกี่ยวกับเที่ยวบิน ภายในมีการใช้ schema ช่วยตรวจรูปแบบคำขอ และแยกโค้ดของแต่ละบริการไว้คนละส่วน เหมาะสำหรับอ่านวิธีเชื่อมเว็บกับโมเดล แต่การมีโค้ดเรียกโมเดลไม่ได้ยืนยันว่าไฟล์โมเดลรุ่นนั้นโหลดได้หรือให้ผลถูกต้อง งานนี้เป็น Fork และในรอบที่จัด Portfolio ยังไม่ได้ทดสอบ inference จริง"
     },
     "problem": {
       "en": "Model inference needs typed request/response boundaries and a reusable HTTP service layer.",
       "th": "model inference ต้องมีขอบเขต request/response ที่ใช้ type และชั้น HTTP service ใช้ซ้ำได้"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Versioned API routers and task-specific service/schema modules.",
@@ -1827,12 +1732,7 @@
       "en": "app/main.py mounts v1/v2 routers. Each task separates route, schema and service code; the inspected v1 flight service uses joblib and Pandas.",
       "th": "app/main.py mount routers v1/v2 แต่ละงานแยก route/schema/service โดย v1 flight service ที่ตรวจใช้ joblib กับ Pandas"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Inference/runtime validation",
@@ -1928,23 +1828,18 @@
     "isFork": false,
     "slug": "lab-kanatip",
     "description": {
-      "en": "A small README-based repository for introductory Git/GitHub practice.",
-      "th": "repository README ขนาดเล็กสำหรับฝึก Git/GitHub เบื้องต้น"
+      "en": "A small Git and GitHub practice repository containing introductory README material.",
+      "th": "Repository สำหรับฝึกใช้งาน Git และ GitHub โดยเก็บบันทึกเบื้องต้นไว้ใน README"
     },
     "overview": {
-      "en": "The audited tree contains one README and no executable source. It belongs in a learning archive, not among implementation-heavy featured projects.",
-      "th": "tree ที่ audit มี README หนึ่งไฟล์และไม่มี executable source จึงเหมาะกับหมวดฝึกเรียนมากกว่างานเด่นเชิง implementation"
+      "en": "This repository is kept as part of learning to use repositories and README documentation. The inspected tree contains documentation only, so there is no application screen, API or database to demonstrate. It belongs in the learning section rather than being presented as a completed software system.",
+      "th": "งานนี้เก็บไว้เป็นส่วนหนึ่งของการเรียนรู้การใช้ Repository และเอกสาร README จากโครงสร้างที่ตรวจมีเฉพาะเอกสาร จึงไม่มีหน้าจอแอป API หรือระบบฐานข้อมูลให้สาธิต งานนี้อยู่ในหมวดการเรียนรู้และไม่ได้ใช้เป็นตัวอย่างระบบที่พัฒนาเสร็จแล้ว"
     },
     "problem": {
       "en": "Retain early version-control practice as learning context without overstating its scope.",
       "th": "เก็บร่องรอยการฝึก version control เป็นบริบทการเรียนรู้โดยไม่ขยายขอบเขตเกินจริง"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [],
     "architecture": {
       "nodes": [
@@ -1971,12 +1866,7 @@
       "en": "Documentation-only practice repository.",
       "th": "repository ฝึกที่มีเฉพาะเอกสาร"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Application tests",
@@ -2044,23 +1934,18 @@
     "isFork": true,
     "slug": "project-dormitory",
     "description": {
-      "en": "An earlier README-only fork, retained as repository history rather than a completed application.",
-      "th": "Fork เดิมที่มีเพียง README เก็บเป็นประวัติ repository ไม่ใช่แอปสำเร็จ"
+      "en": "An early dormitory-project fork whose inspected tree contains a README only.",
+      "th": "Fork รุ่นเริ่มต้นของงานหอพัก ซึ่งใน Repository นี้ยังมีเฉพาะ README"
     },
     "overview": {
-      "en": "The audited repository contains only README.md. The current reviewed mobile source is in the separate dorm repository draft PR.",
-      "th": "repository ที่ audit มีเพียง README.md ส่วน mobile source ที่ตรวจแล้วอยู่ใน Draft PR ของ dorm แยกต่างหาก"
+      "en": "This repository records the early dormitory-project origin but does not contain an application to run. The more substantial React Native screens and services are in the separate dorm repository and its draft PR. The entries are kept distinct so the README-only fork is not confused with the mobile application.",
+      "th": "Repository นี้ใช้เก็บที่มาของงานหอพักรุ่นเริ่มต้น แต่ยังไม่มีโค้ดแอปให้เปิดรันจากที่นี่ ตัวอย่างแอป React Native ที่มีหน้าจอและบริการมากกว่าจะอยู่ใน Repository ชื่อ dorm และยังอยู่ใน draft PR จึงแยกสองรายการนี้ให้เห็นชัด เพื่อไม่ทำให้เข้าใจว่าหน้า README เพียงอย่างเดียวเป็นระบบหอพักที่ใช้งานได้แล้ว"
     },
     "problem": {
       "en": "This entry records the origin/organization context without pretending a README-only repository is a functional product.",
       "th": "รายการนี้เก็บบริบทต้นทาง/การจัดระเบียบ โดยไม่อ้างว่า repository ที่มีเพียง README เป็นผลิตภัณฑ์ใช้งานได้"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [],
     "architecture": {
       "nodes": [
@@ -2087,12 +1972,7 @@
       "en": "Documentation-only entry; see dorm for the source-reviewed application.",
       "th": "รายการเอกสารเท่านั้น ดูแอปที่ตรวจ source แล้วใน dorm"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Runtime",
@@ -2163,23 +2043,18 @@
     "isFork": true,
     "slug": "project-modgod",
     "description": {
-      "en": "A forked Express/MongoDB product API coursework snapshot.",
-      "th": "snapshot coursework Product API ด้วย Express/MongoDB ที่เป็น Fork"
+      "en": "An Express and MongoDB coursework API for product records and filtering.",
+      "th": "ตัวอย่าง API สำหรับรายการสินค้าและการกรองข้อมูล โดยใช้ Express กับ MongoDB"
     },
     "overview": {
-      "en": "The inspected public App.js lists products, filters by topping, finds a product by identifier, creates a product and updates a product.",
-      "th": "App.js สาธารณะที่ตรวจมีการแสดง products กรองตาม topping ค้นตาม identifier สร้างและแก้ product"
+      "en": "The API lists products, finds an item by ID, filters by topping, creates records and updates them. A delete route was not found in the inspected code, so it is not described as full CRUD. MongoDB stores the records, and no user-facing web page is included in this tree. This is forked learning work, and a live database was not run for the portfolio.",
+      "th": "โปรแกรมรับคำขอเพื่อดูรายการสินค้า ค้นตามรหัส กรองตาม topping เพิ่มรายการ และแก้ไขข้อมูล โค้ดที่ตรวจยังไม่พบคำสั่งลบ จึงไม่เรียกว่าเป็นระบบ CRUD ครบทุกส่วน ข้อมูลถูกเก็บใน MongoDB ส่วนใน Repository นี้ไม่มีหน้าเว็บสำหรับผู้ใช้ทั่วไป งานนี้เป็น Fork สำหรับการเรียนรู้และยังไม่ได้รันฐานข้อมูลจริงในรอบที่จัด Portfolio"
     },
     "problem": {
       "en": "A small product collection provides an example of API route design and document filtering.",
       "th": "collection สินค้าขนาดเล็กใช้เป็นตัวอย่างการออกแบบ API routes และ document filtering"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Product listing, topping filter and identifier lookup.",
@@ -2226,12 +2101,7 @@
       "en": "App.js performs MongoDB find, findOne, insertOne and updateOne calls. No delete endpoint was verified in the inspected public source.",
       "th": "App.js เรียก find, findOne, insertOne และ updateOne ของ MongoDB โดยยังไม่พบ delete endpoint ที่ยืนยันใน public source"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Automated tests",
@@ -2319,23 +2189,18 @@
     "reviewUrl": "https://github.com/kanatip-k/dorm/pull/1",
     "slug": "dorm",
     "description": {
-      "en": "A React Native/Expo prototype for student, room and dormitory-history screens.",
-      "th": "ต้นแบบ React Native/Expo สำหรับหน้าข้อมูลนักศึกษา ห้องพัก และประวัติหอพัก"
+      "en": "A mobile prototype for managing dormitory residents, rooms and change history.",
+      "th": "แอปมือถือสำหรับดูและจัดการข้อมูลผู้พัก ห้องพัก และประวัติการเปลี่ยนแปลงของหอพัก"
     },
     "overview": {
-      "en": "The review branch contains an Expo application with administrator/login screens, student add/edit/list views, room views and history helpers. It expects a separately configured REST backend.",
-      "th": "branch review มีแอป Expo พร้อมหน้า admin/login เพิ่ม/แก้/แสดงนักศึกษา ดูห้อง และ helper ประวัติ โดยต้องตั้ง REST backend แยก"
+      "en": "The React Native and Expo app separates login, resident lists, record editing, room views and history into screens. Those screens call defined API services to retrieve or save data. The published addition excludes the original resident database and provides an empty example instead. The application code remains in the dorm draft PR. Android JS/Hermes export passed, but actual device execution and complete backend integration have not been verified.",
+      "th": "แอปใช้ React Native และ Expo แบ่งหน้าจอสำหรับเข้าสู่ระบบ ดูรายการผู้พัก เพิ่มหรือแก้ไขข้อมูล ดูห้องพัก และดูประวัติ เมื่อผู้ใช้ทำรายการ หน้าจอจะเรียก API เพื่อขอหรือบันทึกข้อมูลผ่านบริการที่กำหนดไว้ สำเนาที่นำมาแสดงไม่รวมฐานข้อมูลผู้พักจริง และมีตัวอย่างฐานข้อมูลว่างให้เริ่มต้น โค้ดส่วนนี้อยู่ใน draft PR ของ Repository dorm การสร้าง Android JS/Hermes bundle ผ่านแล้ว แต่ยังไม่ได้ยืนยันการรันบนมือถือจริงหรือการเชื่อมกับ Backend ครบทุกหน้าจอ"
     },
     "problem": {
       "en": "Student and room records need consistent mobile views and reusable data-access helpers rather than isolated forms.",
       "th": "ข้อมูลนักศึกษาและห้องพักต้องมีหน้ามือถือที่สอดคล้องกันกับ data-access helper ใช้ร่วม แทนแบบฟอร์มที่แยกกัน"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "Student and room screens with reusable components.",
@@ -2392,12 +2257,7 @@
       "en": "screens/ holds views, components/ and theme/ hold shared UI, and services/api.js defines network operations. Demo authentication matches client-side account entries.",
       "th": "screens/ เก็บหน้าจอ, components/ กับ theme/ เก็บ UI ใช้ร่วม และ services/api.js กำหนด network operations ส่วน authentication สาธิตเทียบข้อมูล account ฝั่ง client"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Dependency installation",
@@ -2518,23 +2378,18 @@
     "isFork": false,
     "slug": "project-mongodb",
     "description": {
-      "en": "An Express and MongoDB coursework application with identifier/name CRUD.",
-      "th": "แอป coursework Express/MongoDB สำหรับ CRUD ข้อมูลตัวระบุและชื่อ"
+      "en": "A coursework member-list web example for practising database-backed create, search, update and delete actions.",
+      "th": "เว็บตัวอย่างสำหรับค้นหา เพิ่ม แก้ไข และลบรายการสมาชิก เพื่อฝึกเชื่อมหน้าเว็บกับฐานข้อมูล"
     },
     "overview": {
-      "en": "App.js provides identifier/name listing, detail, create, update and delete endpoints. index.html is the browser interface. Original exported data is not reused in the portfolio.",
-      "th": "App.js มี endpoints แสดงรายการ รายละเอียด สร้าง แก้ และลบข้อมูลตัวระบุ/ชื่อ โดย index.html เป็นหน้าเว็บ และไม่ใช้ข้อมูล export ต้นฉบับใน Portfolio"
+      "en": "Users can browse and search the member list and use its forms to add or edit records. The HTML frontend calls an Express API backed by MongoDB’s idname collection. For the portfolio capture, the original HTML was served unchanged while the browser received fictional member records instead of calling the live API. This avoids using actual student records and shows the screen and list layout without claiming a working Express/MongoDB connection.",
+      "th": "ผู้ใช้ดูรายชื่อ ค้นหาจากชื่อ และใช้แบบฟอร์มเพื่อเพิ่มหรือแก้ไขรายการได้ หน้าเว็บเรียก Express API ที่ทำงานกับข้อมูล idname ใน MongoDB ภาพใน Portfolio ใช้ HTML ต้นฉบับจริง แต่ให้ Browser รับข้อมูลสมาชิกสมมติแทน API เพื่อไม่ใช้รายชื่อและข้อมูลนักศึกษาจริง ภาพจึงแสดงหน้าจอและรูปแบบรายการได้ แต่ไม่ได้เป็นผลทดสอบว่า Express และ MongoDB เชื่อมต่อทำงานครบแล้ว"
     },
     "problem": {
       "en": "Coursework demonstrates how browser interactions map to CRUD requests and MongoDB document operations.",
       "th": "งานเรียนแสดงการเชื่อมปฏิสัมพันธ์หน้าเว็บกับ CRUD requests และ document operations ของ MongoDB"
     },
-    "objectives": [
-      {
-        "en": "Make the implemented workflow inspectable and reproducible from source and documented setup.",
-        "th": "ทำให้ตรวจสอบ workflow ที่ implement และทำซ้ำได้จาก source กับวิธี setup ที่บันทึกไว้"
-      }
-    ],
+    "objectives": [],
     "features": [
       {
         "en": "GET, POST, PUT and DELETE routes against the idname collection.",
@@ -2581,12 +2436,7 @@
       "en": "The small App.js service uses Express, middleware and MongoDB document operations; package.json declares nodemon for development.",
       "th": "App.js ขนาดเล็กใช้ Express, middleware และ MongoDB document operations โดย package.json กำหนด nodemon สำหรับพัฒนา"
     },
-    "development": [
-      {
-        "en": "The source separates the components described in the architecture; this is structural analysis, not a verified history of the author’s development process.",
-        "th": "source แยกส่วนตาม architecture ที่อธิบาย นี่คือการวิเคราะห์โครงสร้าง ไม่ใช่ประวัติขั้นตอนพัฒนาของผู้เขียนที่ยืนยันแล้ว"
-      }
-    ],
+    "development": [],
     "tests": [
       {
         "name": "Automated test script",
