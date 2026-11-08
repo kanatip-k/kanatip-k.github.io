@@ -1,4 +1,10 @@
 /* Comfortable reading sizes, especially for Thai text on desktop displays. */
+.project-date{margin-top:12px;color:var(--muted);font-size:13px;line-height:1.8}
+.project-date-line{display:flex;gap:8px;align-items:flex-start}
+.project-date-line>svg{flex-shrink:0;margin-top:4px;color:var(--accent)}
+.project-date-detail{margin:22px 0;color:var(--text);font-size:17px;line-height:1.9;border-left:2px solid var(--accent);padding-left:16px}
+.case-heading .project-date-detail p{font-size:14px;line-height:1.9;margin-top:8px;max-width:760px}
+@media(max-width:780px){.project-date{font-size:12px}.project-date-detail{font-size:15px}.case-heading .project-date-detail p{font-size:12px}}
 .featured-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .featured-card .project-visual{height:235px}
 .featured-card .project-visual:has(img){padding:12px 12px 32px}

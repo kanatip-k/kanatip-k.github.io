@@ -181,6 +181,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2026-10-29",
+      "to": "2026-10-29",
+      "basis": "source-file-dates"
     }
   },
   {
@@ -377,6 +382,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2026-09-02",
+      "to": "2026-09-11",
+      "basis": "source-file-dates"
     }
   },
   {
@@ -561,6 +571,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2026-09-27",
+      "to": "2026-09-27",
+      "basis": "archive-file-dates"
     }
   },
   {
@@ -753,6 +768,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2026-09-26",
+      "to": "2026-09-26",
+      "basis": "archive-file-dates"
     }
   },
   {
@@ -925,6 +945,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2026-09-03",
+      "to": "2026-09-03",
+      "basis": "source-file-dates"
     }
   },
   {
@@ -1115,6 +1140,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2026-01-20",
+      "to": "2026-02-16",
+      "basis": "git-history"
     }
   },
   {
@@ -1292,6 +1322,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2026-09-05",
+      "to": "2026-11-03",
+      "basis": "source-file-dates"
     }
   },
   {
@@ -1483,6 +1518,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2026-01-24",
+      "to": "2026-02-01",
+      "basis": "git-history"
     }
   },
   {
@@ -1674,6 +1714,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2025-09-29",
+      "to": "2025-09-29",
+      "basis": "source-file-dates"
     }
   },
   {
@@ -1821,6 +1866,11 @@
     "evidenceNote": {
       "en": "Based on inspected source and recorded migration results; screenshots and additional runtime evidence are supplied separately.",
       "th": "อ้าง source ที่ตรวจและผล migration ที่บันทึกไว้ ส่วน screenshot และหลักฐาน runtime เพิ่มเติมแยกต่างหาก"
+    },
+    "dateInfo": {
+      "from": "2025-02-09",
+      "to": "2025-02-09",
+      "basis": "git-history"
     }
   }
 ]

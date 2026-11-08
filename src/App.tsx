@@ -5,6 +5,7 @@ import rawProjects from './projects.json';
 import screenshotData from './screenshots.json';
 import { copy } from './i18n';
 import Education from './Education';
+import ProjectDates from './ProjectDates';
 import type { Language, Project, ProjectImage } from './types';
 
 const projects = rawProjects as unknown as Project[];
@@ -49,7 +50,7 @@ function ProjectCard({project,lang,index=0,featured=false}:{project:Project;lang
       <span className="visual-label">{image?(image.demoData?c.demo:c.screenshot):c.architecture}</span><span className="visual-open"><ArrowUpRight size={19}/></span>
     </a>
     <div className="project-body"><div className="project-top"><span className="eyebrow">{nameCategory(project.category,lang)}</span><span className="project-number">{String(index+1).padStart(2,'0')}</span></div>
-      <h3><a href={`#/projects/${project.slug}`}>{project.title}</a></h3><p>{first(project.description,lang)}</p>
+      <h3><a href={`#/projects/${project.slug}`}>{project.title}</a></h3><ProjectDates project={project} lang={lang}/><p>{first(project.description,lang)}</p>
       <div className="tags">{project.technologies.slice(0,5).map(t=><span key={t}>{t}</span>)}</div>
       <div className="project-bottom"><span className="status-dot">{project.isFork?'Fork / learning':project.id==='dorm'||project.id==='bim-project'?'Draft PR':lang==='th'?'ต้นแบบ / งานเรียน':'Prototype / learning'}</span><a href={`#/projects/${project.slug}`}>{c.details}<ArrowUpRight size={15}/></a></div>
     </div>
@@ -84,7 +85,7 @@ export default function App(){
     <nav id="main-navigation" aria-label={lang==='th'?'เมนูหลัก':'Main navigation'} className={menu?'navigation open':'navigation'}>{nav.map(([id,label])=><a className={active===id&&!project?'active':''} key={id} href={`#${id}`} onClick={()=>setMenu(false)}>{label}</a>)}</nav>
     <div className="header-actions"><button className="language-toggle" aria-label={lang==='th'?'Switch to English':'เปลี่ยนเป็นภาษาไทย'} onClick={()=>setLang(lang==='th'?'en':'th')}><span className={lang==='th'?'chosen':''}>TH</span><span className="divider">/</span><span className={lang==='en'?'chosen':''}>EN</span></button><button className="icon-button" aria-label={c.theme} onClick={()=>setTheme(theme==='dark'?'light':'dark')}>{theme==='dark'?<Sun size={18}/>:<Moon size={18}/>}</button><button className="icon-button mobile-menu" aria-label={menu?c.hideMenu:c.menu} aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X size={21}/>:<Menu size={21}/>}</button></div></div></header>
     <main id="main" tabIndex={-1}>{unknown?<section className="not-found container"><span className="eyebrow">404 / NOT FOUND</span><h1>{c.notFound}</h1><a className="button primary" href="#home">{c.home}<ArrowRight size={18}/></a></section>:project?<>
-      <div className="case-hero container"><a href="#work" className="back-link"><ArrowLeft size={16}/>{c.back}</a><div className="case-heading"><div><span className="eyebrow accent">{c.caseStudy} / {nameCategory(project.category,lang)}</span><h1>{project.title}</h1><p>{first(project.overview,lang)||first(project.description,lang)}</p><div className="tags">{project.technologies.map(t=><span key={t}>{t}</span>)}</div></div><a className="button secondary" href={project.githubUrl} target="_blank" rel="noreferrer">{c.source}<Github size={18}/></a></div></div>
+      <div className="case-hero container"><a href="#work" className="back-link"><ArrowLeft size={16}/>{c.back}</a><div className="case-heading"><div><span className="eyebrow accent">{c.caseStudy} / {nameCategory(project.category,lang)}</span><h1>{project.title}</h1><p>{first(project.overview,lang)||first(project.description,lang)}</p><ProjectDates project={project} lang={lang} detail/><div className="tags">{project.technologies.map(t=><span key={t}>{t}</span>)}</div></div><a className="button secondary" href={project.githubUrl} target="_blank" rel="noreferrer">{c.source}<Github size={18}/></a></div></div>
       <div className="case-layout container"><aside className="case-nav"><span className="eyebrow">PROJECT DETAILS</span>{[['overview',c.overview],['workflow',c.workflow],['features',c.features],['gallery',c.gallery],['implementation',c.implementation],['tests',c.testing],['limitations',c.limitations],['evidence',c.evidence]].map(([id,label])=><a key={id} href={`#${id}`} onClick={e=>{e.preventDefault();document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}}>{label}<ChevronRight size={13}/></a>)}</aside><article className="case-content">
       {content('overview',c.overview,<BookOpen size={21}/>)}{content('problem',c.problem,<Fingerprint size={21}/>)}{content('objectives',c.objectives,<ArrowUpRight size={21}/>)}
       <section className="case-block" id="workflow"><h2><Workflow size={21}/>{c.workflow}</h2><Architecture project={project}/><p className="caption">{first((project.architecture as {label?:unknown})?.label,lang)||c.architecture}</p></section>
