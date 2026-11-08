@@ -19,11 +19,11 @@ export const copy = {
     approachDescriptions: ['Look at the inputs and what the project needs to show.','Work on the data, service and screens used in that project.','Run the available parts and check the output.','Keep notes on unfinished parts and examples used for learning.'],
     academic: 'Intelligent Information Technology', academicText: 'B.Sc. student, School of Informatics, Walailak University. Enrolled in 2024; cumulative GPAX 3.73. The education section includes term results and relevant completed courses.',
     resume: 'Resume', resumeTitle: 'Education and project experience.', resumeText: 'My education and project details are available on this page. A downloadable PDF can be added once my project responsibilities and career details are complete.', resumeLink: 'Browse the projects',
-    contactKicker: '06 / MORE PROJECTS', contactTitle: 'More work on GitHub.', contactText: 'This site brings together projects I have worked on during my studies. The repositories include the code, project files and further details.', contactButton: 'View GitHub',
+    contactKicker: '05 / MORE PROJECTS', contactTitle: 'More work on GitHub.', contactText: 'This site brings together projects I have worked on during my studies. The repositories include the code, project files and further details.', contactButton: 'View GitHub',
     footer: 'Kanatip Kanjanakarn · Software portfolio', back: 'Back to projects', caseStudy: 'PROJECT DETAILS',
     overview: 'Project overview', problem: 'The problem & intent', objectives: 'Project objectives', stack: 'Technology stack', workflow: 'System workflow', features: 'What the project does',
     development: 'Development process', implementation: 'Code & API design', testing: 'Testing & validation', results: 'What has been done', challenges: 'Challenges & solutions', limitations: 'Boundaries & limitations', future: 'Future improvements', contributions: 'Contributions & attribution', evidence: 'Related files and code', gallery: 'Inside the application',
-    missingImage: 'A verified application capture is not available for this project. Source evidence and technical workflow are provided instead.', notVerified: 'Not independently verified; consult the repository for context.',
+    missingImage: 'Screenshots have not been added yet. The source code is linked below.', notVerified: 'Not independently verified; consult the repository for context.',
     notFound: 'This page is not in the project index.', home: 'Return home', close: 'Close image', theme: 'Change color theme', menu: 'Open navigation', hideMenu: 'Close navigation', skip: 'Skip to content', updated: 'GitHub project metadata', cached: 'Verified local project index', refreshed: 'Live public metadata available',
   },
   th: {
@@ -46,11 +46,11 @@ export const copy = {
     approachDescriptions: ['เริ่มจากข้อมูลที่มีและสิ่งที่ต้องการให้ระบบแสดง','ทำส่วนข้อมูล บริการ และหน้าจอตามที่แต่ละงานต้องใช้','เปิดส่วนที่รันได้ ลองส่งข้อมูล และตรวจผลที่ได้','บันทึกส่วนที่ยังไม่เสร็จ รวมถึงตัวอย่างจากต้นทางที่นำมาศึกษา'],
     academic: 'เทคโนโลยีสารสนเทศอัจฉริยะ', academicText: 'กำลังศึกษาระดับปริญญาตรี สำนักวิชาสารสนเทศศาสตร์ มหาวิทยาลัยวลัยลักษณ์ เริ่มปีการศึกษา 2567 เกรดเฉลี่ยสะสม 3.73 ดูผลการเรียนรายภาคและรายวิชาที่เกี่ยวข้องได้ในส่วนการศึกษา',
     resume: 'Resume', resumeTitle: 'ประวัติการศึกษาและผลงาน', resumeText: 'สามารถอ่านข้อมูลการศึกษาและรายละเอียดโปรเจกต์ได้ในเว็บไซต์นี้ ส่วน Resume แบบ PDF จะเพิ่มหลังจากเติมรายละเอียดบทบาทในโปรเจกต์และข้อมูลการสมัครงานครบแล้ว', resumeLink: 'ดูรายละเอียดโปรเจกต์',
-    contactKicker: '06 / ดูงานเพิ่มเติม', contactTitle: 'รวมงานไว้ใน GitHub', contactText: 'เว็บไซต์นี้รวบรวมงานที่ผมเคยทำระหว่างเรียน ทั้งโปรเจกต์ งานทดลอง และงานที่นำมาศึกษาต่อ หากอยากดูโค้ดหรือไฟล์ของแต่ละงาน สามารถเปิดดูใน GitHub ได้ครับ', contactButton: 'ดู GitHub',
+    contactKicker: '05 / ดูงานเพิ่มเติม', contactTitle: 'รวมงานไว้ใน GitHub', contactText: 'เว็บไซต์นี้รวบรวมงานที่ผมเคยทำระหว่างเรียน ทั้งโปรเจกต์ งานทดลอง และงานที่นำมาศึกษาต่อ หากอยากดูโค้ดหรือไฟล์ของแต่ละงาน สามารถเปิดดูใน GitHub ได้ครับ', contactButton: 'ดู GitHub',
     footer: 'คณาธิป กัญจนกาญจน์ · แฟ้มสะสมผลงาน', back: 'กลับไปดูโปรเจกต์', caseStudy: 'รายละเอียดโปรเจกต์',
     overview: 'ภาพรวมโปรเจกต์', problem: 'ปัญหาและแนวคิด', objectives: 'วัตถุประสงค์', stack: 'เทคโนโลยีที่ใช้', workflow: 'การทำงานของระบบ', features: 'งานนี้ทำอะไรได้บ้าง',
     development: 'กระบวนการพัฒนา', implementation: 'การออกแบบโค้ดและ API', testing: 'การทดสอบและตรวจสอบ', results: 'ส่วนที่ทำไว้แล้ว', challenges: 'ปัญหาและแนวทางแก้', limitations: 'ขอบเขตและข้อจำกัด', future: 'แนวทางพัฒนาต่อ', contributions: 'บทบาทและที่มาของงาน', evidence: 'ไฟล์และโค้ดที่เกี่ยวข้อง', gallery: 'ภาพภายในแอปพลิเคชัน',
-    missingImage: 'ยังไม่มีภาพจากการรันที่ตรวจสอบได้สำหรับโปรเจกต์นี้ จึงแสดงหลักฐานโค้ดและโครงสร้างการทำงานแทน', notVerified: 'ยังไม่ได้ยืนยันอย่างอิสระ โปรดดูบริบทใน Repository',
+    missingImage: 'ยังไม่ได้เพิ่มภาพหน้าจอของงานนี้ ดูโค้ดได้ด้านล่าง', notVerified: 'ยังไม่ได้ยืนยันอย่างอิสระ โปรดดูบริบทใน Repository',
     notFound: 'ไม่พบหน้านี้ในสารบัญโปรเจกต์', home: 'กลับหน้าแรก', close: 'ปิดภาพ', theme: 'เปลี่ยนธีมสี', menu: 'เปิดเมนู', hideMenu: 'ปิดเมนู', skip: 'ข้ามไปเนื้อหา', updated: 'ข้อมูลโปรเจกต์จาก GitHub', cached: 'สารบัญที่ตรวจสอบและจัดเก็บไว้', refreshed: 'อ่านข้อมูล Public ล่าสุดแล้ว',
   }
 };

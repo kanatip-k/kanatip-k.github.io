@@ -1,5 +1,6 @@
 /* Comfortable reading sizes, especially for Thai text on desktop displays. */
 .project-date{margin-top:12px;color:var(--muted);font-size:13px;line-height:1.8}
+.upstream-link a{display:inline-flex;align-items:center;gap:8px;color:var(--accent)}
 .project-date-line{display:flex;gap:8px;align-items:flex-start}
 .project-date-line>svg{flex-shrink:0;margin-top:4px;color:var(--accent)}
 .project-date-detail{margin:22px 0;color:var(--text);font-size:17px;line-height:1.9;border-left:2px solid var(--accent);padding-left:16px}

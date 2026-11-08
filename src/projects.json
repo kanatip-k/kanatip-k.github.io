@@ -34,15 +34,15 @@
     "features": [
       {
         "en": "Six read-only MCP tools: summary, schema, search, crosswalk, single validation and batch validation.",
-        "th": "มี MCP tools แบบอ่านอย่างเดียว 6 ตัว สำหรับสรุป schema ค้นหา crosswalk และตรวจ element เดี่ยวหรือเป็นชุด"
+        "th": "มีเครื่องมือ MCP แบบอ่านข้อมูล 6 ตัว สำหรับดูสรุป ดูรูปแบบข้อมูล ค้นรหัส ดูการจับคู่รหัส และตรวจข้อมูลทีละรายการหรือหลายรายการ"
       },
       {
         "en": "Validation distinguishes matched, needs-review, unresolved and conflicting evidence.",
-        "th": "แยกผลเป็น matched, needs-review, unresolved และ conflict"
+        "th": "ผลตรวจแยกว่าเป็นรายการที่จับคู่ได้ ต้องตรวจเพิ่ม ยังจับคู่ไม่ได้ หรือมีข้อมูลขัดแย้ง"
       },
       {
         "en": "Ontology graph checks reject duplicate identifiers and broken relationships.",
-        "th": "ตรวจรหัสซ้ำและความสัมพันธ์ที่อ้างอิง node ไม่ครบใน graph"
+        "th": "ตรวจรหัสซ้ำและความสัมพันธ์ที่อ้างถึงข้อมูลที่ไม่มีอยู่"
       }
     ],
     "architecture": {
@@ -99,34 +99,25 @@
         "status": "passed",
         "detail": {
           "en": "11 tests passed, including the stdio smoke check, during the migration.",
-          "th": "ผ่าน 11 tests รวม stdio smoke check ในการย้ายโปรเจกต์"
+          "th": "ผ่านการทดสอบ 11 รายการ รวมการเรียก MCP ผ่านช่องทาง stdio ในรอบนำโปรเจกต์ขึ้น GitHub"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "Coverage is limited to the included foundation ontology; review-required mappings stay unconfirmed.",
-        "th": "ขอบเขตจำกัดตาม ontology ฐานรากที่รวมอยู่ และ mapping ที่ต้องทบทวนยังไม่ถือว่ายืนยัน"
-      },
-      {
-        "en": "No automatic unit conversion or verified Revit/Claude Desktop end-to-end run.",
-        "th": "ยังไม่มีการแปลงหน่วยอัตโนมัติหรือผลทดสอบ Revit/Claude Desktop แบบครบวงจรที่ยืนยันแล้ว"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "มีเครื่องมือ MCP สำหรับค้นรหัส ตรวจข้อมูลฐานราก และแสดงรายการที่ต้องตรวจเพิ่ม เปิดดูผลการเรียกเครื่องมือได้จากภาพ MCP Inspector",
+        "en": "The project provides MCP tools for code lookup and foundation-data checks, including items needing review. The MCP Inspector capture shows a tool call result."
       }
     ],
     "limitations": [
       {
         "en": "Coverage is limited to the included foundation ontology; review-required mappings stay unconfirmed.",
-        "th": "ขอบเขตจำกัดตาม ontology ฐานรากที่รวมอยู่ และ mapping ที่ต้องทบทวนยังไม่ถือว่ายืนยัน"
+        "th": "ตอนนี้รองรับข้อมูลฐานรากตามชุดรหัสที่เตรียมไว้ รายการที่จับคู่รหัสไม่ได้หรือข้อมูลขัดแย้งกันยังต้องตรวจเพิ่ม"
       },
       {
         "en": "No automatic unit conversion or verified Revit/Claude Desktop end-to-end run.",
-        "th": "ยังไม่มีการแปลงหน่วยอัตโนมัติหรือผลทดสอบ Revit/Claude Desktop แบบครบวงจรที่ยืนยันแล้ว"
+        "th": "ยังไม่มีการแปลงหน่วยอัตโนมัติ และยังไม่ได้ทดสอบเชื่อม Revit หรือ Claude Desktop ครบทั้งระบบ"
       }
     ],
     "future": [
@@ -139,10 +130,7 @@
         "th": "เพิ่ม integration tests ด้วย element ตัวอย่างที่มีสิทธิ์ใช้งาน"
       }
     ],
-    "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
-    },
+    "contributions": [],
     "contributionStatus": "not-verified",
     "upstreamUrl": null,
     "images": [],
@@ -223,15 +211,15 @@
     "features": [
       {
         "en": "MCP model tools, REST endpoints and a web interface.",
-        "th": "มีเครื่องมือ model ผ่าน MCP, REST endpoints และหน้าเว็บ"
+        "th": "เรียกดูข้อมูลโมเดลได้ผ่าน MCP, API และหน้าเว็บ"
       },
       {
         "en": "SQLite-backed indexed queries and Thai/English semantic-filter parsing.",
-        "th": "ค้นข้อมูลผ่าน SQLite และแปลงคำค้นไทย/อังกฤษเป็น filter"
+        "th": "ใช้ SQLite ช่วยค้นข้อมูล และแปลงคำค้นภาษาไทยหรืออังกฤษเป็นเงื่อนไขกรอง"
       },
       {
         "en": "Eight-stage BOQ workflow with evidence, exceptions and CSV/JSON export.",
-        "th": "workflow BOQ 8 ขั้น พร้อมหลักฐาน ข้อยกเว้น และ export CSV/JSON"
+        "th": "มีขั้นตอนจัดรายการปริมาณงาน 8 ขั้น พร้อมแสดงรายการที่ต้องตรวจและส่งออก CSV/JSON"
       }
     ],
     "architecture": {
@@ -296,38 +284,29 @@
         "status": "reviewed",
         "detail": {
           "en": "Source snapshot and test files inspected; no successful C# build or live model extraction was verified during migration.",
-          "th": "ตรวจ source snapshot และไฟล์ทดสอบแล้ว แต่ยังไม่มี C# build หรือการถอด model จริงที่ยืนยันในรอบย้าย"
+          "th": "ตรวจโค้ดและไฟล์ทดสอบแล้ว ยังไม่ได้ทดสอบสร้างโปรแกรม C# หรืออ่านโมเดลจริงในรอบนำขึ้น GitHub"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "Requires compatible Windows, .NET and Navisworks components for extraction.",
-        "th": "การถอด model ต้องใช้ Windows, .NET และ Navisworks ที่เข้ากันได้"
-      },
-      {
-        "en": "Demo prices are synthetic, not tender or official reference rates.",
-        "th": "ราคาสาธิตเป็นข้อมูลสังเคราะห์ ไม่ใช่ราคาเสนอหรือราคากลาง"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "มีหน้าเว็บสำหรับค้นและจัดกลุ่มข้อมูลอาคาร รวมถึงโค้ดสำหรับจัดรายการปริมาณงานและส่งออกไฟล์ CSV/JSON",
+        "en": "The project includes a building-data search interface and code for grouping quantities and exporting CSV/JSON files."
       }
     ],
     "limitations": [
       {
         "en": "Requires compatible Windows, .NET and Navisworks components for extraction.",
-        "th": "การถอด model ต้องใช้ Windows, .NET และ Navisworks ที่เข้ากันได้"
+        "th": "การอ่านโมเดลต้องใช้ Windows, .NET และ Navisworks รุ่นที่ทำงานร่วมกันได้"
       },
       {
         "en": "Demo prices are synthetic, not tender or official reference rates.",
-        "th": "ราคาสาธิตเป็นข้อมูลสังเคราะห์ ไม่ใช่ราคาเสนอหรือราคากลาง"
+        "th": "ราคาในตัวอย่างเป็นข้อมูลสมมติ ไม่ใช่ราคากลางหรือราคาที่ใช้เสนอจริง"
       },
       {
         "en": "Provider-backed agent behavior and model extraction are not runtime-verified.",
-        "th": "พฤติกรรม agent ที่เรียก provider และการถอด model ยังไม่ยืนยันด้วยการรันจริง"
+        "th": "ยังไม่ได้ทดสอบการอ่านโมเดลจริงและส่วนที่เรียกบริการ AI ในรอบจัดทำพอร์ต"
       }
     ],
     "future": [
@@ -340,10 +319,7 @@
         "th": "ตรวจความครอบคลุม mapping หน่วย และแหล่งราคา ก่อนใช้ประมาณราคาจริง"
       }
     ],
-    "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
-    },
+    "contributions": [],
     "contributionStatus": "not-verified",
     "upstreamUrl": null,
     "images": [],
@@ -425,15 +401,15 @@
     "features": [
       {
         "en": "Multi-sensor MQTT telemetry and device-status messages.",
-        "th": "ส่ง telemetry หลายเซนเซอร์และสถานะอุปกรณ์ผ่าน MQTT"
+        "th": "ส่งค่าจากเซนเซอร์หลายตัวและสถานะอุปกรณ์ผ่าน MQTT"
       },
       {
         "en": "Latest readings, history, events and device-status API endpoints.",
-        "th": "มี API ค่าล่าสุด ประวัติ เหตุการณ์ และสถานะอุปกรณ์"
+        "th": "มี API เรียกดูค่าล่าสุด ประวัติ เหตุการณ์ และสถานะอุปกรณ์"
       },
       {
         "en": "Demonstration LED and marker-baseline commands.",
-        "th": "มีคำสั่ง LED และตั้งค่า marker baseline สำหรับสาธิต"
+        "th": "มีคำสั่งสาธิตเปิดปิด LED และตั้งค่าระยะเริ่มต้นของจุดวัด"
       }
     ],
     "architecture": {
@@ -490,38 +466,29 @@
         "status": "passed",
         "detail": {
           "en": "Compose configuration validation passed; no hardware or live container pipeline was tested.",
-          "th": "ตรวจ Compose configuration ผ่าน แต่ยังไม่ได้ทดสอบ hardware หรือ container pipeline จริง"
+          "th": "ตรวจไฟล์ตั้งค่า Docker Compose ผ่าน ยังไม่ได้รันชุดบริการหรือเชื่อมอุปกรณ์จริง"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "Not a validated landslide-warning system; thresholds require calibration and scientific validation.",
-        "th": "ไม่ใช่ระบบเตือนภัยดินถล่มที่ผ่านการรับรอง เกณฑ์ต้องปรับเทียบและตรวจสอบทางวิทยาศาสตร์"
-      },
-      {
-        "en": "MQTT laboratory defaults are not a production security configuration.",
-        "th": "ค่าเริ่มต้น MQTT สำหรับห้องทดลองไม่ใช่การตั้งค่าความปลอดภัย production"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "มีหน้าเว็บแสดงค่าความชื้น อุณหภูมิ การเคลื่อนตัว และเหตุการณ์จากสถานี ภาพตัวอย่างใช้ข้อมูลจำลอง",
+        "en": "The dashboard shows moisture, temperature, movement and station events. The screenshot uses simulated readings."
       }
     ],
     "limitations": [
       {
         "en": "Not a validated landslide-warning system; thresholds require calibration and scientific validation.",
-        "th": "ไม่ใช่ระบบเตือนภัยดินถล่มที่ผ่านการรับรอง เกณฑ์ต้องปรับเทียบและตรวจสอบทางวิทยาศาสตร์"
+        "th": "เป็นต้นแบบเพื่อการศึกษา ยังไม่ผ่านการตรวจสอบสำหรับใช้เตือนภัยดินถล่มจริง ต้องปรับเทียบเซนเซอร์และเกณฑ์แจ้งเตือนก่อน"
       },
       {
         "en": "MQTT laboratory defaults are not a production security configuration.",
-        "th": "ค่าเริ่มต้น MQTT สำหรับห้องทดลองไม่ใช่การตั้งค่าความปลอดภัย production"
+        "th": "การตั้งค่า MQTT เป็นแบบทดลอง ยังไม่ได้เตรียมความปลอดภัยสำหรับเปิดใช้งานจริง"
       },
       {
         "en": "Companion dashboard and firmware variants are not assumed interchangeable.",
-        "th": "ไม่ถือว่า dashboard และ firmware คนละเวอร์ชันใช้แทนกันได้โดยไม่ตรวจ protocol"
+        "th": "หน้าเว็บและโปรแกรมบนบอร์ดมีหลายรุ่น ต้องตรวจรูปแบบข้อมูลให้ตรงกันก่อนเชื่อมต่อ"
       }
     ],
     "future": [
@@ -534,10 +501,7 @@
         "th": "เพิ่ม authentication และปรับความปลอดภัยก่อนใช้งานกว้างขึ้น"
       }
     ],
-    "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
-    },
+    "contributions": [],
     "contributionStatus": "not-verified",
     "upstreamUrl": null,
     "images": [],
@@ -613,15 +577,15 @@
     "features": [
       {
         "en": "Station discovery, latest values, history, events and CSV export.",
-        "th": "ค้นสถานี ดูค่าล่าสุด ประวัติ เหตุการณ์ และ export CSV"
+        "th": "เลือกสถานี ดูค่าล่าสุด ประวัติ และเหตุการณ์ พร้อมส่งออก CSV"
       },
       {
         "en": "Domain validation and prototype risk classification separated from transport code.",
-        "th": "แยกการตรวจข้อมูลและการจัดระดับความเสี่ยงสาธิตออกจากโค้ดรับส่ง"
+        "th": "แยกส่วนตรวจข้อมูลและคำนวณระดับความเสี่ยงตัวอย่างออกจากส่วนรับส่งข้อมูล"
       },
       {
         "en": "Simulator and connection checker for synthetic test station data.",
-        "th": "มี simulator และตัวตรวจ connection ด้วยข้อมูลสถานีสังเคราะห์"
+        "th": "มีโปรแกรมจำลองสถานีและเครื่องมือตรวจการเชื่อมต่อ"
       }
     ],
     "architecture": {
@@ -678,7 +642,7 @@
         "status": "passed",
         "detail": {
           "en": "11 tests and 18 subtests passed during migration; one framework deprecation warning remained.",
-          "th": "ผ่าน 11 tests และ 18 subtests ในรอบย้าย โดยมี framework deprecation warning 1 รายการ"
+          "th": "ผ่านการทดสอบหลัก 11 รายการ และการทดสอบย่อย 18 รายการ มีคำเตือนเรื่องความเข้ากันได้ในรุ่นถัดไปของเฟรมเวิร์ก 1 รายการ"
         }
       },
       {
@@ -686,34 +650,25 @@
         "status": "passed",
         "detail": {
           "en": "Compose configuration validated; live containers and physical sensors were not run.",
-          "th": "ตรวจ Compose ผ่าน แต่ไม่ได้รัน containers หรือเซนเซอร์จริง"
+          "th": "ตรวจไฟล์ตั้งค่า Docker Compose ผ่าน ยังไม่ได้รันชุดบริการหรือเชื่อมเซนเซอร์จริง"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "Educational risk thresholds are not validated real-world warning criteria.",
-        "th": "เกณฑ์ความเสี่ยงเพื่อการศึกษาไม่ใช่เกณฑ์เตือนภัยจริงที่ผ่านการตรวจสอบ"
-      },
-      {
-        "en": "Physical hardware, production security and cross-platform networking remain unverified.",
-        "th": "hardware จริง ความปลอดภัย production และ network ข้าม platform ยังไม่ยืนยัน"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "มีหน้าเว็บดูค่าล่าสุด กราฟย้อนหลัง และเหตุการณ์ พร้อมส่งออก CSV มีตัวจำลองสถานีสำหรับลองส่งข้อมูลโดยไม่ต้องใช้เซนเซอร์จริง",
+        "en": "The dashboard includes current readings, history charts, events and CSV export. A station simulator supplies readings without physical sensors."
       }
     ],
     "limitations": [
       {
         "en": "Educational risk thresholds are not validated real-world warning criteria.",
-        "th": "เกณฑ์ความเสี่ยงเพื่อการศึกษาไม่ใช่เกณฑ์เตือนภัยจริงที่ผ่านการตรวจสอบ"
+        "th": "เกณฑ์ความเสี่ยงในโปรเจกต์ใช้เพื่อการศึกษา ยังไม่ผ่านการตรวจสอบสำหรับเตือนภัยจริง"
       },
       {
         "en": "Physical hardware, production security and cross-platform networking remain unverified.",
-        "th": "hardware จริง ความปลอดภัย production และ network ข้าม platform ยังไม่ยืนยัน"
+        "th": "ยังไม่ได้ทดสอบกับเซนเซอร์จริงหรือเครือข่ายบนระบบอื่น และยังไม่ได้ตรวจความปลอดภัยสำหรับเปิดใช้งานจริง"
       }
     ],
     "future": [
@@ -726,10 +681,7 @@
         "th": "ตรวจความเข้ากันได้ของ protocol firmware และ authentication"
       }
     ],
-    "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
-    },
+    "contributions": [],
     "contributionStatus": "not-verified",
     "upstreamUrl": null,
     "images": [],
@@ -811,15 +763,15 @@
     "features": [
       {
         "en": "Wildcard MQTT subscription for multiple weather stations.",
-        "th": "subscribe MQTT แบบ wildcard เพื่อรองรับหลายสถานี"
+        "th": "รับข้อความ MQTT จากหลายสถานีได้"
       },
       {
         "en": "Timestamped storage and latest/history API endpoints.",
-        "th": "เก็บข้อมูลพร้อมเวลา และมี API ค่าล่าสุด/ประวัติ"
+        "th": "เก็บค่าพร้อมเวลา และมี API เรียกดูค่าล่าสุดกับประวัติ"
       },
       {
         "en": "Online/offline status derived from reading age.",
-        "th": "ประเมิน online/offline จากอายุข้อมูล"
+        "th": "แสดงสถานะสถานีจากเวลาที่ได้รับข้อมูลล่าสุด"
       }
     ],
     "architecture": {
@@ -873,34 +825,25 @@
         "status": "passed",
         "detail": {
           "en": "Configuration check passed; hardware, calibration and end-to-end messaging are not verified.",
-          "th": "ตรวจ configuration ผ่าน แต่ยังไม่ยืนยัน hardware การปรับเทียบ และข้อความครบวงจร"
+          "th": "ตรวจไฟล์ตั้งค่าผ่าน ยังไม่ได้ปรับเทียบเซนเซอร์หรือทดสอบรับส่งข้อมูลกับอุปกรณ์จริงครบทั้งระบบ"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "The firmware PM2.5 conversion is illustrative and must match the actual sensor datasheet.",
-        "th": "สูตร PM2.5 ใน firmware เป็นตัวอย่าง ต้องปรับตาม datasheet เซนเซอร์จริง"
-      },
-      {
-        "en": "Anonymous MQTT and missing production authentication require review.",
-        "th": "MQTT แบบ anonymous และ authentication production ที่ยังขาดต้องได้รับการทบทวน"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "มีหน้าเว็บแสดงอุณหภูมิ ความชื้น และ PM2.5 พร้อมกราฟย้อนหลังและสถานะสถานี ภาพตัวอย่างใช้ข้อมูลจำลอง",
+        "en": "The web page displays temperature, humidity, PM2.5, history charts and station status. The screenshot uses simulated readings."
       }
     ],
     "limitations": [
       {
         "en": "The firmware PM2.5 conversion is illustrative and must match the actual sensor datasheet.",
-        "th": "สูตร PM2.5 ใน firmware เป็นตัวอย่าง ต้องปรับตาม datasheet เซนเซอร์จริง"
+        "th": "สูตรคำนวณ PM2.5 ในโปรแกรมบนบอร์ดเป็นตัวอย่าง ต้องปรับให้ตรงกับคู่มือเซนเซอร์ที่ใช้"
       },
       {
         "en": "Anonymous MQTT and missing production authentication require review.",
-        "th": "MQTT แบบ anonymous และ authentication production ที่ยังขาดต้องได้รับการทบทวน"
+        "th": "MQTT ในตัวอย่างเปิดให้เชื่อมต่อโดยไม่ระบุตัวตน ต้องเพิ่มการยืนยันตัวตนก่อนเปิดใช้งานจริง"
       }
     ],
     "future": [
@@ -913,10 +856,7 @@
         "th": "เพิ่ม authenticated/TLS transport สำหรับ deploy"
       }
     ],
-    "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
-    },
+    "contributions": [],
     "contributionStatus": "not-verified",
     "upstreamUrl": null,
     "images": [],
@@ -986,15 +926,15 @@
     "features": [
       {
         "en": "Card listing, random draw and detail retrieval.",
-        "th": "แสดงไพ่ สุ่มไพ่ และเรียกดูรายละเอียด"
+        "th": "แสดงรายการไพ่ สุ่มไพ่ และดูรายละเอียดไพ่"
       },
       {
         "en": "Create, edit, delete, search and category routes in source.",
-        "th": "โค้ดมี routes สร้าง แก้ ลบ ค้นหา และหมวด"
+        "th": "มี API สำหรับเพิ่ม แก้ไข ลบ ค้นหา และเลือกหมวดไพ่"
       },
       {
         "en": "Vite proxy and typed client/API structures.",
-        "th": "มี Vite proxy และโครงสร้าง client/API ที่ใช้ type"
+        "th": "ใช้ Vite เชื่อมคำขอจากหน้าเว็บไปยัง API และใช้ TypeScript กำหนดรูปแบบข้อมูล"
       }
     ],
     "architecture": {
@@ -1047,7 +987,7 @@
         "status": "passed",
         "detail": {
           "en": "Client and server type checks passed.",
-          "th": "type checks client/server ผ่าน"
+          "th": "ตรวจชนิดข้อมูล TypeScript ทั้งหน้าเว็บและเซิร์ฟเวอร์ผ่าน"
         }
       },
       {
@@ -1055,7 +995,7 @@
         "status": "passed",
         "detail": {
           "en": "Vite production build passed.",
-          "th": "Vite production build ผ่าน"
+          "th": "สร้างชุดไฟล์หน้าเว็บด้วย Vite ผ่าน"
         }
       },
       {
@@ -1063,34 +1003,25 @@
         "status": "passed",
         "detail": {
           "en": "GET health, cards and random passed on an isolated local server.",
-          "th": "GET health, cards และ random ผ่านบน server ทดสอบในเครื่อง"
+          "th": "ลองเรียก API ตรวจสถานะ รายการไพ่ และสุ่มไพ่ บนเซิร์ฟเวอร์ทดสอบในเครื่องผ่าน"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "No durable data storage or production authentication was verified.",
-        "th": "ยังไม่มีการเก็บข้อมูลถาวรหรือ authentication production ที่ยืนยันแล้ว"
-      },
-      {
-        "en": "Bun server production build and the full shell test suite were not run.",
-        "th": "ยังไม่ได้รัน Bun production build ฝั่ง server และ shell test suite ทั้งหมด"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "เปิดหน้าสุ่มไพ่และหน้าจัดการไพ่ได้ มี API สำหรับเรียกดูและสุ่มไพ่ โดยใช้ชุดไพ่สาธิตของโปรเจกต์",
+        "en": "The card-drawing and card-management screens run with the project’s demo deck. The API includes card-list and random-draw endpoints."
       }
     ],
     "limitations": [
       {
         "en": "No durable data storage or production authentication was verified.",
-        "th": "ยังไม่มีการเก็บข้อมูลถาวรหรือ authentication production ที่ยืนยันแล้ว"
+        "th": "ยังไม่ได้ตรวจระบบเก็บข้อมูลถาวรหรือระบบเข้าสู่ระบบสำหรับใช้งานจริง"
       },
       {
         "en": "Bun server production build and the full shell test suite were not run.",
-        "th": "ยังไม่ได้รัน Bun production build ฝั่ง server และ shell test suite ทั้งหมด"
+        "th": "ยังไม่ได้ทดสอบการสร้างชุดติดตั้งฝั่งเซิร์ฟเวอร์ด้วย Bun หรือรันชุดทดสอบทั้งหมด"
       }
     ],
     "future": [
@@ -1104,8 +1035,8 @@
       }
     ],
     "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
+      "th": "งานนี้นำโค้ดจากต้นทางมาศึกษาต่อ สามารถดูต้นฉบับได้จากลิงก์ด้านล่าง",
+      "en": "This project uses upstream code for further study. The original repository is linked below."
     },
     "contributionStatus": "not-verified",
     "upstreamUrl": "https://github.com/wu-web-camp/emoji-tarot",
@@ -1184,15 +1115,15 @@
     "features": [
       {
         "en": "Evidence-aware acquisition, normalization, classification and quantity stages in the review branch.",
-        "th": "ใน branch review มีขั้นรับข้อมูล ปรับรูป จัดหมวด และหาปริมาณแบบอ้างหลักฐาน"
+        "th": "มีส่วนรับข้อมูล จัดรูปแบบ จัดหมวด และคำนวณปริมาณงานในสาขาโค้ดที่รอตรวจ"
       },
       {
         "en": "FastAPI dashboard and MCP tools for running and inspecting workflows.",
-        "th": "มี dashboard FastAPI และ MCP tools รัน/ดู workflow"
+        "th": "มีหน้าเว็บ FastAPI และเครื่องมือ MCP สำหรับเรียกดูและสั่งทำงานแต่ละขั้น"
       },
       {
         "en": "Issue summaries, audit trails and CSV/JSON outputs.",
-        "th": "มี issue summary, audit trail และผล CSV/JSON"
+        "th": "แสดงรายการปัญหา ย้อนดูขั้นตอนที่ทำ และส่งออก CSV/JSON"
       }
     ],
     "architecture": {
@@ -1246,38 +1177,29 @@
         "status": "partial",
         "detail": {
           "en": "5 passed; 1 failed and 3 setup errors because original CASE2 exports were excluded.",
-          "th": "ผ่าน 5 รายการ อีก 1 failed และ 3 setup errors เพราะไม่รวม CASE2 exports ต้นฉบับ"
+          "th": "ผ่าน 5 รายการ ไม่ผ่าน 1 รายการ และเตรียมการทดสอบไม่ได้ 3 รายการ เนื่องจากไม่มีไฟล์ส่งออก CASE2 ต้นฉบับในชุดที่เผยแพร่"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "New BOQ source remains in an unmerged draft PR, not main.",
-        "th": "source BOQ ใหม่ยังอยู่ใน Draft PR ที่ไม่ Merge เข้า main"
-      },
-      {
-        "en": "Original CASE2 exports are needed for snapshot regression tests.",
-        "th": "snapshot regression tests ต้องใช้ CASE2 exports ต้นฉบับ"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "เปิดดูรายการชิ้นส่วนอาคารในหน้าเว็บได้ โดยใช้ชุดตัวอย่าง CASE2 จำนวน 13 ชิ้นส่วน ส่วนจัดปริมาณงานยังอยู่ในสาขาทดลองของโค้ด",
+        "en": "The web interface displays the public CASE2 sample of 13 building elements. The quantity-workflow additions remain in the review branch."
       }
     ],
     "limitations": [
       {
         "en": "New BOQ source remains in an unmerged draft PR, not main.",
-        "th": "source BOQ ใหม่ยังอยู่ใน Draft PR ที่ไม่ Merge เข้า main"
+        "th": "โค้ดส่วนจัดปริมาณงานอยู่ใน Draft PR ยังไม่ได้รวมเข้าสาขาหลัก"
       },
       {
         "en": "Original CASE2 exports are needed for snapshot regression tests.",
-        "th": "snapshot regression tests ต้องใช้ CASE2 exports ต้นฉบับ"
+        "th": "การทดสอบเทียบผลเดิมบางส่วนต้องใช้ไฟล์ส่งออก CASE2 ต้นฉบับที่ไม่ได้รวมไว้ในชุดเผยแพร่"
       },
       {
         "en": "Demo prices and unresolved mapping guards do not support production estimating claims.",
-        "th": "ราคาสาธิตและ mapping ที่ยังไม่สรุปไม่ใช่หลักฐานพร้อมประมาณราคา production"
+        "th": "ราคาเป็นข้อมูลสาธิต และบางรายการยังต้องตรวจการจับคู่รหัส จึงยังใช้เป็นผลประมาณราคางานจริงไม่ได้"
       }
     ],
     "future": [
@@ -1290,10 +1212,7 @@
         "th": "ตรวจหน่วยและ mapping อ้างอิงกับ model ที่มีสิทธิ์"
       }
     ],
-    "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
-    },
+    "contributions": [],
     "contributionStatus": "not-verified",
     "upstreamUrl": null,
     "images": [],
@@ -1364,15 +1283,15 @@
     "features": [
       {
         "en": "Hybrid search modules combine keyword and vector results.",
-        "th": "โมดูล hybrid search รวมผล keyword กับ vector"
+        "th": "รวมผลค้นหาจากคำค้นและความหมายของข้อความ"
       },
       {
         "en": "Text/PDF processors and storage/embedding abstractions.",
-        "th": "มี text/PDF processors และ abstraction สำหรับ storage/embedding"
+        "th": "มีส่วนอ่านไฟล์ข้อความและ PDF รวมถึงส่วนจัดเก็บและแปลงข้อความเป็นข้อมูลสำหรับค้นหา"
       },
       {
         "en": "Source-defined MCP search and dynamic context interfaces.",
-        "th": "มี MCP interface ค้นหาและ dynamic context ตาม source"
+        "th": "มีเครื่องมือ MCP สำหรับค้นข้อมูลและเลือกข้อความที่ใช้ประกอบคำตอบ"
       }
     ],
     "architecture": {
@@ -1432,38 +1351,29 @@
         "status": "reviewed",
         "detail": {
           "en": "Copied Python syntax was checked; retrieval quality and service-backed integration were not run.",
-          "th": "ตรวจ syntax Python ที่คัดลอกแล้ว แต่ไม่ได้วัดคุณภาพ retrieval หรือรัน integration ที่ใช้บริการจริง"
+          "th": "ตรวจรูปแบบโค้ด Python แล้ว ยังไม่ได้วัดคุณภาพการค้นหาหรือทดสอบเชื่อมบริการจริง"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "The URL add_documentation tool is explicitly a TODO placeholder despite returning a success string.",
-        "th": "tool add_documentation จาก URL ยังเป็น TODO placeholder แม้ส่งข้อความ success กลับ"
-      },
-      {
-        "en": "The rag://stats resource contains placeholder zero counts; do not treat those as live measurements.",
-        "th": "resource rag://stats มีตัวเลขศูนย์แบบ placeholder ไม่ใช่ค่าสถิติจริง"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "มีโค้ดอ่านเอกสารข้อความและ PDF รวมถึงส่วนค้นหาด้วยคำค้นและความหมายของข้อความ ยังไม่ได้ทดสอบการค้นหากับบริการและโมเดลครบทั้งระบบ",
+        "en": "The source includes text/PDF processing and keyword-plus-semantic search. Retrieval with the full service and model setup has not been tested."
       }
     ],
     "limitations": [
       {
         "en": "The URL add_documentation tool is explicitly a TODO placeholder despite returning a success string.",
-        "th": "tool add_documentation จาก URL ยังเป็น TODO placeholder แม้ส่งข้อความ success กลับ"
+        "th": "ส่วนเพิ่มเอกสารจาก URL ยังเขียนไม่เสร็จ แม้จะส่งข้อความว่าสำเร็จกลับมา"
       },
       {
         "en": "The rag://stats resource contains placeholder zero counts; do not treat those as live measurements.",
-        "th": "resource rag://stats มีตัวเลขศูนย์แบบ placeholder ไม่ใช่ค่าสถิติจริง"
+        "th": "ค่าสถิติใน rag://stats ยังเป็นค่าตัวอย่าง ไม่ใช่จำนวนเอกสารจริง"
       },
       {
         "en": "No measured retrieval accuracy, model/provider calls or vector ingestion success is verified.",
-        "th": "ยังไม่มี accuracy ของ retrieval การเรียก model/provider หรือความสำเร็จการ ingest vector ที่ยืนยันแล้ว"
+        "th": "ยังไม่ได้วัดความแม่นยำของการค้นหา หรือทดสอบการเพิ่มข้อมูลและเรียกโมเดลครบทั้งระบบ"
       }
     ],
     "future": [
@@ -1477,8 +1387,8 @@
       }
     ],
     "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
+      "th": "งานนี้นำโค้ดจากต้นทางมาศึกษาต่อ สามารถดูต้นฉบับได้จากลิงก์ด้านล่าง",
+      "en": "This project uses upstream code for further study. The original repository is linked below."
     },
     "contributionStatus": "not-verified",
     "upstreamUrl": "https://github.com/aekanun2020/v3-2026-mcp-streamable-sse-rag",
@@ -1560,15 +1470,15 @@
     "features": [
       {
         "en": "Student and room screens with reusable components.",
-        "th": "มีหน้าข้อมูลนักศึกษา/ห้อง และ components ใช้ร่วม"
+        "th": "มีหน้าข้อมูลนักศึกษาและห้องพัก พร้อมส่วนหน้าจอที่ใช้ร่วมกัน"
       },
       {
         "en": "REST helpers for student CRUD and history records.",
-        "th": "มี REST helpers สำหรับ student CRUD และ history"
+        "th": "มีโค้ดเรียก API สำหรับเพิ่ม อ่าน แก้ไข ลบข้อมูลผู้พัก และบันทึกประวัติ"
       },
       {
         "en": "An empty database example replaces original student data.",
-        "th": "ใช้ database example ว่างแทนข้อมูลนักศึกษาต้นฉบับ"
+        "th": "ใช้ฐานข้อมูลตัวอย่างว่างแทนข้อมูลนักศึกษาจริง"
       }
     ],
     "architecture": {
@@ -1620,7 +1530,7 @@
         "status": "passed",
         "detail": {
           "en": "Locked dependencies installed with lifecycle scripts disabled.",
-          "th": "ติดตั้ง locked dependencies โดยปิด lifecycle scripts สำเร็จ"
+          "th": "ติดตั้งไลบรารีตามรุ่นที่กำหนดได้ โดยไม่เรียกสคริปต์ติดตั้งเพิ่มเติม"
         }
       },
       {
@@ -1628,38 +1538,29 @@
         "status": "passed",
         "detail": {
           "en": "Expo export passed after adding the missing navigation dependency and correcting StudentList import case.",
-          "th": "Expo export ผ่านหลังเพิ่ม navigation dependency ที่ขาดและแก้ case ของ StudentList import"
+          "th": "ส่งออกชุด JavaScript สำหรับ Android ผ่าน หลังเพิ่มไลบรารีนำทางที่ขาดและแก้ตัวพิมพ์ในชื่อไฟล์ StudentList"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "Source addition is in unmerged draft PR #1; main is not the completed mobile app.",
-        "th": "source ใหม่อยู่ใน Draft PR #1 ที่ยังไม่ Merge และ main ยังไม่ใช่แอปมือถือครบชุด"
-      },
-      {
-        "en": "Client-side demo login is not production authentication.",
-        "th": "login สาธิตฝั่ง client ไม่ใช่ authentication production"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "มีโค้ดหน้าข้อมูลผู้พัก ห้องพัก และประวัติการแก้ไข เตรียมชุด JavaScript สำหรับ Android ได้แล้ว แต่ยังไม่ได้ทดสอบบนโทรศัพท์จริง",
+        "en": "The source includes resident, room and change-history screens. The Android JavaScript export passed; use on a physical phone has not been tested."
       }
     ],
     "limitations": [
       {
         "en": "Source addition is in unmerged draft PR #1; main is not the completed mobile app.",
-        "th": "source ใหม่อยู่ใน Draft PR #1 ที่ยังไม่ Merge และ main ยังไม่ใช่แอปมือถือครบชุด"
+        "th": "โค้ดแอปชุดนี้อยู่ใน Draft PR #1 ยังไม่ได้รวมเข้าสาขาหลัก"
       },
       {
         "en": "Client-side demo login is not production authentication.",
-        "th": "login สาธิตฝั่ง client ไม่ใช่ authentication production"
+        "th": "หน้าเข้าสู่ระบบเป็นตัวอย่างฝั่งแอป ยังไม่ใช่ระบบยืนยันตัวตนสำหรับใช้งานจริง"
       },
       {
         "en": "APK compilation, device use and live backend behavior are not verified.",
-        "th": "ยังไม่ยืนยัน APK compilation การใช้บนอุปกรณ์ และ backend จริง"
+        "th": "ยังไม่ได้สร้าง APK หรือทดสอบกับโทรศัพท์และเซิร์ฟเวอร์จริง"
       }
     ],
     "future": [
@@ -1672,10 +1573,7 @@
         "th": "แทน authentication สาธิตด้วย access control ที่บังคับฝั่ง server"
       }
     ],
-    "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
-    },
+    "contributions": [],
     "contributionStatus": "not-verified",
     "upstreamUrl": null,
     "images": [],
@@ -1753,11 +1651,11 @@
     "features": [
       {
         "en": "GET, POST, PUT and DELETE routes against the idname collection.",
-        "th": "มี GET, POST, PUT และ DELETE กับ collection idname"
+        "th": "มี API สำหรับอ่าน เพิ่ม แก้ไข และลบข้อมูลในชุดข้อมูล idname"
       },
       {
         "en": "ObjectId-based document lookups and updates in source.",
-        "th": "source ใช้ ObjectId ค้นและแก้ document"
+        "th": "ใช้ ObjectId ระบุรายการที่ต้องการค้นหาหรือแก้ไข"
       }
     ],
     "architecture": {
@@ -1803,34 +1701,25 @@
         "status": "not-implemented",
         "detail": {
           "en": "package.json test script explicitly exits with no test specified; runtime was not newly verified.",
-          "th": "test script ใน package.json จบด้วย no test specified จึงยังไม่มีชุดทดสอบที่ implement และยังไม่ยืนยัน runtime ใหม่"
+          "th": "ยังไม่มีชุดทดสอบอัตโนมัติ คำสั่งทดสอบใน package.json ยังเป็นข้อความเริ่มต้น และยังไม่ได้ทดสอบการทำงานกับฐานข้อมูลใหม่"
         }
       }
     ],
-    "challenges": [
-      {
-        "en": "Legacy coursework; original exported records contain personal-data concerns.",
-        "th": "coursework เดิมมีประเด็นข้อมูลส่วนบุคคลใน records ที่ export"
-      },
-      {
-        "en": "No production authorization, deployment or automated-test pass is claimed.",
-        "th": "ไม่อ้าง authorization/deploy production หรือผล automated tests ผ่าน"
-      }
-    ],
+    "challenges": [],
     "results": [
       {
-        "en": "The source and evidence support the features and validation status above; no unmeasured accuracy or production outcome is claimed.",
-        "th": "source และหลักฐานรองรับ features กับสถานะการตรวจข้างต้น โดยไม่อ้าง accuracy หรือผล production ที่ไม่ได้วัด"
+        "th": "มีหน้าเว็บและ API สำหรับค้นหา เพิ่ม แก้ไข และลบสมาชิก ภาพตัวอย่างแสดงหน้าเว็บด้วยข้อมูลสมมติ ยังไม่ได้เชื่อมฐานข้อมูลจริงในการถ่ายภาพ",
+        "en": "The source includes a member-list interface and create, search, update and delete API routes. The screenshot uses fictional records without a live database connection."
       }
     ],
     "limitations": [
       {
         "en": "Legacy coursework; original exported records contain personal-data concerns.",
-        "th": "coursework เดิมมีประเด็นข้อมูลส่วนบุคคลใน records ที่ export"
+        "th": "ใช้ข้อมูลสมมติในภาพตัวอย่าง ไม่เผยแพร่ข้อมูลสมาชิกต้นฉบับ"
       },
       {
         "en": "No production authorization, deployment or automated-test pass is claimed.",
-        "th": "ไม่อ้าง authorization/deploy production หรือผล automated tests ผ่าน"
+        "th": "ยังไม่ได้ทดสอบระบบสิทธิ์ผู้ใช้ การติดตั้งใช้งานจริง หรือการทำงานกับฐานข้อมูลในรอบจัดทำพอร์ต"
       }
     ],
     "future": [
@@ -1839,10 +1728,7 @@
         "th": "ใช้ fixtures สังเคราะห์และเพิ่ม route/error-handling tests"
       }
     ],
-    "contributions": {
-      "th": "รายละเอียดส่วนนี้อ้างอิงจากไฟล์ของโปรเจกต์ ส่วนหน้าที่ของแต่ละคน ช่วงเวลาที่ทำ และขนาดทีมยังไม่ได้เพิ่ม หากเป็นงานที่นำมาศึกษาต่อ มีลิงก์ต้นทางแยกไว้ในหน้านี้",
-      "en": "This page describes the project files. Individual responsibilities, dates and team size have not been added yet. Adapted work includes a separate upstream link."
-    },
+    "contributions": [],
     "contributionStatus": "not-verified",
     "upstreamUrl": null,
     "images": [],
