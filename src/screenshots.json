@@ -41,16 +41,6 @@
       }
     ]
   },
-  "bim-project": {
-    "images": [
-      {
-        "src": "/projects/bim-project/screen-2026-11-07.png",
-        "caption": "Original BIM dashboard running locally with the public CASE2 sample of 13 elements; not a full Navisworks export verification.",
-        "captionTh": "หน้าเว็บ BIM ที่รันในเครื่อง ใช้ชุดตัวอย่างสาธารณะ CASE2 จำนวน 13 ชิ้นส่วน ยังไม่ได้ตรวจการส่งออกโมเดล Navisworks เต็มชุด",
-        "demoData": true
-      }
-    ]
-  },
   "landslide-iot-monitor": {
     "images": [
       {
